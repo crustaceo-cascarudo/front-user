@@ -1,0 +1,27 @@
+$paddings:(0px, 4px, 6x, 8px, 10px, 12px, 16px, 20px, 24px, 32px, 40px, 48px, 64px, 80px, 96px, 128px, 160px, 192px, 224px, 256px, 320px, 480px, 640px);
+$font-sizes:(12px, 14px, 16px, 18px, 20px, 24px, 30px, 36px, 48px, 64px);
+$border-radiuss:(0px, 2px, 4px, 6px, 8px, 12px, 16px);
+
+$font-families:(
+    "default":"Open Sans",
+);
+
+$box-shadows:(
+    0  1px  3px  rgb(0 0 0 / 20%),
+    0  4px  6px  rgb(0 0 0 / 20%),
+    0  5px 15px  rgb(0 0 0 / 20%),
+    0 10px 24px  rgb(0 0 0 / 20%),
+    0 15px 35px  rgb(0 0 0 / 20%)
+);
+
+$colors: (
+    'blue': (#EAEEFA, #D4DCF5, #AABAEA, #7F97E0, #5575D5, #2A52CB, #2242A2, #19317A, #112151, #0D193D, #081029),
+    'fresh-green': (#F0FBF1, #E2F7E2, #C4EFC5, #A7E7A8, #89DF8B, #6CD76E, #58B059, #438944, #2F6330, #254F25, #1A3C1B),
+    'green': (#D1F7E5, #ACE1C8, #87CAAB, #63B48E, #3E9D71, #198754, #146C43, #0F5132, #0A3622, #082919, #051B11),
+    'orange': (#FFF2E8, #FFE5D0, #FECBA1, #FEB272, #FD9843, #FD7E14, #CA6510, #984C0C, #653208, #4C2606, #331904),
+    'red': (#FCEBEC, #F5C2C7, #F1AEBC, #EA868F, #E35D6A, #DC3545, #B02A37, #842029, #58151C, #421015),
+    'yellow': (#FFFEED, #FFFDDA, #FFFBB6, #FFFA91, #FFF86D, #FFF648, #D2CB3A, #A5A02B, #79741D, #625F16, #4C490E),
+    'cyan': (#E7FAFE, #CFF4FC, #B6EFFB, #6EDFF6, #3DD5F3, #0DCAF0, #0AA2C0, #087990, #055160, #032830, #011418),
+    'teal': (#F0FCF9, #E1FAF2, #C3F4E5, #A4EFD9, #86E9CC, #68E4BF, #548D9D, #40957C, #2D6E5A, #194639, #0F3328),
+    'gray': (#BFC9CE, #B0BABF, #A2ABB0, #939DA1, #848E92, #677075, #495357, #2C3539, #232A2E, #1A2022, #121517),
+);
