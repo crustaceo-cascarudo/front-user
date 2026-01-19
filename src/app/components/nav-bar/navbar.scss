@@ -1,0 +1,115 @@
+.myNavbar {
+
+    $myNavbar-height: 75px;
+    --myNavbar-bg-color: var(--mlt-sys-colors-primary);
+    --myNavbar-shadow: var(--mlt-sys-box-shadow-4);
+    --myNavbar-padding: var(--mlt-sys-padding-5);
+    --myNavbar-gap: 0.25rem;
+    --myNavbar-text-color: aliceblue;
+    --myNavbar-text-size: 20px;
+    --myNavbar-margin-x: 0.75rem;
+    $myNavbar-image-upward-offset: 5px;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: $myNavbar-height;
+    background-color: var(--myNavbar-bg-color);
+    box-shadow: var(--myNavbar-shadow);
+    padding: var(--myNavbar-padding);
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__brand {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--myNavbar-gap);
+        text-decoration: none;
+        white-space: nowrap;
+
+        &__name {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    &__image-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: #{$myNavbar-height - $myNavbar-image-upward-offset};
+        width: auto;
+        cursor: pointer;
+        margin-bottom: $myNavbar-image-upward-offset;
+    }
+    &__image {
+        height: #{$myNavbar-height - 10px};
+        width: auto;
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        flex-grow: 1;
+        color: var(--myNavbar-text-color);
+        margin-left: var(--myNavbar-margin-x);
+        margin-right: var(--myNavbar-margin-x);
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--myNavbar-text-size);
+    }
+
+    &__list > li {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .logout-panel {
+        position: absolute;
+        top: calc(90%);
+        right: 0;
+        min-width: 120px;
+        padding: 8px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        white-space: nowrap;
+    }
+
+    .logout-button {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: var(--header-font-family);
+        color: #e74c3c;
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: #f8f9fa;
+        }
+    }
+}

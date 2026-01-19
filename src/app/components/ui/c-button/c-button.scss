@@ -1,0 +1,11 @@
+.boton{
+    --boton-padding: var(--mlt-sys-padding-5);
+    --boton-gap: 0.25rem;
+    --boton-text-size: 20px;
+    --boton-border-radius: 0.5rem;
+
+    box-shadow: var(--boton-shadow);
+    padding: var(--boton-padding);
+    font-size: var(--boton-text-size);
+    border-radius: var(--boton-border-radius);
+}
