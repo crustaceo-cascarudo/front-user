@@ -5,8 +5,10 @@
     --myNavbar-shadow: var(--mlt-sys-box-shadow-4);
     --myNavbar-padding: var(--mlt-sys-padding-5);
     --myNavbar-gap: 0.25rem;
-    --myNavbar-text-color: aliceblue;
-    --myNavbar-text-size: 20px;
+    --myNavbar-text-color: var(--mlt-sys-colors-light);
+    --myNavbar-font-size: var(--mlt-sys-font-size-4);
+    --myNavbar-brand-font-size: var(--mlt-sys-font-size-5);
+    --myNavbar-brand-text-color: var(--mlt-sys-colors-yellow-2);
     --myNavbar-margin-x: 0.75rem;
     $myNavbar-image-upward-offset: 5px;
 
@@ -33,13 +35,17 @@
         flex-direction: row;
         align-items: center;
         gap: var(--myNavbar-gap);
-        text-decoration: none;
-        white-space: nowrap;
+        
+        cursor: pointer;
 
         &__name {
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-decoration: none;
+            font-size: var(--myNavbar-brand-font-size);
+            color: var(--myNavbar-brand-text-color);
+            white-space: nowrap;
         }
     }
 
@@ -49,7 +55,6 @@
         justify-content: center;
         height: #{$myNavbar-height - $myNavbar-image-upward-offset};
         width: auto;
-        cursor: pointer;
         margin-bottom: $myNavbar-image-upward-offset;
     }
     &__image {
@@ -74,7 +79,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        font-size: var(--myNavbar-text-size);
+        font-size: var(--myNavbar-font-size);
     }
 
     &__list > li {
