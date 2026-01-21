@@ -17,10 +17,10 @@
 @each $key, $value in utilidades.$colors {
     @for $i from 1 through list.length($value) {
         .g--colors-#{$key}-#{($i)} {
-            color: var(--mlt-sys-colors-#{$key}-#{$i});
+            color: var(--mlt-sys-colors-#{$key}-#{$i}) !important;
         }
         .g--bg-colors-#{$key}-#{($i)} {
-            background-color: var(--mlt-sys-colors-#{$key}-#{$i});
+            background-color: var(--mlt-sys-colors-#{$key}-#{$i}) !important;
         }
     }
 }
@@ -45,11 +45,11 @@ $base-colors: (
 
 @each $key, $value in $base-colors {
     .g--colors-#{$key} {
-        color: #{$value};
+        color: #{$value} !important;
     }
 
     .g--bg-colors-#{$key} {
-        background-color: #{$value};
+        background-color: #{$value} !important;
     }
 
 };
