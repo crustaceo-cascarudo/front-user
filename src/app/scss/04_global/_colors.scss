@@ -22,17 +22,22 @@
         .g--bg-colors-#{$key}-#{($i)} {
             background-color: var(--mlt-sys-colors-#{$key}-#{$i}) !important;
         }
+        .g--border-colors-#{$key}-#{($i)}{
+            border-color: var(--mlt-sys-colors-#{$key}-#{$i}) !important;
+        }
     }
 }
 
 $base-colors: (
     'primary': var(--mlt-sys-colors-red-7),
     'secondary': var(--mlt-sys-colors-red-5),
+    'highlight': var(--mlt-sys-colors-yellow-5),
     'success': var(--mlt-sys-colors-green),
     'danger': var(--mlt-sys-colors-red),
     'warning-light': #FFC107,
     'warning-dark': var(--mlt-sys-colors-yellow),
     'info': var(--mlt-sys-colors-cyan),
+    'light-blue': var(--mlt-sys-colors-cyan-3),
     'light': #fffefa,
     'dark': var(--mlt-sys-colors-gray-8),
 );
