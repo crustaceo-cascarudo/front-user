@@ -2,10 +2,13 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { CButton } from "../ui/c-button/c-button";
 //import { LoginService } from '../../services/loginService';
+import { MatIcon } from '@angular/material/icon';
+
+
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  imports: [RouterLink, CButton, MatIcon],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
@@ -13,6 +16,8 @@ export class NavBar {
   //loginService = inject(LoginService)
   router = inject(Router);
   showLogOutPanel: boolean = false;
+
+  hovered: boolean = false;
   
   logOut(){
     //this.loginService.logOut();
