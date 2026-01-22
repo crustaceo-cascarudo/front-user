@@ -1,0 +1,86 @@
+.home {
+    --home-font-size-default: var(--mlt-sys-font-size-3);
+    --home-font-size-title: var(--mlt-sys-font-size-9);
+    --home-font-size-big: var(--mlt-sys-font-size-6);
+    --home-font-size-small: var(--mlt-sys-font-size-2);
+
+    --home-font-family-default: var(--mlt-sys-font-family-default);
+    --home-font-family-title: var(--mlt-sys-font-family-title);
+
+    --home-padding: var(--mlt-sys-padding-8);
+    --home-box-shadow: var(--mlt-sys-box-shadow-3);
+    --home-margin: 10px;
+
+    --home-background-color: var(--mlt-sys-colors-primary);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__top {
+        width: 100%;
+        height: 30rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__left-container {
+            width: 40%;
+            height: auto;
+        }
+
+        &__right-container {
+            height: 100%;
+            width: 60%;
+        }
+
+        &__text-block {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1em;
+            font-size: var(--home-font-size-big);
+        }
+
+        &__title {
+            font-size: var(--home-font-size-title);
+            line-height: 1em;
+            font-family: var(--home-font-family-title);
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 1.0) 90%, transparent 100%);
+    }
+
+    &__separator {
+        height: 4rem;
+        width: 100%;
+        background-color: var(--mlt-sys-colors-primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__news-cards {
+        background-color: bisque;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    &__news-cards > * {
+        flex: 1 1 50%;
+        display: flex;
+        justify-content: center;
+    }
+}
