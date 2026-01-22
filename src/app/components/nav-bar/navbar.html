@@ -3,7 +3,7 @@
         <div class="myNavbar__image-container">
             <img src="/images/lobster-550x550-white.png" class="myNavbar__image" alt="Logo">
         </div>
-        <div class="myNavbar__brand__name">
+        <div class="myNavbar__brand__name" [routerLink]="['/home']">
             <span>Crustaceo</span>
             <span>Cascarudo</span>
         </div>
@@ -11,24 +11,26 @@
     <div class="myNavbar__menu">
         <ul class="myNavbar__list">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/categories">Categorias</a>
+                <a class="nav-link" routerLink="/home">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/products">Productos</a>
+                <a class="nav-link" routerLink="/menu">Carta</a>
             </li>
             <li>
-                <a class="nav-link" routerLink="/ingredients">Ingredientes</a>
-            </li>
-            <li>
-                <a class="nav-link" routerLink="/users">Usuarios</a>
+                <a class="nav-link" routerLink="/deals">Promociones</a>
             </li>
 
         </ul>
         <div style="display: flex;">
-            <button c-button variant="outline" colors="highlight" shadowType="bright" [hovered]="hovered"
-            (mouseenter)="hovered = true" (mouseleave)="hovered = false">
+            <button c-button variant="outline" colors="highlight" shadowType="bright" [hovered]="hoveredReserva"
+            (mouseenter)="hoveredReserva = true" (mouseleave)="hoveredReserva = false" [routerLink]="['/reservation']">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="calendar_today"></mat-icon>
                 Reserva
+            </button>
+            <button c-button variant="outline" colors="highlight" shadowType="bright" [hovered]="hoveredADomicilio"
+            (mouseenter)="hoveredADomicilio = true" (mouseleave)="hoveredADomicilio = false" [routerLink]="['/delivery']">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="calendar_today"></mat-icon>
+                Pide a domicilio
             </button>
             <div (mouseenter)="showLogOutPanel = true" (mouseleave)="showLogOutPanel = false">
                 <img src="/images/user-transparent-600x600-white.png" class="myNavbar__image" (click)="logOut()"

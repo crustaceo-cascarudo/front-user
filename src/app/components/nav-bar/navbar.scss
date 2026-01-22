@@ -3,14 +3,17 @@
     $myNavbar-height: 75px;
     --myNavbar-bg-color: var(--mlt-sys-colors-primary);
     --myNavbar-shadow: var(--mlt-sys-box-shadow-4);
+
     --myNavbar-padding: var(--mlt-sys-padding-5);
     --myNavbar-gap: 0.25rem;
+    --myNavbar-margin-x: 0.75rem;
+    
+    $myNavbar-image-upward-offset: 5px;
+
     --myNavbar-text-color: var(--mlt-sys-colors-light);
     --myNavbar-font-size: var(--mlt-sys-font-size-4);
     --myNavbar-brand-font-size: var(--mlt-sys-font-size-5);
     --myNavbar-brand-text-color: var(--mlt-sys-colors-yellow-2);
-    --myNavbar-margin-x: 0.75rem;
-    $myNavbar-image-upward-offset: 5px;
 
     position: relative;
     display: flex;

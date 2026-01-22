@@ -17,7 +17,8 @@ export class NavBar {
   router = inject(Router);
   showLogOutPanel: boolean = false;
 
-  hovered: boolean = false;
+  hoveredReserva: boolean = false;
+  hoveredADomicilio: boolean = false;
   
   logOut(){
     //this.loginService.logOut();
