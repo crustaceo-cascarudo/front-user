@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { CButton } from "../ui/c-button/c-button";
-//import { LoginService } from '../../services/loginService';
 import { MatIcon } from '@angular/material/icon';
+import { LoginService } from '../../services/login-service';
 
 
 
@@ -13,15 +13,15 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './navbar.scss',
 })
 export class NavBar {
-  //loginService = inject(LoginService)
+  loginService = inject(LoginService);
   router = inject(Router);
   showLogOutPanel: boolean = false;
 
   hoveredReserva: boolean = false;
   hoveredADomicilio: boolean = false;
-  
-  logOut(){
-    //this.loginService.logOut();
+
+  logOut() {
+    this.loginService.logOut();
     this.router.navigate(['/login']);
   }
 }

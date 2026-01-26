@@ -1,0 +1,50 @@
+<div class="form">
+    @if (isLoginMode) {
+    <h2 class="form__title">Login</h2>
+    <form class="form__form" (ngSubmit)="onLoginSubmit(loginForm)" #loginForm="ngForm">
+        <div class="form__field">
+            <label class="form__label" for="login-email">*Email</label>
+            <input class="form__input" type="text" name="email" [(ngModel)]="loginData.email" required
+            oninvalid="this.setCustomValidity('Por favor escribe el email')"
+            oninput="this.setCustomValidity('')">
+        </div>
+
+        <div class="form__field form__field--password">
+            <label class="form__label" for="login-password">*Password</label>
+            <div class="form__input-wrapper">
+              <input class="form__input" [type]="showLoginPassord ? 'text' : 'password'" id="login-password" name="plainPassword" [(ngModel)]="loginData.plainPassword" required>
+              <button type="button" class="form__toggle-pass" (click)="toggleLoginPassword()">
+                <i class="fa" [ngClass]="showLoginPassord ? 'fa-eye-slash' : 'fa-eye'" ></i>
+              </button>
+            </div>
+        </div>
+
+        <button class="form__button form__button--primary" type="submit">Login</button>
+        <button class="form__button form__button--secondary" type="button" (click)="isLoginMode = false">Are you new?
+            Register here</button>
+    </form>
+    } @else {
+    <h2 class="form__title">Register</h2>
+    <form class="form__form" (ngSubmit)="onRegisterSubmit(registerForm)" #registerForm="ngForm">
+         <div class="form__field">
+            <label class="form__label" for="dni">*Email</label>
+            <input class="form__input" type="text" name="email" [(ngModel)]="registerData.email" required>
+        </div>
+
+        <div class="form__field form__field--password">
+            <label class="form__label" for="password">*Password</label>
+            <div class="form__input-wrapper">
+              <input
+                class="form__input" [type]="showRegisterPassord ? 'text' : 'password'" id="register-password" name="password" [(ngModel)]="registerData.password" required>
+              <button type="button" class="form__toggle-pass" (click)="toggleRegisterPassword()">
+                <i class="fa" [ngClass]="showRegisterPassord ? 'fa-eye-slash' : 'fa-eye'" ></i>
+              </button>
+          </div>
+        </div>
+
+        <button class="form__button form__button--primary" type="submit">Register</button>
+        <button class="form__button form__button--secondary" type="button" (click)="isLoginMode = true">Already have
+            an account? Login here</button>
+    </form>
+    }
+</div>
