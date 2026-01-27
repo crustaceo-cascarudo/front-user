@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { userRole } from '../core/enum/user-role';
 
 @Injectable({
   providedIn: 'root',
@@ -24,12 +25,10 @@ export class LoginService {
           console.log('Login response:', datos);
           if (datos.token != null && datos.token != "" && datos.userResponse) {
             this.authService.setToken(datos.token);
-            this.authService.setUserId(datos.userResponse.id);
-            console.log('Token y userId guardados:', datos.userResponse);
+            console.log('Token guardado:', datos.token);
             this.router.navigate(['/dashboard']);
           } else {
             this.authService.removeToken();
-            this.authService.removeUserId();
             alert("Contraseña incorrecta");
           }
         },
@@ -39,8 +38,8 @@ export class LoginService {
   }
 
 
-  register(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.registerUrl, { email, password }).pipe(
+  register(name: string, email: string, password: string, role: userRole): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.registerUrl, { name, email, password, role }).pipe(
       tap({
         next: (datos) => {
           console.log(datos);

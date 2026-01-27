@@ -26,6 +26,7 @@ export class CLoginRegister {
   };
 
   registerData: UserRegister = {
+    name: '',
     email: '',
     password: '',
     role: userRole.NORMAL
@@ -50,8 +51,10 @@ export class CLoginRegister {
     if (form.valid) {
       console.log('Register data:', this.registerData);
       this.loginService.register(
+        this.registerData.name,
         this.registerData.email,
         this.registerData.password,
+        this.registerData.role,
       ).subscribe({
         next: (response) => {
 

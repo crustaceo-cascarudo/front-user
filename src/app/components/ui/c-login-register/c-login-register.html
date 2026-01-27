@@ -26,7 +26,12 @@
     } @else {
     <h2 class="form__title">Register</h2>
     <form class="form__form" (ngSubmit)="onRegisterSubmit(registerForm)" #registerForm="ngForm">
-         <div class="form__field">
+        <div class="form__field">
+            <label class="form__label" for="name">*Name</label>
+            <input class="form__input" type="text" name="name" [(ngModel)]="registerData.name" required>
+        </div>
+
+        <div class="form__field">
             <label class="form__label" for="dni">*Email</label>
             <input class="form__input" type="text" name="email" [(ngModel)]="registerData.email" required>
         </div>
