@@ -7,11 +7,7 @@
     --home-font-family-default: var(--mlt-sys-font-family-default);
     --home-font-family-title: var(--mlt-sys-font-family-title);
 
-    --home-padding: var(--mlt-sys-padding-8);
-    --home-box-shadow: var(--mlt-sys-box-shadow-3);
-    --home-margin: 10px;
-
-    --home-background-color: var(--mlt-sys-colors-primary);
+    --home-title-padding: 3rem;
 
     display: flex;
     flex-direction: column;
@@ -35,7 +31,7 @@
         }
 
         &__text-block {
-            padding: 3rem;
+            padding: var(--home-title-padding);
             display: flex;
             flex-direction: column;
             justify-content: center;
