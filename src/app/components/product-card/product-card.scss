@@ -1,0 +1,126 @@
+$product-card-max-width: 1140px;
+$container-padding-md: 1.5rem;
+$product-card-radius: 0.5rem;
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.discount-badge {
+    --dicount-badge-font-family-default: var(--mlt-sys-font-family-default);
+    --dicount-badge-font-size-default: var(--mlt-sys-font-size-4);
+
+    position: absolute;
+    background-color: var(--mlt-sys-colors-success);
+    color: white;
+    font-family: var(--dicount-badge-font-family-default);
+    font-size: var(--dicount-badge-font-size-default);
+    padding: 5px 10px;
+    border-top-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.product-card {
+    --product-card-font-size-default: var(--mlt-sys-font-size-3);
+    --product-card-font-size-big: var(--mlt-sys-font-size-4);
+    --product-card-font-size-small: var(--mlt-sys-font-size-2);
+    --product-card-font-size-prices: var(--mlt-sys-font-size-4);
+
+    --product-card-font-family-default: var(--mlt-sys-font-family-default);
+    --product-card-font-family-firmas: var(--mlt-sys-font-family-firmas);
+    --product-card-font-family-prices: var(--mlt-sys-font-family-titulo);
+
+    --product-card-padding: var(--mlt-sys-padding-8);
+    --product-card-box-shadow: var(--mlt-sys-box-shadow-3);
+    --product-card-margin: 10px;
+    --product-card-image-margin: 5px;
+
+    --product-card-background-color: var(--mlt-sys-colors-light);
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 160pt;
+    max-width: $product-card-max-width;
+    height: 100%;
+    padding: var(--product-card-padding);
+    background-color: var(--product-card-background-color);
+    border-radius: $product-card-radius;
+    box-shadow: var(--product-card-box-shadow);
+    margin-left: 10px;
+
+    &__img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    &__name {
+        font-family: var(--product-card-font-family-default);
+        font-size: var(--product-card-font-size-big);
+        color: black;
+        font-weight: 600;
+    }
+
+    &__text-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    &__prices {
+        display: flex;
+        flex-direction: row;
+        gap: .5rem;
+    }
+
+    &__price {
+        font-family: var(--product-card-font-family-prices);
+
+        &--final {
+            font-size: var(--product-card-font-size-default);
+            font-weight: 500;
+        }
+
+        &--base {
+            font-size: var(--product-card-font-size-small);
+            text-decoration: line-through;
+            color: red;
+        }
+
+        &--discount {
+            font-size: var(--product-card-font-size-default);
+            color: var(--mlt-sys-colors-fresh-green-5);
+        }
+    }
+
+    &__products {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 15px;
+    }
+
+    &__product {
+        font-size: var(--product-card-font-size-default);
+    }
+
+    &__categories {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        column-gap: 15px;
+    }
+
+    &__category {
+        font-size: var(--product-card-font-size-default);
+    }
+}

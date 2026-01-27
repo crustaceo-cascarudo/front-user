@@ -1,0 +1,38 @@
+<div class="l-flex l-flex--justify-center bg-image">
+    <div class="menu">
+        <div class="menu__left-container">
+            <div>
+                <p class="menu__category menu__category--title">Categorias</p>
+                <div class="menu__underbar"></div>
+            </div>
+            <div>
+                @for (c of categories; track $index) {
+                    @if(c.name == selectedCategory.name) {
+                        <p class="menu__category menu__category--selected">{{c.name}}</p>
+                    } @else {
+                        <p class="menu__category" (click)="selectCategory(c)">{{c.name}}</p>
+                    }
+                <div class="menu__underbar"></div>
+                }
+            </div>
+        </div>
+        <div class="menu__right-container">
+            <div class="menu__product-header">
+                <p class="g--font-size-8">{{selectedCategory.name}}</p>
+                @if(productPageContent.totalElements > productPageSize) {
+                <div>
+                    <mat-paginator (page)="handlePageEvent($event)" [length]="productPageContent.totalElements" [pageSize]="productPageSize"
+                        hidePageSize aria-label="Select page" style="background-color: transparent;">
+                    </mat-paginator>
+                </div>
+                }
+            </div>
+            
+            <div class="menu__products_container">
+                @for (product of products; track $index) {
+                <product-card [product]="product"></product-card>
+                }
+            </div>
+        </div>
+    </div>
+</div>

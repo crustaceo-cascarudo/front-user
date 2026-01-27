@@ -4,6 +4,5 @@ export interface Page<T> {
   pageSize: number;
   totalElements: number;
   totalPages: number;
-
 }
 

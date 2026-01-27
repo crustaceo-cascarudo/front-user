@@ -1,0 +1,111 @@
+.bg-image {
+    /* The image used */
+    background-image: url("/images/lobster-550x550-red.png");
+
+    height: calc(100% - 75px);
+    overflow: hidden;
+
+    /* Center and scale the image nicely */
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 400px;
+}
+
+.menu {
+    --menu-font-size-default: var(--mlt-sys-font-size-3);
+    --menu-font-size-title: var(--mlt-sys-font-size-8);
+    --menu-font-size-big: var(--mlt-sys-font-size-6);
+    --menu-font-size-small: var(--mlt-sys-font-size-2);
+
+    --menu-font-family-default: var(--mlt-sys-font-family-default);
+
+    --menu-padding: var(--mlt-sys-padding-8);
+    --menu-box-shadow: var(--mlt-sys-box-shadow-3);
+    --menu-margin: 10px;
+
+    display: flex;
+    flex-direction: row;
+    width: 90rem;
+    gap:2rem;
+    justify-content: start;
+    align-items: start;
+    padding-left: 5%;
+    padding-right: 5%;
+
+    &__left-container {
+        overflow-y: scroll;
+        scrollbar-width: none;
+        padding: 1rem;
+        min-width: 15rem;
+    }
+
+    &__right-container {
+        min-width: 70%;
+        width: fit-content;
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+    &__products_container {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    &__products_container > * {
+        flex-basis: 20%;
+        height: auto;
+    }
+
+    &__product-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__category {
+        cursor: pointer;
+        padding: 0.6rem;
+        margin: 0.3rem;
+        border-radius: 0.3rem;
+        text-align: center;
+        font-size: var(--menu-font-size-big);
+        font-family: var(--menu-font-family-default);
+        background-color: var(--mlt-sys-colors-surface);
+
+        &:hover {
+            background-color: var(--mlt-sys-colors-primary);
+            color: var(--mlt-sys-colors-light);
+        }
+
+        &--title {
+            cursor: default;
+            font-size: var(--menu-font-size-title);
+            font-family: var(--menu-font-family-title);
+            font-weight: bold;
+
+            &:hover {
+                background-color: transparent;
+                color: inherit;
+            }
+        }
+
+        &--selected {
+            background-color: var(--mlt-sys-colors-gray-0);
+            color: var(--mlt-sys-colors-light);
+        }
+    }
+
+    &__underbar {
+        height: 2px;
+        background-color: var(--mlt-sys-colors-gray-0);
+        margin-bottom: 10px;
+    }
+}
