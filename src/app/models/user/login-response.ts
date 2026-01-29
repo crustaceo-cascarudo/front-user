@@ -1,8 +1,11 @@
+import { userRole } from "../../core/enum/user-role";
+
 export interface LoginResponse {
   token: string;
-  userResponse: {
+  user: {
     id: number;
     name: string;
     email: string;
+    role: userRole
   }
 }

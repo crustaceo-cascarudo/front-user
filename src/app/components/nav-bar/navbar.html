@@ -1,46 +1,37 @@
-<nav class="myNavbar">
-    <div class="myNavbar__brand">
-        <div class="myNavbar__image-container">
-            <img src="/images/lobster-550x550-white.png" class="myNavbar__image" alt="Logo">
-        </div>
-        <div class="myNavbar__brand__name" [routerLink]="['/home']">
-            <span>Crustaceo</span>
-            <span>Cascarudo</span>
-        </div>
-    </div>
-    <div class="myNavbar__menu">
-        <ul class="myNavbar__list">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/home">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/menu">Carta</a>
-            </li>
-            <li>
-                <a class="nav-link" routerLink="/deals">Promociones</a>
-            </li>
+<header class="navbar">
+  <div class="navbar__container">
+    <a routerLink="/" class="navbar__brand">
+      <img class="navbar__brand-logo" src="favicon-96x96.png" alt="logo" />
+      <span class="navbar__brand-text">Crustáceo Cascarudo</span>
+    </a>
+    <nav class="navbar__nav">
+      <a routerLink="/" [class]="isActive('/') ? 'navbar__link navbar__link--active' : 'navbar__link'">Inicio</a>
+      <a routerLink="/menu" [class]="isActive('/menu') ? 'navbar__link navbar__link--active' : 'navbar__link'">Carta</a>
+      <a routerLink="/reservation"
+        [class]="isActive('/reservation') ? 'navbar__link navbar__link--active' : 'navbar__link'">Reservar</a>
+    </nav>
+    <div class="navbar__actions">
+      <a routerLink="/reservation" class="navbar__button navbar__button--primary"> Reserva </a>
 
-        </ul>
-        <div style="display: flex;">
-            <button c-button variant="outline" colors="highlight" shadowType="bright" [hovered]="hoveredReserva"
-            (mouseenter)="hoveredReserva = true" (mouseleave)="hoveredReserva = false" [routerLink]="['/reservation']">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="calendar_today"></mat-icon>
-                Reserva
-            </button>
-            <button c-button variant="outline" colors="highlight" shadowType="bright" [hovered]="hoveredADomicilio"
-            (mouseenter)="hoveredADomicilio = true" (mouseleave)="hoveredADomicilio = false" [routerLink]="['/delivery']">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="calendar_today"></mat-icon>
-                Pide a domicilio
-            </button>
-            <div (mouseenter)="showLogOutPanel = true" (mouseleave)="showLogOutPanel = false">
-                <img src="/images/user-transparent-600x600-white.png" class="myNavbar__image" (click)="logOut()"
-                    alt="Cerrar Sesión">
-                @if (showLogOutPanel) {
-                <div class="logout-panel">
-                    <button class="logout-button">Log Out</button>
-                </div>
-                }
-            </div>
-        </div>
+      <a routerLink="/delivery" class="navbar__button navbar__button--secondary">
+        Pide a domicilio
+      </a>
+
+      <div class="navbar__user-actions">
+        <button (click)="onLogin()" class="navbar__icon-button">
+          <i class="fa-regular fa-user"></i>
+        </button>
+
+        <a routerLink="/cart" class="navbar__icon-button navbar__icon-button--cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+
+          @if (cartCount() > 0) {
+          <span class="navbar__badge">
+            {{ cartCount() }}
+          </span>
+          }
+        </a>
+      </div>
     </div>
-</nav>
+  </div>
+</header>

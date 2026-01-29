@@ -23,10 +23,11 @@ export class LoginService {
       tap({
         next: (datos) => {
           console.log('Login response:', datos);
-          if (datos.token != null && datos.token != "" && datos.userResponse) {
+          if (datos.token != null && datos.token != "" && datos.user) {
             this.authService.setToken(datos.token);
             console.log('Token guardado:', datos.token);
-            this.router.navigate(['/dashboard']);
+            console.log('Usuario logueado:', datos.user);
+            this.router.navigate(['/']);
           } else {
             this.authService.removeToken();
             alert("Contraseña incorrecta");

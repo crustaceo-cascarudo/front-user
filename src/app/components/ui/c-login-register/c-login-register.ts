@@ -29,27 +29,41 @@ export class CLoginRegister {
     name: '',
     email: '',
     password: '',
-    role: userRole.NORMAL
+    role: userRole.ADMIN
   };
 
   onLoginSubmit(form: any) {
     if (form.valid) {
       console.log('Login data:', this.loginData);
+      console.log('Email:', this.loginData.email);
+      console.log('Password:', this.loginData.plainPassword);
+      
       this.loginService.logIn(this.loginData.email, this.loginData.plainPassword).subscribe({
         next: (response) => {
           console.log('Login exitoso:', response);
-          this.router.navigate(['/home']);
+          // El router.navigate ya se maneja en el servicio
         },
         error: (error) => {
-          console.error('Error en login:', error);
+          console.error('Error completo en login:', error);
+          console.error('Status:', error.status);
+          console.error('Message:', error.message);
+          console.error('Error body:', error.error);
         }
       });
+    } else {
+      console.error('Formulario no válido');
+      alert('Por favor complete todos los campos requeridos');
     }
   }
 
   onRegisterSubmit(form: any) {
     if (form.valid) {
       console.log('Register data:', this.registerData);
+      console.log('Name:', this.registerData.name);
+      console.log('Email:', this.registerData.email);
+      console.log('Password:', this.registerData.password);
+      console.log('Role:', this.registerData.role);
+      
       this.loginService.register(
         this.registerData.name,
         this.registerData.email,
@@ -57,14 +71,21 @@ export class CLoginRegister {
         this.registerData.role,
       ).subscribe({
         next: (response) => {
-
-          this.router.navigate(['/dashboard']);
-          console.log('Redirigiendo');
+          console.log('Registro exitoso:', response);
+          console.log('Intentando login automático...');
+          // El login automático ya se maneja en el servicio de registro
         },
         error: (error) => {
-          console.error('Error en el registro');
+          console.error('Error completo en el registro:', error);
+          console.error('Status:', error.status);
+          console.error('Message:', error.message);
+          console.error('Error body:', error.error);
+          alert('Error en el registro: ' + (error.error?.message || 'Error desconocido'));
         }
       });
+    } else {
+      console.error('Formulario no válido');
+      alert('Por favor complete todos los campos requeridos');
     }
   }
 

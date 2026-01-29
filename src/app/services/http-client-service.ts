@@ -20,12 +20,12 @@ export class HttpClientService {
     return this.httpClient.get<Page<T>>(`${this.baseUrl + url}`);
   }
 
+  getPage<T>(url: string, pageIndex: number, pageSize: number): Observable<Page<T>> {
+    return this.httpClient.get<Page<T>>(`${this.baseUrl + url}?page=${pageIndex}&size=${pageSize}`);
+  }
+
   // Metdo temporal para obtener los usuarios
   getAllArray<T>(url: string): Observable<T[]> {
     return this.httpClient.get<T[]>(`${this.baseUrl + url}`);
-  }
-
-  getPage<T>(url: string, pageIndex: number, pageSize: number): Observable<Page<T>> {
-    return this.httpClient.get<Page<T>>(`${this.baseUrl + url}?page=${pageIndex}&size=${pageSize}`);
   }
 }

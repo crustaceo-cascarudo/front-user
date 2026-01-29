@@ -1,42 +1,34 @@
-<div class="home">
-    <div class="home__top">
-        <div class="home__top__left-container">
-            <div class="home__top__text-block">
-                <h1 class="home__top__title">EL HOGAR DEL MEJOR MARISCO</h1>
-                <h2>y otros platos varios</h2>
+<div class="p-home">
+  <app-hero></app-hero>
+  <section class="p-home__favorites">
+    <div class="p-home__container">
+      <div class="p-home__header">
+        <h2 class="p-home__title">Favoritos de la Casa</h2>
+        <p class="p-home__subtitle">Una muestra de nuestra cocina.</p>
+      </div>
+
+      <div class="p-home__menu-grid">
+        @for (item of menuItems; track item.title) {
+          <div class="p-home__menu-item">
+            <div class="p-home__menu-overlay"></div>
+            <img [src]="item.img" [alt]="item.title" class="p-home__menu-image" />
+            <div class="p-home__menu-info">
+              <h3 class="p-home__menu-title">{{ item.title }}</h3>
+              <div class="p-home__menu-details">
+                <span class="p-home__menu-price">{{ item.price }}</span>
+                <span class="p-home__menu-separator"></span>
+                <i class="fa-solid fa-star p-home__menu-star"></i>
+              </div>
             </div>
-        </div>
-
-        <div class="home__top__right-container">
-            <img src="https://globalseafoods.com/cdn/shop/articles/shripmsoysters_2048x.jpg?v=1700371189"
-                alt="Seafood Image"class = "home__img">
-        </div>
+          </div>
+        }
+      </div>
+      <div class="p-home__cta">
+        <a [routerLink]="'/menu'" class="p-home__button">
+          Ver Carta Completa <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
     </div>
-
-    <div class="home__separator">
-        <div class="g--bg-colors-yellow-2" style="width: 95%; height: 5px;"></div>
-    </div>
-
-    <div class="home__news-cards">
-        <c-news-card title="New Seafood Recipes"
-            description="Discover our latest seafood recipes that will tantalize your taste buds."
-            imageUrl="https://www.pequerecetas.com/wp-content/uploads/2013/06/paella-de-marisco.jpg"
-            buttonText="Explore Recipes">
-        </c-news-card>
-        <c-news-card title="New Seafood Recipes"
-            description="Discover our latest seafood recipes that will tantalize your taste buds."
-            imageUrl="https://www.pequerecetas.com/wp-content/uploads/2013/06/paella-de-marisco.jpg"
-            buttonText="Explore Recipes">
-        </c-news-card>
-        <c-news-card title="New Seafood Recipes"
-            description="Discover our latest seafood recipes that will tantalize your taste buds."
-            imageUrl="https://lacocinadivertida.com/wp-content/uploads/2014/07/arroz-cangrejos-1.jpg"
-            buttonText="Explore Recipes">
-        </c-news-card>
-        <c-news-card title="New Seafood Recipes"
-            description="Discover our latest seafood recipes that will tantalize your taste buds."
-            imageUrl="https://lacocinadivertida.com/wp-content/uploads/2014/07/arroz-cangrejos-1.jpg"
-            buttonText="Explore Recipes">
-        </c-news-card>
-    </div>
+  </section>
+  <app-promo></app-promo>
 </div>
