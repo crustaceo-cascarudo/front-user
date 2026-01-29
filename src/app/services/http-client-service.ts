@@ -9,15 +9,9 @@ import { Page } from '../models/page';
   providedIn: 'root',
 })
 export class HttpClientService {
-  private baseUrl !: string;
+  private baseUrl = "https://api-store-class.ishimi.es/api/";
 
   httpClient = inject(HttpClient);
-
-  constructor() {
-    this.httpClient.get('assets/config.json').subscribe((config: any) => {
-      this.baseUrl = config.apiUrl;
-    });
-  }
 
   getById<T>(url: string, id: number): Observable<T> {
     return this.httpClient.get<T>(`${this.baseUrl}${url}/${id}`);

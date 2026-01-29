@@ -14,15 +14,9 @@ export class LoginService {
   http = inject(HttpClient);
   authService = inject(AuthService);
   router = inject(Router);
-  url!: string;
+  url = "https://api-store-class.ishimi.es/api/";
   loginUrl = this.url + 'login';
   registerUrl = this.url + 'register';
-
-  constructor() {
-    this.http.get('assets/config.json').subscribe((config: any) => {
-      this.url = config.apiUrl;
-    });
-  }
 
   logIn(email: string, plainPassword: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.loginUrl, { email, plainPassword }).pipe(
