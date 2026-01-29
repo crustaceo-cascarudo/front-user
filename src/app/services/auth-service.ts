@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -28,7 +28,11 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/users/logout`, {}).pipe(
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.post(`${this.baseUrl}/users/logout`, {}, { headers }).pipe(
       tap(() => {
         this.removeToken();
       })

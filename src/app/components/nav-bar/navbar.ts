@@ -4,6 +4,7 @@ import { CButton } from "../ui/c-button/c-button";
 import { MatIcon } from '@angular/material/icon';
 import { LoginService } from '../../services/login-service';
 import { CartService } from '../../services/cart-service';
+import { AuthService } from '../../services/auth-service';
 
 
 
@@ -16,6 +17,7 @@ import { CartService } from '../../services/cart-service';
 export class NavBar {
   loginService = inject(LoginService);
   cartService = inject(CartService);
+  authService = inject(AuthService);
   cart = this.cartService.getCartItems();
   cartCount = computed(() => this.cartService.cartTotal());
   router = inject(Router);
@@ -23,17 +25,31 @@ export class NavBar {
   isActive(path: string): boolean {
     return this.router.url === path;
   }
-  onLogin() {
-    this.router.navigate(['/login']);
-  }
 
   showLogOutPanel: boolean = false;
 
   hoveredReserva: boolean = false;
   hoveredADomicilio: boolean = false;
 
+  onLogin() {
+    if (this.authService.isLoggedIn()) {
+      this.showLogOutPanel = !this.showLogOutPanel;
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
   logOut() {
-    this.loginService.logOut();
-    this.router.navigate(['/login']);
+    this.authService.logout().subscribe({
+      next: () => {
+        this.showLogOutPanel = false;
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.authService.removeToken();
+        this.showLogOutPanel = false;
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }
