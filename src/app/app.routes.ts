@@ -11,5 +11,4 @@ export const routes: Routes = [
   // {path: 'deals', component: },
   // {path: 'reservation', component: },
   // {path: 'delivery', component: }
-
 ];

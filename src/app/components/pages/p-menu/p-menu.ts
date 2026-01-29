@@ -5,6 +5,7 @@ import { Page } from '../../../models/page';
 import { HttpClientService } from '../../../services/http-client-service';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { Category } from '../../../models/category';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-p-menu',
@@ -21,12 +22,12 @@ export class PMenu {
   totalCategories!: number;
 
   productPageContent!: Page<Product>;
-  productPageSize: number = 12;
+  productPageSize: number = 10;
   categoryPageContent!: Page<Category>;
   products!: Product[];
   categories!: Category[];
 
-  selectedCategory: Category = {id: 0, name: "", slug: "", estado: false, description: ""};
+  selectedCategory!: Category;
 
   ngOnInit() {
     this.getCategoryAmount();
@@ -56,8 +57,6 @@ export class PMenu {
   }
 
   getProductsBySelectedCategory(pageIndex: number = 1, pageSize: number = this.productPageSize) {
-    console.log("" + this.productsUrl + this.selectedCategory.slug)
-
     this.http.getPage(this.productsUrl + this.selectedCategory.slug, pageIndex, pageSize).subscribe({
       next: (page) => {
         this.productPageContent = page as unknown as Page<Product>;

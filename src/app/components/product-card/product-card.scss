@@ -31,51 +31,68 @@ $product-card-radius: 0.5rem;
     --product-card-font-family-firmas: var(--mlt-sys-font-family-firmas);
     --product-card-font-family-prices: var(--mlt-sys-font-family-titulo);
 
-    --product-card-padding: var(--mlt-sys-padding-8);
-    --product-card-box-shadow: var(--mlt-sys-box-shadow-3);
-    --product-card-margin: 10px;
-    --product-card-image-margin: 5px;
+    --product-card-box-shadow: var(--mlt-sys-box-shadow-1);
 
-    --product-card-background-color: var(--mlt-sys-colors-light);
+    --product-card-background-color: bisque;
 
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 1rem;
-    width: 160pt;
+    padding-right: 1rem;
+    min-width: 30rem;
     max-width: $product-card-max-width;
+    min-height: 6rem;
     height: 100%;
-    padding: var(--product-card-padding);
     background-color: var(--product-card-background-color);
     border-radius: $product-card-radius;
     box-shadow: var(--product-card-box-shadow);
     margin-left: 10px;
+    overflow: hidden;
 
     &__img {
-        width: 100%;
-        height: auto;
+        width: 40%;
+        height: 100%;
         object-fit: cover;
     }
 
-    &__name {
-        font-family: var(--product-card-font-family-default);
-        font-size: var(--product-card-font-size-big);
-        color: black;
-        font-weight: 600;
+    &__right-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
     }
 
     &__text-block {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        text-align: center;
+        align-items: start;
         width: 100%;
+        height: 80%;
         overflow-wrap: anywhere;
+        color: var(--mlt-sys-colors-dark);
+    }
+
+    &__name {
+        width: 100%;
+        font-family: var(--product-card-font-family-default);
+        font-size: var(--product-card-font-size-big);
+        font-weight: 600;
+    }
+
+    &__ingredients {
+        font-family: var(--product-card-font-family-default);
+        font-size: var(--product-card-font-size-default);
+        text-align: start;
     }
 
     &__prices {
+        height: 15%;
+        margin-bottom: .75rem;
         display: flex;
         flex-direction: row;
         gap: .5rem;
@@ -85,12 +102,12 @@ $product-card-radius: 0.5rem;
         font-family: var(--product-card-font-family-prices);
 
         &--final {
-            font-size: var(--product-card-font-size-default);
+            font-size: var(--product-card-font-size-big);
             font-weight: 500;
         }
 
         &--base {
-            font-size: var(--product-card-font-size-small);
+            font-size: var(--product-card-font-size-default);
             text-decoration: line-through;
             color: red;
         }
@@ -99,28 +116,5 @@ $product-card-radius: 0.5rem;
             font-size: var(--product-card-font-size-default);
             color: var(--mlt-sys-colors-fresh-green-5);
         }
-    }
-
-    &__products {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        column-gap: 15px;
-    }
-
-    &__product {
-        font-size: var(--product-card-font-size-default);
-    }
-
-    &__categories {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        column-gap: 15px;
-    }
-
-    &__category {
-        font-size: var(--product-card-font-size-default);
     }
 }
