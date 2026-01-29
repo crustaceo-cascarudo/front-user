@@ -8,8 +8,14 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
-  private readonly baseUrl = 'http://localhost:8080/api';
+  private baseUrl!: string;
   private httpClient = inject(HttpClient);
+
+  constructor() {
+    this.httpClient.get('assets/config.json').subscribe((config: any) => {
+      this.baseUrl = config.apiUrl;
+    });
+  }
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
