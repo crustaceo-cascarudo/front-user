@@ -1,11 +1,19 @@
 .navbar {
-  top: 0;
-  z-index: 50;
+  $navBar-height: 75px;
+  --navBar-bg-color: var(--mlt-sys-colors-primary);
+
+  --navBar-image-upward-offset: 5px;
+
+  --navBar-text-color: var(--mlt-sys-colors-light);
+  --navBar-default-font-size: var(--mlt-sys-font-size-4);
+  --navBar-brand-font-size: var(--mlt-sys-font-size-6);
+  --navBar-brand-text-color: var(--mlt-sys-colors-light);
+  --navBar-font-family: 'Open Sans';
+  
   width: 100%;
-  background-color: #8D222C;
-  color: #FAF9FD;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  font-family: 'Open Sans';
+  background-color: var(--navBar-bg-color);
+  color: var(--navBar-text-color);
+  font-family: var(--navBar-font-family);
 
   &__container {
     max-width: 1600px;
@@ -26,16 +34,17 @@
   }
 
   &__brand-text {
-    font-size: 1.5rem;
+    font-size: var(--navBar-brand-font-size);
     font-weight: bold;
     letter-spacing: -0.025em;
-    color: #FAF9FD;
+    color: var(--navBar-brand-text-color);
   }
 
   &__brand-logo {
     margin-right: 1rem;
-    width: 50px;
-    height: 50px;
+    margin-bottom: var(--navBar-image-upward-offset);
+    width: 60px;
+    height: 60px;
   }
 
   &__nav {
@@ -50,9 +59,10 @@
   }
 
   &__link {
-    color: #FAF9FD;
+    color: var(--navBar-text-color);
     text-decoration: none;
     font-weight: 600;
+    font-size: var(--navBar-default-font-size);
     transition: color 0.2s ease;
 
     &:hover {
@@ -113,7 +123,7 @@
     padding-left: 1rem;
     position: relative;
   }
-  
+
   .logout-panel {
     position: absolute;
     top: calc(100% + 12px);
@@ -145,6 +155,7 @@
       background-color: #bebebe;
     }
   }
+
   &__icon-button {
     background: none;
     border: none;
