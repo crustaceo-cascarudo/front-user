@@ -14,7 +14,7 @@ export class LoginService {
   http = inject(HttpClient);
   authService = inject(AuthService);
   router = inject(Router);
-  url = "https://api-store-class.ishimi.es/api/";
+  url = "https://api-store-class.ishimi.es/api/users/";
   loginUrl = this.url + 'login';
   registerUrl = this.url + 'register';
 
