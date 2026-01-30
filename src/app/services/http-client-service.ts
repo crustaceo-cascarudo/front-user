@@ -9,7 +9,7 @@ import { Page } from '../models/page';
   providedIn: 'root',
 })
 export class HttpClientService {
-  private baseUrl = "https://api-store-class.ishimi.es/api/";
+  private baseUrl = "https://api-store-class.ishimi.es/api";
 
   httpClient = inject(HttpClient);
 
