@@ -1,0 +1,89 @@
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+.ng-touched:not(form) {
+    background-color: rgb(231, 231, 231);
+}
+
+.ng-untouched:not(form) {
+    background-color: white;
+}
+
+.ng-dirty:not(form) {
+    font-weight: 500;
+}
+
+.ng-pristine:not(form) {
+    font-weight: normal;
+}
+
+.payment-page {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+
+
+    &__form-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    &__form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        //color: var(--bs-body-color);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        //background-color: var(--bs-body-bg);
+        background-clip: padding-box;
+        border: 1px solid gray;
+        border-radius: .5rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    &__form-label {
+        margin-bottom: 0.5rem;
+    }
+
+    &__alert {
+        --bs-alert-bg: transparent;
+        --bs-alert-padding-x: .5rem;
+        --bs-alert-padding-y: .5rem;
+        --bs-alert-margin-bottom: 1rem;
+        --bs-alert-color: inherit;
+        --bs-alert-border-color: transparent;
+        --bs-alert-border: 1px solid red;
+        --bs-alert-border-radius: .5rem;
+        --bs-alert-link-color: inherit;
+        margin-top: .5rem;
+        position: relative;
+        padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+        margin-bottom: var(--bs-alert-margin-bottom);
+        color: var(--bs-alert-color);
+        background-color: var(--bs-alert-bg);
+        border: var(--bs-alert-border);
+        border-radius: var(--bs-alert-border-radius);
+    }
+}
+
+//TODO -> this whole file
