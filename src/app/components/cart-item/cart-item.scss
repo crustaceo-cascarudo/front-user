@@ -1,0 +1,106 @@
+.cart-item-card {
+    $cart-item-card-radius: 0.5rem;
+
+    --cart-item-card-font-size-default: var(--mlt-sys-font-size-3);
+    --cart-item-card-font-size-big: var(--mlt-sys-font-size-4);
+    --cart-item-card-font-size-small: var(--mlt-sys-font-size-2);
+    --cart-item-card-font-size-prices: var(--mlt-sys-font-size-4);
+
+    --cart-item-card-font-family-default: var(--mlt-sys-font-family-default);
+    --cart-item-card-font-family-firmas: var(--mlt-sys-font-family-firmas);
+
+    --cart-item-card-box-shadow: var(--mlt-sys-box-shadow-1);
+
+    --cart-item-card-background-color: bisque;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1rem;
+    min-height: 4rem;
+    max-height: 8rem;
+    background-color: var(--cart-item-card-background-color);
+    border-radius: $cart-item-card-radius;
+    box-shadow: var(--cart-item-card-box-shadow);
+    margin-left: 10px;
+    overflow: hidden;
+
+    &__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__img-container {
+        min-width: 20%;
+        max-width: 20%;
+        position: relative;
+        overflow: hidden;
+        align-self: stretch;
+    }
+
+    &__right-container {
+        display: flex;
+        margin-right: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+    }
+
+    &__buttons-container {
+        margin-left: auto;
+        margin-right: .75rem;
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+    }
+
+    &__text-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        overflow-wrap: anywhere;
+        color: var(--mlt-sys-colors-dark);
+    }
+
+    &__name {
+        width: 100%;
+        font-family: var(--cart-item-card-font-family-default);
+        font-size: var(--cart-item-card-font-size-big);
+        font-weight: 600;
+        line-break: normal;
+    }
+
+    &__prices {
+        height: 15%;
+        margin-bottom: .75rem;
+        display: flex;
+        flex-direction: row;
+        gap: .5rem;
+    }
+
+    &__price {
+        font-size: var(--cart-item-card-font-size-default);
+
+        &--final {
+            font-size: var(--cart-item-card-font-size-big);
+            font-weight: 500;
+        }
+
+        &--base {
+            text-decoration: line-through;
+            color: red;
+            font-weight: 300;
+        }
+
+        &--discount {
+            color: var(--mlt-sys-colors-fresh-green-5);
+        }
+    }
+}

@@ -1,0 +1,94 @@
+.cart {
+    --cart-backgorund-color: var(--mlt-sys-colors-primary);
+    --cart-title-font-size: var(--mlt-sys-font-size-8);
+    --cart-title-font-color: var(--mlt-sys-colors-light);
+
+    $cart-header-height: 10%;
+
+    --cart-division-bar-color: var(--mlt-sys-colors-light);
+    $cart-divion-bar-height: 10%;
+
+    $cart-bottom-container-height: 30%;
+    $cart-bottom-container-padding: 4%;
+    
+
+    background-color: var(--cart-backgorund-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+    flex: 1 1 auto;
+
+    &__top-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        //height: $cart-header-height;
+        min-height: 3rem;
+    }
+
+    &__title {
+        margin-top: auto;
+        margin-bottom: auto;
+        justify-self: center;
+        font-size: var(--cart-title-font-size);
+        color: var(--cart-title-font-color);
+        text-align: center;
+    }
+
+    &__division-bar {
+        justify-self: flex-end;
+        width: 100%;
+        height: $cart-divion-bar-height;
+        background-color: var(--cart-division-bar-color);
+    }
+
+    &__middle-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__items-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-content: center;
+        gap: .75rem;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 5%;
+        max-height: 100%;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+
+    &__bottom-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        justify-self: end;
+        height: min(8rem, #{$cart-bottom-container-height});
+        padding: $cart-bottom-container-padding;
+        width: 100%;
+    }
+
+    &__items-fade-top{
+        position: absolute;
+        z-index: 66;
+        height: 2%;
+        width: 100%;
+        background-image: linear-gradient(to top, rgba(255, 0, 0, 0), var(--cart-backgorund-color));
+    }
+
+    &__items-fade-bottom{
+        position: absolute;
+        z-index: 66;
+        bottom: 0px;
+        height: 4%;
+        width: 100%;
+        background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), var(--cart-backgorund-color));
+    }
+}

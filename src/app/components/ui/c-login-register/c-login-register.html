@@ -4,18 +4,16 @@
     <form class="form__form" (ngSubmit)="onLoginSubmit(loginForm)" #loginForm="ngForm">
         <div class="form__field">
             <label class="form__label" for="login-email">*Email</label>
-            <input class="form__input" type="text" name="email" [(ngModel)]="loginData.email" required
-            oninvalid="this.setCustomValidity('Por favor escribe el email')"
-            oninput="this.setCustomValidity('')">
+            <input class="form__input" type="text" name="email" [(ngModel)]="loginData.email" required>
         </div>
 
         <div class="form__field form__field--password">
             <label class="form__label" for="login-password">*Password</label>
             <div class="form__input-wrapper">
-              <input class="form__input" [type]="showLoginPassord ? 'text' : 'password'" id="login-password" name="plainPassword" [(ngModel)]="loginData.plainPassword" required>
-              <button type="button" class="form__toggle-pass" (click)="toggleLoginPassword()">
-                <i class="fa" [ngClass]="showLoginPassord ? 'fa-eye-slash' : 'fa-eye'" ></i>
-              </button>
+                <input class="form__input" [type]="showLoginPassord ? 'text' : 'password'" id="login-password" name="plainPassword" [(ngModel)]="loginData.plainPassword" required>
+                <button type="button" class="form__toggle-pass" (click)="toggleLoginPassword()">
+                    <i class="fa" [ngClass]="showLoginPassord ? 'fa-eye-slash' : 'fa-eye'" ></i>
+                </button>
             </div>
         </div>
 

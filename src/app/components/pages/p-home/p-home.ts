@@ -4,7 +4,7 @@ import { HeroComponent } from '../../hero/hero';
 import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-p-home',
+  selector: 'p-home',
   imports: [PromoComponent, HeroComponent, RouterLink],
   templateUrl: './p-home.html',
   styleUrl: './p-home.scss',

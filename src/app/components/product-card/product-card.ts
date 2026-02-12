@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../models/product';
+import { Product } from '../../models/menu/product';
 import { CommonModule } from '@angular/common';
-import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'product-card',
@@ -11,6 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ProductCard {
   @Input() product!: Product;
+  @Input() clickable: boolean = false;
 
   ingredientList: string[] = [];
   ingredients: string = "";

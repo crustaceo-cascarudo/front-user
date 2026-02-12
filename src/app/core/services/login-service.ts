@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth-service';
-import { LoginResponse } from '../models/user/login-response';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { userRole } from '../core/enum/user-role';
+import { LoginResponse } from '../../models/user/login-response';
+import { userRole } from '../enum/user-role';
 
 @Injectable({
   providedIn: 'root',

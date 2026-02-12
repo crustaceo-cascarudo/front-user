@@ -1,10 +1,10 @@
-$product-card-max-width: 1140px;
 $container-padding-md: 1.5rem;
 $product-card-radius: 0.5rem;
 
 .container {
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .discount-badge {
@@ -19,6 +19,7 @@ $product-card-radius: 0.5rem;
     padding: 5px 10px;
     border-top-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    z-index: 2;
 }
 
 .product-card {
@@ -38,13 +39,12 @@ $product-card-radius: 0.5rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     gap: 1rem;
     padding-right: 1rem;
     min-width: 30rem;
-    max-width: $product-card-max-width;
     min-height: 6rem;
-    height: 100%;
+    height: auto;
     background-color: var(--product-card-background-color);
     border-radius: $product-card-radius;
     box-shadow: var(--product-card-box-shadow);
@@ -52,9 +52,21 @@ $product-card-radius: 0.5rem;
     overflow: hidden;
 
     &__img {
-        width: 40%;
+        position: absolute;
+        inset: 0;
+        width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
+    }
+
+    &__img-wrapper {
+        flex: 0 0 40%;
+        width: 40%;
+        position: relative;
+        overflow: hidden;
+        min-width: 0;
+        align-self: stretch;
     }
 
     &__right-container {
@@ -62,17 +74,21 @@ $product-card-radius: 0.5rem;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 100%;
+        flex: 1 1 auto;
+        min-width: 0;
+        width: auto;
+        height: auto;
     }
 
     &__text-block {
+        margin-top: .75rem;
+        margin-bottom: .75rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: start;
         width: 100%;
-        height: 80%;
+        height: auto;
         overflow-wrap: anywhere;
         color: var(--mlt-sys-colors-dark);
     }
@@ -91,7 +107,8 @@ $product-card-radius: 0.5rem;
     }
 
     &__prices {
-        height: 15%;
+        height: auto;
+        margin-top: auto;
         margin-bottom: .75rem;
         display: flex;
         flex-direction: row;
@@ -116,5 +133,9 @@ $product-card-radius: 0.5rem;
             font-size: var(--product-card-font-size-default);
             color: var(--mlt-sys-colors-fresh-green-5);
         }
+    }
+
+    &--clickable {
+        cursor: pointer;
     }
 }

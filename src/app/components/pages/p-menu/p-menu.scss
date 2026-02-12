@@ -1,7 +1,7 @@
 .bg-image {
     background-image: url("/images/lobster-550x550-red.png");
 
-    height: calc(100% - 75px);
+    height: 90vh;
     overflow: hidden;
 
     background-position: 100% 100%;
@@ -24,32 +24,43 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap:2rem;
+    gap: 1rem;
     justify-content: start;
     align-items: start;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 1rem;
+    padding-left: 4%;
+    padding-right: 1rem;
 
     &__left-container {
         overflow-y: scroll;
         scrollbar-width: none;
-        padding: 1rem;
-        min-width: 15rem;
+        width: 20rem;
+        max-height: 100%;
     }
 
     &__right-container {
-        min-width: 70%;
-        width: fit-content;
-        padding-top: 1rem;
+        max-height: 100%;
+
+        max-width: 80%;
         display: flex;
         flex-direction: column;
         justify-content: start;
         align-items: center;
+        padding-bottom: 1rem;
+    }
+
+    &__title {
+        cursor: default;
+        font-size: var(--menu-font-size-title);
+        font-family: var(--menu-font-family-title);
+        font-weight: bold;
+        text-align: center;
+        padding: 1rem;
     }
 
     &__products_container {
-        margin-top: 1.5rem;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        max-height: 100%;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -63,10 +74,12 @@
         height: auto;
     }
 
-    &__product-header{
+    &__product-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 10%;
+        font-family: var(--menu-font-family-default);
     }
 
     &__category {
@@ -82,18 +95,6 @@
         &:hover {
             background-color: var(--mlt-sys-colors-primary);
             color: var(--mlt-sys-colors-light);
-        }
-
-        &--title {
-            cursor: default;
-            font-size: var(--menu-font-size-title);
-            font-family: var(--menu-font-family-title);
-            font-weight: bold;
-
-            &:hover {
-                background-color: transparent;
-                color: inherit;
-            }
         }
 
         &--selected {

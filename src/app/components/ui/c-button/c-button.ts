@@ -13,6 +13,7 @@ export class CButton {
   @Input() variant: 'filled' | 'outline' | 'subtle' = 'filled';
   @Input() shadowType: 'dark' | 'bright' | 'disabled' = 'disabled';
   @Input() hovered: boolean = false;
+  @Input() disabled: boolean = false;
 
   @HostBinding('class')
   get clazz(): Record<string, boolean> {
@@ -36,6 +37,7 @@ export class CButton {
       'boton--bright-shadow': this.shadowType === 'bright',
       'boton--shadow': this.shadowType === 'dark',
 
+      'boton--disabled' : this.disabled === true,
     }
   }
 }

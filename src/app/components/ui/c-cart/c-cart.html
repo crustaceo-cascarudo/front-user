@@ -1,1 +1,20 @@
-<p>c-cart works!</p>
+<div class="cart">
+    <div class="cart__top-container">
+        <p class="cart__title">Tu pedido</p>
+        <div class="cart__division-bar"></div>
+    </div>
+    <div class="cart__middle-container">
+        <div class="cart__items-fade-top"></div>
+        <div class="cart__items-container">
+            @for (item of cartItems; track $index) {
+            <cart-element (removeFromCart)="removeItem(item.id)" [cartItem]="item"></cart-element>
+            }
+        </div>
+        <div class="cart__items-fade-bottom"></div>
+    </div>
+    <div class="cart__bottom-container">
+        <p class="g--font-size-6 g--colors-light" style="width: 100%; margin-bottom: 1rem;">Precio total: {{cartTotal |
+            currency}}</p>
+        <button c-button colors="secondary" style="width: 100%; height: 3rem;">Terminar Pedido</button>
+    </div>
+</div>

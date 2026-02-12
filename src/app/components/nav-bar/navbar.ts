@@ -1,16 +1,15 @@
 import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
-import { CButton } from "../ui/c-button/c-button";
-import { MatIcon } from '@angular/material/icon';
-import { LoginService } from '../../services/login-service';
+import { LoginService } from '../../core/services/login-service';
 import { CartService } from '../../services/cart-service';
-import { AuthService } from '../../services/auth-service';
-
-
+import { AuthService } from '../../core/services/auth-service';
+import { Subscription } from 'rxjs';
+import { AddressService } from '../../services/adress-service';
+import { CCart } from "../ui/c-cart/c-cart";
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  imports: [RouterLink, CCart],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.scss'],
 })
@@ -18,12 +17,52 @@ export class NavBar {
   loginService = inject(LoginService);
   cartService = inject(CartService);
   authService = inject(AuthService);
-  cart = this.cartService.getCartItems();
-  cartCount = computed(() => this.cartService.cartTotal());
+  addressService = inject(AddressService);
   router = inject(Router);
+
+  cartServiceSubscription! : Subscription;
+  addressServiceSubscription! : Subscription;
+
+  cartCount: number = 0;
+  showCart: boolean = false;
+
+  ngOnInit(){
+    this.cartServiceSubscription = this.cartService.cartItems$.subscribe({
+      next: (cartItems) => {
+        this.cartCount = cartItems.length
+      },
+      error: error => console.log(error)  
+    });
+  }
+
+  ngOnDestroy(){
+    this.addressServiceSubscription.unsubscribe();
+    this.cartServiceSubscription.unsubscribe();
+  }
 
   isActive(path: string): boolean {
     return this.router.url === path;
+  }
+
+  isCartActive(): boolean {
+    let activateCart: boolean = false;
+
+    this.addressServiceSubscription = this.addressService.address$.subscribe({
+      next: (address) => {
+        if (address.adressLabel != null && this.router.url != '/menu') {
+          activateCart = true;
+        }else{
+          activateCart = false;
+          this.showCart = false;
+        }
+      },
+      error: () => {
+        activateCart = false;
+        this.showCart = false;
+      }
+    });
+
+    return activateCart;
   }
 
   showLogOutPanel: boolean = false;

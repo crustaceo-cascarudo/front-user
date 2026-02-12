@@ -5,7 +5,7 @@
       <span class="navbar__brand-text">Crustáceo Cascarudo</span>
     </a>
     <nav class="navbar__nav">
-      <a routerLink="/" [class]="isActive('/') ? 'navbar__link navbar__link--active' : 'navbar__link'">Inicio</a>
+      <a routerLink="/" [class]="isActive('/home') ? 'navbar__link navbar__link--active' : 'navbar__link'">Inicio</a>
       <a routerLink="/menu" [class]="isActive('/menu') ? 'navbar__link navbar__link--active' : 'navbar__link'">Carta</a>
       <a routerLink="/reservation"
         [class]="isActive('/reservation') ? 'navbar__link navbar__link--active' : 'navbar__link'">Reservar</a>
@@ -27,16 +27,24 @@
           </div>
         }
 
-        <a routerLink="/cart" class="navbar__icon-button navbar__icon-button--cart">
-          <i class="fa-solid fa-cart-shopping"></i>
-
-          @if (cartCount() > 0) {
-          <span class="navbar__badge">
-            {{ cartCount() }}
-          </span>
-          }
-        </a>
+        @if (isCartActive()) {
+          <button class="navbar__icon-button navbar__icon-button--cart" (click)="showCart = !showCart">
+            <i class="fa-solid fa-cart-shopping"></i>
+          
+            @if (cartCount > 0) {
+              <span class="navbar__badge">
+                {{ cartCount }}
+              </span>
+            }
+          </button>
+        }
       </div>
     </div>
   </div>
 </header>
+
+@if(showCart){
+  <div style="width: 35%; height: 45%; position: absolute; right: 2.5%; top: 6rem; z-index: 20; border-radius: 15px; overflow: hidden;">
+    <c-cart></c-cart>
+  </div>
+}

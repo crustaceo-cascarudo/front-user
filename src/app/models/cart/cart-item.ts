@@ -1,13 +1,8 @@
-import { Category } from "../category/category";
-import { Ingredient } from "../ingredient/ingredient";
-
 export interface CartItem {
     id: number,
     name: string,
-    ingredients: Ingredient[],
     basePrice: number,
-    discountPercentage: number,
     finalPrice: number,
     image: string,
-    categories: Category[]
+    quantity: number
 }

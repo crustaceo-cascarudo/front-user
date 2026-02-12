@@ -31,7 +31,9 @@
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@fortawesome/fontawesome-free": "^7.1.0",
+    "maplibre-gl": "^5.17.0",
     "material-icons": "^1.13.14",
+    "radar-sdk-js": "^4.5.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

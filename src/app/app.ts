@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavBar } from "./components/nav-bar/navbar";
 import { Footer } from "./components/footer/footer";
 import { CButton } from "./components/ui/c-button/c-button";
-import { AuthService } from './services/auth-service';
+import { AuthService } from './core/services/auth-service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

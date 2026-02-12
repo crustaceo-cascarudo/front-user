@@ -14,8 +14,6 @@
     font-size: var(--boton-font-size);
     padding: var(--boton-padding);
 
-    margin: 10pt;
-
     border-radius: var(--boton-border-radius);
     border-width: 1px;
     border-style: solid;
@@ -25,6 +23,7 @@
 
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.65rem;
     cursor: pointer;
     text-decoration: none;
@@ -99,5 +98,12 @@
     &--dark {
         --boton-color-strong: var(--mlt-sys-colors-dark);
         --boton-color-weak: var(--mlt-sys-colors-light);
+    }
+
+    //Disabled
+    &--disabled {
+        cursor: default;
+        --boton-color-strong: var(--mlt-sys-colors-disabled) !important;
+        color: var(--mlt-sys-colors-gray-0);
     }
 }

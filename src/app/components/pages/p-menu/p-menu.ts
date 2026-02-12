@@ -1,20 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { ProductCard } from "../../product-card/product-card";
-import { Product } from '../../../models/product';
+import { Product } from '../../../models/menu/product';
 import { Page } from '../../../models/page';
-import { HttpClientService } from '../../../services/http-client-service';
+import { HttpClientService } from '../../../core/services/http-client-service';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
-import { Category } from '../../../models/category';
-import { Subject } from 'rxjs';
+import { Category } from '../../../models/menu/category';
+import { Subscription } from 'rxjs';
+import { AddressService } from '../../../services/adress-service';
+import { CCart } from "../../ui/c-cart/c-cart";
+import { ProductMapper } from '../../../core/mappers/productMapper';
+import { CartService } from '../../../services/cart-service';
 
 @Component({
-  selector: 'app-p-menu',
-  imports: [ProductCard, MatPaginator],
+  selector: 'p-menu',
+  imports: [ProductCard, MatPaginator, CCart],
   templateUrl: './p-menu.html',
   styleUrl: './p-menu.scss',
 })
 export class PMenu {
   http = inject(HttpClientService);
+  addressService = inject(AddressService);
+  cartService = inject(CartService);
+  productMapper = inject(ProductMapper);
+
+  adressSubscription!: Subscription;
 
   productsUrl: string = "/products/category/";
   categoriesUrl: string = "/categories";
@@ -29,13 +38,27 @@ export class PMenu {
 
   selectedCategory!: Category;
 
+  showCart: boolean = false;
+
   ngOnInit() {
     this.getCategoryAmount();
+    this.adressSubscription = this.addressService.address$.subscribe({
+      next: (address) => {
+        if (address.adressLabel != null) {
+          this.showCart = true;
+        }
+      },
+      error: error => console.log(error)
+    });
+  }
+
+  ngOnDestroy(){
+    this.adressSubscription.unsubscribe();
   }
 
   getCategoryAmount() {
     this.http.getPage(this.categoriesUrl, 1, 1).subscribe({
-      next: (page) => { 
+      next: (page) => {
         this.totalCategories = page.totalElements;
         this.getData();
       },
@@ -73,5 +96,13 @@ export class PMenu {
   selectCategory(category: Category) {
     this.selectedCategory = category;
     this.getProductsBySelectedCategory();
+  }
+
+  addToCart(product: Product) {
+    if(this.showCart){
+      this.cartService.addToCart(
+        this.productMapper.productToCartItem(product)
+      );
+    }
   }
 }

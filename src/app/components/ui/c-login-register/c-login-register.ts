@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../../services/login-service';
+import { LoginService } from '../../../core/services/login-service';
 import { UserLogin } from '../../../models/user/user-login';
 import { UserRegister } from '../../../models/user/user-register';
 import { userRole } from '../../../core/enum/user-role';
