@@ -41,11 +41,11 @@ export class PaymentPage {
     if (form.valid) {
       this.paymentRequest.originCreditCard = this.creditCard;
       this.paymentRequest.concept = "Pedido a domicilio en Crustaceo-Cascarudo";
-      this.payDelivery(this.paymentRequest);
+      this.payDelivery();
     }
   }
 
-  payDelivery(cardPaymentrequest: CardPaymentRequest) {
+  payDelivery() {
     this.http.postItem<any>(this.paymentUrl, this.paymentRequest).subscribe({
       next: (response) => {
         this.paymentResponse = response;

@@ -14,9 +14,15 @@ export class HttpClientService {
 
   httpClient = inject(HttpClient);
   authService = inject(AuthService);
+  token = this.authService.getToken();
+
 
   getById<T>(url: string, id: number): Observable<T> {
-    return this.httpClient.get<T>(`${this.baseUrl}${url}/${id}`);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+
+    return this.httpClient.get<T>(`${this.baseUrl}${url}/${id}`, { headers });
   }
 
   getPage<T>(url: string, pageIndex: number, pageSize: number): Observable<Page<T>> {
@@ -24,12 +30,22 @@ export class HttpClientService {
   }
 
   postItem<T>(url: string, item: any) {
-    const token = this.authService.getToken();
-    // console.log(token);
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${token}`
-    // });
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
 
-    return this.httpClient.post<T>(`${this.baseUrl}${url}`, item, {headers}); //TODO -> Make sure this works
+    return this.httpClient.post<T>(`${this.baseUrl}${url}`, item, { headers }); //TODO -> Make sure this works
+  }
+
+  putItem<T>(url: string, item: any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+
+    return this.httpClient.put<T>(`${this.baseUrl}${url}`, item, { headers })
+  }
+
+  deleteItem<T>(url: string, item: any) {
+    
   }
 }

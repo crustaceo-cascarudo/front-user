@@ -22,7 +22,7 @@ export class CartService {
 
   getActiveCart() {
     const userId = this.authService.getUserId();
-    if(userId != undefined) {
+    if (userId != undefined) {
       let newCart: CartItem[] = [];
 
       this.http.getById<any>(this.url, userId.valueOf()).subscribe({
@@ -60,50 +60,63 @@ export class CartService {
 
   addToCart(item: CartItem) {
     if (!this.isAlreadyInCart(item.id)) {
-      this.http.postItem(this.url+"/items", item.id).subscribe({
+      this.http.postItem(this.url + "/items", item.id).subscribe({
         next: () => {
           this.cart.next([
             ...this.cart.getValue(), item
           ]);
         },
-        error: error => {
-          console.log(error);
-          alert("Ha habido un error, vuelva a intentarlo")
-        }
+        error: error => this.showError(error)
       });
     }
   }
 
   removeFromCart(itemId: number) {
     let newCart = this.cart.getValue();
+    let index = newCart.findIndex((item) => item.id == itemId);
+    let quantity = newCart[index].quantity;
 
     newCart.splice(
-      this.cart.getValue().findIndex((item) => item.id == itemId), 1
+      index, 1
     );
 
-    this.cart.next(
-      newCart
-    );
+    this.http.putItem(this.url + "/items", { productId: itemId, quantity: quantity }).subscribe({
+      next: () => {
+        this.cart.next(
+          newCart
+        );
+      },
+      error: error => this.showError(error)
+    });
   }
 
 
-  changeItemQuantity(itemId: number, quantity: number){
+  changeItemQuantity(itemId: number, quantity: number) {
     let newCart = this.cart.getValue();
 
-    newCart[
-      this.cart.getValue().findIndex((item) => item.id == itemId)
-    ].quantity = quantity;
+    newCart[this.cart.getValue().findIndex((item) => item.id == itemId)]
+      .quantity = quantity;
 
-    this.cart.next(
-      newCart
-    );
+    this.http.putItem(this.url + "/items", { productId: itemId, quantity: quantity }).subscribe({
+      next: () => {
+        this.cart.next(
+          newCart
+        );
+      },
+      error: error => this.showError(error)
+    });
   }
 
   cartTotal(): number {
-    return this.cart.getValue().reduce((total, item) => total + item.finalPrice*item.quantity, 0);
+    return this.cart.getValue().reduce((total, item) => total + item.finalPrice * item.quantity, 0);
   }
 
   isAlreadyInCart(productId: number) {
     return !(this.cart.getValue().findIndex((item) => item.id == productId) == -1);
+  }
+
+  showError(error: Error){
+    console.log(error);
+    alert("Ha habido un error, vuelva a intentarlo");
   }
 }
