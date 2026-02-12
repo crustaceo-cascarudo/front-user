@@ -13,7 +13,6 @@ export class AddressService {
         console.log("Addres set to");
         console.log(a);
         
-        
         this.address.next(a);
     }
 

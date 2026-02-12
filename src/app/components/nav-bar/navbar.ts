@@ -49,7 +49,7 @@ export class NavBar {
 
     this.addressServiceSubscription = this.addressService.address$.subscribe({
       next: (address) => {
-        if (address.adressLabel != null && this.router.url != '/menu') {
+        if (address.adressLabel != null && this.router.url != '/menu' && this.router.url != '/payment') {
           activateCart = true;
         }else{
           activateCart = false;

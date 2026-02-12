@@ -25,6 +25,7 @@ export class LoginService {
           console.log('Login response:', datos);
           if (datos.token != null && datos.token != "" && datos.user) {
             this.authService.setToken(datos.token);
+            this.authService.setUserId(datos.user.id);
             console.log('Token guardado:', datos.token);
             console.log('Usuario logueado:', datos.user);
             this.router.navigate(['/']);

@@ -6,21 +6,36 @@ import { CreditCard } from '../../../models/bank-payment/credit-card';
 import { CButton } from "../../ui/c-button/c-button";
 import { CardPaymentResponse } from '../../../models/bank-payment/card-payment-response';
 import { CartItem } from '../../../models/cart/cart-item';
+import { CommonModule } from '@angular/common';
+import { CartElement } from '../../cart-item/cart-item';
+import { CartService } from '../../../services/cart-service';
+import { AddressForm } from "../../ui/address-form/address-form";
 
 @Component({
   selector: 'app-payment-page',
-  imports: [FormsModule, CButton],
+  imports: [FormsModule, CButton, CommonModule, CartElement, AddressForm],
   templateUrl: './payment-page.html',
   styleUrl: './payment-page.scss',
 })
 export class PaymentPage {
   http = inject(HttpClientService);
+  cartService = inject(CartService);
 
   paymentUrl: string = "/cart/pay"
+
+  cart!: CartItem[];
 
   paymentRequest: CardPaymentRequest = <CardPaymentRequest>{};
   paymentResponse: CardPaymentResponse = <CardPaymentResponse>{};
   creditCard: CreditCard = <CreditCard>{};
+
+  ngOnInit(){
+    this.cartService.cartItems$.subscribe({
+      next: (items) => {
+        this.cart = items;
+      }
+    });
+  }
 
   onSubmit(form: any) {
     if (form.valid) {

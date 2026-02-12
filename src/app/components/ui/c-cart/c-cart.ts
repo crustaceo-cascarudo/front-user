@@ -5,10 +5,11 @@ import { CButton } from "../c-button/c-button";
 import { CartElement } from "../../cart-item/cart-item";
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'c-cart',
-  imports: [CButton, CartElement, CommonModule],
+  imports: [CButton, CartElement, CommonModule, RouterLink],
   templateUrl: './c-cart.html',
   styleUrls: ['./c-cart.scss'],
 })
@@ -21,8 +22,13 @@ export class CCart {
 
   ngOnInit() {
     this.cartServiceSubscription = this.cartService.cartItems$.subscribe(items => {
-      this.cartItems = items;
-      this.cartTotal = this.cartService.cartTotal();
+      if(items.length > 0){
+        this.cartItems = items;
+        this.cartTotal = this.cartService.cartTotal();
+      }else{
+        console.log("Creando carrito");
+        this.cartService.createCart();
+      }
     });
   }
 

@@ -1,0 +1,137 @@
+.redborder {
+    border: red 5px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ng-invalid:not(form) {
+    background-color: rgb(184, 35, 35, 0.35);
+    border-left: 5px solid var(--mlt-sys-colors-danger);
+    border-right: 5px solid var(--mlt-sys-colors-danger);
+}
+
+.adress-form {
+    --adress-form-font-size-default: var(--mlt-sys-font-size-3);
+    --adress-form-font-size-title: var(--mlt-sys-font-size-9);
+    --adress-form-font-size-big: var(--mlt-sys-font-size-6);
+    --adress-form-font-size-small: var(--mlt-sys-font-size-2);
+
+    --adress-form-font-family-default: var(--mlt-sys-font-family-default);
+    --adress-form-font-family-title: var(--mlt-sys-font-family-title);
+
+    --adress-form-padding: var(--mlt-sys-padding-8);
+    --adress-form-box-shadow: var(--mlt-sys-box-shadow-3);
+    --adress-form-margin: 10px;
+
+    --adress-form-background-color: var(--mlt-sys-colors-primary);
+
+    width: 40rem;
+    margin: var(--adress-form-margin) auto;
+    padding: var(--adress-form-padding);
+    font-family: var(--adress-form-font-family-default);
+    border-radius: 6px;
+    box-shadow: var(--adress-form-box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+
+    &__title {
+        width: 100%;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        font-size: var(--adress-form-font-size-big);
+        font-family: var(--adress-form-font-family-title);
+        text-align: center;
+        color: var(--mlt-sys-colors-primary);
+    }
+
+    &__adress {
+        font-family: var(--adress-form-font-family-default);
+        font-size: var(--adress-form-font-size-default);
+        width: 100%;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    &__field--password {
+        .adress-form__input-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            .adress-form__input {
+                padding-right: 40px;
+            }
+        }
+    }
+
+    &__toggle-pass {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transadress-form: translateY(-50%);
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 18px;
+            color: var(--mlt-sys-colors-gray-5);
+            transition: 0.2s ease;
+        }
+
+        &:hover i {
+            color: var(--mlt-sys-colors-primary);
+        }
+    }
+
+    &__label {
+        font-size: var(--home-font-size-small);
+        margin-bottom: 0.25rem;
+        color: var(--mlt-sys-colors-dark);
+    }
+
+    &__input {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: var(--home-font-size-default);
+        border: 1px solid var(--mlt-sys-colors-gray-3);
+        border-radius: 6px;
+        outline: none;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+            border-color: var(--mlt-sys-colors-primary);
+        }
+    }
+
+    &__button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 1rem;
+        font-size: var(--home-font-size-default);
+        font-family: var(--home-font-family-default);
+    }
+
+}

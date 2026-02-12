@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
+  private userId: number | undefined = undefined;
   private baseUrl = "https://api-store-class.ishimi.es/api";
   private httpClient = inject(HttpClient);
 
@@ -37,6 +38,14 @@ export class AuthService {
         this.removeToken();
       })
     );
+  }
+
+  setUserId(id: number){
+    this.userId = id;
+  }
+
+  getUserId(): number | undefined {
+    return this.userId;
   }
 }
 
