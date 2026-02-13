@@ -110,7 +110,7 @@
          } @else {
             <div class="menu-page__grid">
                @for (product of filteredProducts; track product.id) {
-                  <product-card [clickable]="showCart" [product]="product" (click)="addToCart(product)"></product-card>
+                  <product-card [showButton]="showCart" [clickable]="showCart" [product]="product"></product-card>
                }
             </div>
             
@@ -130,10 +130,4 @@
       </main>
     </div>
   </div>
-
-  @if (showCart) {
-    <div class="menu-page__cart">
-      <c-cart></c-cart>
-    </div>
-  }
 </div>

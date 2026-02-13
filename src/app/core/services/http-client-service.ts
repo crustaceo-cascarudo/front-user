@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Page } from '../../models/page';
 
@@ -13,6 +13,14 @@ export class HttpClientService {
 
   httpClient = inject(HttpClient);
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
   getById<T>(url: string, id: number): Observable<T> {
     return this.httpClient.get<T>(`${this.baseUrl}${url}/${id}`);
   }
@@ -22,6 +30,27 @@ export class HttpClientService {
   }
 
   postItem<T>(url: string, item: any) {
-    return this.httpClient.post<T>(`${this.baseUrl}${url}`, item); //TODO -> Make sure this works
+    return this.httpClient.post<T>(`${this.baseUrl}${url}`, item);
+  }
+
+  // Authenticated methods
+  getAuth<T>(url: string): Observable<T> {
+    return this.httpClient.get<T>(`${this.baseUrl}${url}`, { headers: this.getAuthHeaders() });
+  }
+
+  postAuth<T>(url: string, body: any): Observable<T> {
+    return this.httpClient.post<T>(`${this.baseUrl}${url}`, body, { headers: this.getAuthHeaders() });
+  }
+
+  putAuth<T>(url: string, body: any): Observable<T> {
+    return this.httpClient.put<T>(`${this.baseUrl}${url}`, body, { headers: this.getAuthHeaders() });
+  }
+
+  deleteAuth<T>(url: string): Observable<T> {
+    return this.httpClient.delete<T>(`${this.baseUrl}${url}`, { headers: this.getAuthHeaders() });
+  }
+
+  deleteAuthWithBody<T>(url: string, body: any): Observable<T> {
+    return this.httpClient.delete<T>(`${this.baseUrl}${url}`, { headers: this.getAuthHeaders(), body });
   }
 }

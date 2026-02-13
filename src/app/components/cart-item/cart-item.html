@@ -6,16 +6,13 @@
         <div class="cart-item-card__text-block">
             <p class="cart-item-card__name">{{cartItem.name}}</p>
             <div class="cart-item-card__prices">
-                @if (cartItem.basePrice != cartItem.finalPrice) {
-                <div class="cart-item-card__price cart-item-card__price--base">{{cartItem.basePrice*cartItem.quantity | currency}}</div>
-                }
-                <div class="cart-item-card__price cart-item-card__price--final">{{cartItem.finalPrice*cartItem.quantity | currency}}</div>
+                <div class="cart-item-card__price cart-item-card__price--final">{{cartItem.subtotal | currency}}</div>
             </div>
         </div>
     </div>
     <div class="cart-item-card__buttons-container">
         @if(cartItem.quantity > 1){
-            <button c-button (click)="decreaseQuantity()">-</button>
+            <button c-button (click)="decreaseQuantity()">−</button>
         }@else{
             <button c-button (click)="decreaseQuantity()">🗑</button>
         }

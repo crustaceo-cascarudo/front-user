@@ -7,14 +7,14 @@
         <div class="cart__items-fade-top"></div>
         <div class="cart__items-container">
             @for (item of cartItems; track $index) {
-            <cart-element (removeFromCart)="removeItem(item.id)" [cartItem]="item"></cart-element>
+            <cart-element (removeFromCart)="removeItem(item)" [cartItem]="item"></cart-element>
             }
         </div>
         <div class="cart__items-fade-bottom"></div>
     </div>
     <div class="cart__bottom-container">
-        <p class="g--font-size-6 g--colors-light" style="width: 100%; margin-bottom: 1rem;">Precio total: {{cartTotal |
+        <p class="cart__total-text">Precio total: {{cartTotal |
             currency}}</p>
-        <a routerLink="/payment" c-button colors="secondary" style="width: 100%; height: 3rem;">Terminar Pedido</a>
+        <a routerLink="/cart" c-button colors="secondary" style="width: 100%; height: 3rem;">Terminar Pedido</a>
     </div>
 </div>

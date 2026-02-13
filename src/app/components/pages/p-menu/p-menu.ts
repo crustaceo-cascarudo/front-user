@@ -8,14 +8,13 @@ import { Category } from '../../../models/menu/category';
 import { Subscription } from 'rxjs';
 import { AddressService } from '../../../services/adress-service';
 import { CCart } from '../../ui/c-cart/c-cart';
-import { ProductMapper } from '../../../core/mappers/productMapper';
 import { CartService } from '../../../services/cart-service';
 import { FormsModule } from '@angular/forms';
 import { Ingredient } from '../../../models/menu/ingredient';
 
 @Component({
   selector: 'p-menu',
-  imports: [ProductCard, MatPaginator, CCart, FormsModule],
+  imports: [ProductCard, MatPaginator, FormsModule],
   templateUrl: './p-menu.html',
   styleUrl: './p-menu.scss',
 })
@@ -23,7 +22,6 @@ export class PMenu {
   http = inject(HttpClientService);
   addressService = inject(AddressService);
   cartService = inject(CartService);
-  productMapper = inject(ProductMapper);
 
   adressSubscription!: Subscription;
 
@@ -56,6 +54,7 @@ export class PMenu {
       next: (address) => {
         if (address.adressLabel != null) {
           this.showCart = true;
+          this.cartService.loadCart();
         }
       },
       error: (error) => console.log(error),
@@ -145,7 +144,7 @@ export class PMenu {
 
   addToCart(product: Product) {
     if (this.showCart) {
-      this.cartService.addToCart(this.productMapper.productToCartItem(product));
+      this.cartService.addToCart(product.id, 1);
     }
   }
 

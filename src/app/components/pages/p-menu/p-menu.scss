@@ -1,5 +1,5 @@
 .menu-page {
-  --menu-page-bg-color: var(--mlt-sys-colors-light);
+  --menu-page-bg-color: var(#faf9fd);
   --menu-page-primary-color: var(--mlt-sys-colors-red-7);
   --menu-page-highlight-color: var(--mlt-sys-colors-yellow-5);
   --menu-page-text-color: var(--mlt-sys-colors-gray-6);
@@ -217,12 +217,6 @@
     background-color: white;
     box-shadow: var(--menu-page-shadow-sm);
     outline: none;
-    transition: all 0.2s ease;
-
-    &:focus {
-      border-color: var(--menu-page-highlight-color);
-      box-shadow: 0 0 0 1px var(--menu-page-highlight-color);
-    }
   }
 
   &__filter-button {

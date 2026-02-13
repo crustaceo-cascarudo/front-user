@@ -1,57 +1,100 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CartItem } from '../models/cart/cart-item';
+import { CartItem, CartResponse, CartItemResponse } from '../models/cart/cart-item';
+import { HttpClientService } from '../core/services/http-client-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private http = inject(HttpClientService);
+
   private cart = new BehaviorSubject<CartItem[]>([]);
   cartItems$ = this.cart.asObservable();
 
-  addToCart(item: CartItem) {
-    if (!this.isAlreadyInCart(item.id)) {
-      this.cart.next([
-        ...this.cart.getValue(), item
-      ]);
-    }
+  private cartId: number | null = null;
+
+  loadCart() {
+    this.http.getAuth<CartResponse>('/cart').subscribe({
+      next: (response) => {
+        this.cartId = response.id;
+        this.cart.next(this.mapResponseItems(response.items));
+      },
+      error: () => {
+        this.cart.next([]);
+      }
+    });
   }
 
-  removeFromCart(itemId: number) {
-    let newCart = this.cart.getValue();
+  addToCart(productId: number, quantity: number = 1) {
+    this.http.postAuth<CartResponse>('/cart/items', { productId, quantity }).subscribe({
+      next: (response) => {
+        this.cartId = response.id;
+        this.cart.next(this.mapResponseItems(response.items));
+      },
+      error: (err) => console.error('Error adding to cart', err)
+    });
+  }
 
-    newCart.splice(
-      this.cart.getValue().findIndex((item) => item.id == itemId), 1
-    );
+  removeFromCart(productId: number, quantity: number = 999) {
+    this.http.deleteAuthWithBody<CartResponse>('/cart/items', { productId, quantity }).subscribe({
+      next: (response) => {
+        this.cart.next(this.mapResponseItems(response.items));
+      },
+      error: (err) => console.error('Error removing from cart', err)
+    });
+  }
 
-    this.cart.next(
-      newCart
-    );
+  changeItemQuantity(productId: number, quantity: number) {
+    this.http.putAuth<CartResponse>('/cart/items', { productId, quantity }).subscribe({
+      next: (response) => {
+        this.cart.next(this.mapResponseItems(response.items));
+      },
+      error: (err) => console.error('Error updating cart item', err)
+    });
   }
 
   clearCart() {
-    this.cart.next(
-      []
-    );
+    this.http.deleteAuth<void>('/cart/clear').subscribe({
+      next: () => {
+        this.cart.next([]);
+      },
+      error: (err) => console.error('Error clearing cart', err)
+    });
   }
 
-  changeItemQuantity(itemId: number, quantity: number){
-    let newCart = this.cart.getValue();
+  checkout(address: string) {
+    return this.http.postAuth<any>('/cart/checkout', { address });
+  }
 
-    newCart[
-      this.cart.getValue().findIndex((item) => item.id == itemId)
-    ].quantity = quantity;
-
-    this.cart.next(
-      newCart
-    );
+  payWithCard(paymentData: {
+    cardNumber: string,
+    expiryMonth: string,
+    expiryYear: string,
+    cvc: string,
+    fullName: string,
+    address: string
+  }) {
+    return this.http.postAuth<any>('/cart/pay', paymentData);
   }
 
   cartTotal(): number {
-    return this.cart.getValue().reduce((total, item) => total + item.finalPrice*item.quantity, 0);
+    return this.cart.getValue().reduce((total, item) => total + item.subtotal, 0);
   }
 
-  isAlreadyInCart(productId: number) {
-    return !(this.cart.getValue().findIndex((item) => item.id == productId) == -1);
+  isAlreadyInCart(productId: number): boolean {
+    return this.cart.getValue().some(item => item.productId === productId);
+  }
+
+  private mapResponseItems(items: CartItemResponse[]): CartItem[] {
+    return items.map(item => ({
+      id: item.id,
+      productId: item.productId,
+      name: item.productName,
+      image: item.productImage,
+      quantity: item.quantity,
+      unitPrice: item.unitPrice,
+      subtotal: item.subtotal
+    }));
   }
 }

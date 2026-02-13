@@ -16,8 +16,10 @@
       }
     </div>
     
-    <button class="product-card__button" (click)="addToCart()">
-      <i class="fa-solid fa-plus"></i> Añadir
-    </button>
+    @if (showButton) {
+      <button class="product-card__button" (click)="addToCart()">
+        <i class="fa-solid fa-plus"></i> Añadir
+      </button>
+    }
   </div>
 </div>
