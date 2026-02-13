@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Product } from '../../models/menu/product';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart-service';
+import { CartItem } from '../../models/cart/cart-item';
 
 @Component({
   selector: 'product-card',
@@ -11,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class ProductCard {
   @Input() product!: Product;
   @Input() clickable: boolean = false;
+
+  cartService = inject(CartService);
 
   ingredientList: string[] = [];
   ingredients: string = "";
@@ -32,5 +36,19 @@ export class ProductCard {
     this.ingredientList.forEach(element => {
       this.ingredients = "" + this.ingredients + element;
     });
+  }
+
+  addToCart() {
+    // Convertir Product a CartItem
+    const cartItem: CartItem = {
+      id: this.product.id,
+      name: this.product.name,
+      basePrice: this.product.basePrice,
+      finalPrice: this.product.finalPrice,
+      image: this.product.image,
+      quantity: 1
+    };
+    
+    this.cartService.addToCart(cartItem);
   }
 }

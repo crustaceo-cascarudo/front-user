@@ -30,8 +30,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/radar-sdk-js/dist/radar.css"
+              "src/styles.scss"
             ]
           },
           "configurations": {

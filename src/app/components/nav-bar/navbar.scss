@@ -137,6 +137,17 @@
     white-space: nowrap;
   }
 
+  .logout-panel__username {
+    padding: 10px 16px 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #8D222C;
+    border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .logout-button {
     width: 100%;
     padding: 10px 16px;

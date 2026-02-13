@@ -11,5 +11,7 @@ export const routes: Routes = [
   { path: 'login', component: PLoginRegister },
   // {path: 'deals', component: },
   // {path: 'reservation', component: },
-  {path: 'delivery', component: PDeliveryAddress}
+  { path: 'delivery', component: PDeliveryAddress },
+  //TODO enble this
+  //{path: 'payment', component: PaymentPage, canActivate: [paymentGuard]}
 ];

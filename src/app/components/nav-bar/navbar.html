@@ -23,11 +23,12 @@
         </button>
         @if (showLogOutPanel && authService.isLoggedIn()) {
           <div class="logout-panel">
+            <div class="logout-panel__username">{{ authService.getUserName() }}</div>
             <button class="logout-button" (click)="logOut()">Cerrar sesión</button>
           </div>
         }
 
-        @if (isCartActive()) {
+        @if (authService.isLoggedIn()) {
           <button class="navbar__icon-button navbar__icon-button--cart" (click)="showCart = !showCart">
             <i class="fa-solid fa-cart-shopping"></i>
           

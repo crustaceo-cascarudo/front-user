@@ -1,25 +1,23 @@
-<div class="container">
-    @if (product.discountPercentage != 0) {
-        <div class="discount-badge">
-            -{{(product.discountPercentage/100) |
-            percent}}
-        </div>
-    }
-    <div class="product-card" [class.product-card--clickable]="clickable">
-        <div class="product-card__img-wrapper">
-            <img class="product-card__img" src="{{product.image}}">
-        </div>
-        <div class = "product-card__right-container">
-            <div class="product-card__text-block">
-                <p class="product-card__name">{{product.name}}</p>
-                <p class="product-card__ingredients">{{ingredients}}</p>
-            </div>
-            <div class="product-card__prices">
-                @if (product.discountPercentage != 0) {
-                <div class="product-card__price product-card__price--base">{{product.basePrice | currency}}</div>
-                }
-                <div class="product-card__price product-card__price--final">{{product.finalPrice | currency}}</div>
-            </div>
-        </div> 
+<div class="product-card">
+  <div class="product-card__image-container">
+    <div class="product-card__image-overlay"></div>
+    <img [src]="product.image" [alt]="product.name" class="product-card__image">
+    
+    <div class="product-card__price-badge">
+      ${{ product.finalPrice.toFixed(2) }}
     </div>
+  </div>
+  
+  <div class="product-card__content">
+    <h3 class="product-card__title">{{ product.name }}</h3>
+    <div class="product-card__ingredients">
+      @for (ingredient of product.ingredients.slice(0, 3); track ingredient.id) {
+        <span class="product-card__ingredient-tag">{{ ingredient.name }}</span>
+      }
+    </div>
+    
+    <button class="product-card__button" (click)="addToCart()">
+      <i class="fa-solid fa-plus"></i> Añadir
+    </button>
+  </div>
 </div>

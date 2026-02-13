@@ -1,5 +1,6 @@
 .promo {
   padding: 5rem 0;
+  padding-bottom: 20rem;
   background-color: #8d222c;
   color: #faf9fd;
 
@@ -34,24 +35,18 @@
     font-weight: bold;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
     display: block;
   }
 
   &__title {
     font-size: 2.25rem;
     font-weight: bold;
-    margin-bottom: 1.5rem;
+    margin-bottom: 4rem;
 
     @media (min-width: 768px) {
       font-size: 3rem;
     }
-  }
-
-  &__description {
-    font-size: 1.125rem;
-    color: rgba(250, 249, 253, 0.8);
-    margin-bottom: 2rem;
   }
 
   &__features {
@@ -69,6 +64,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    align-items: center; 
+    text-align: center;
+    border-radius: 1.5rem; padding: 1rem; background-color: rgba(250, 249, 253, 0.1);
   }
 
   &__feature-icon {
@@ -90,6 +88,7 @@
   }
 
   &__button {
+    display: flex;
     padding: 1rem 2rem;
     background-color: #fff648;
     color: #8d222c;
@@ -98,6 +97,9 @@
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
+    justify-content: center;
+    margin: 0 auto;
+    width: fit-content;
     box-shadow:
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
