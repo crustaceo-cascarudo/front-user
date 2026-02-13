@@ -44,7 +44,7 @@ $product-card-radius: 0.5rem;
     padding-right: 1rem;
     min-width: 30rem;
     min-height: 6rem;
-    height: auto;
+    height: 100%;
     background-color: var(--product-card-background-color);
     border-radius: $product-card-radius;
     box-shadow: var(--product-card-box-shadow);
@@ -137,5 +137,10 @@ $product-card-radius: 0.5rem;
 
     &--clickable {
         cursor: pointer;
+    }
+
+    &--order-item{
+        --product-card-background-color: white;
+        border: 1px solid black;
     }
 }

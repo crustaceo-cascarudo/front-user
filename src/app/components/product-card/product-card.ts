@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 export class ProductCard {
   @Input() product!: Product;
   @Input() clickable: boolean = false;
+  @Input() isOrderItem: boolean = false;
 
   ingredientList: string[] = [];
   ingredients: string = "";
