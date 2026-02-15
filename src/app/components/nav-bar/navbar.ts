@@ -79,6 +79,7 @@ export class NavBar {
   }
 
   logOut() {
+    this.cartService.clearCartLocally();
     this.authService.logout().subscribe({
       next: () => {
         this.showLogOutPanel = false;

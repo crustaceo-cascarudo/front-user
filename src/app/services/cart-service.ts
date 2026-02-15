@@ -49,18 +49,17 @@ export class CartService {
   clearCart() {
     this.http.deleteWithAuth(this.url + "/clear").subscribe({
       next: () => {
-        this.cart.next(
-          []
-        );
+        this.clearCartLocally();
       },
       error: error => this.showError(error)
     });
   }
 
   clearCartLocally() {
+    let emptyCart: CartItem[] = [];
     this.cart.next(
-      []
-    );
+      emptyCart
+    );    
   }
 
   addToCart(item: CartItem, quantity: number = 1) {

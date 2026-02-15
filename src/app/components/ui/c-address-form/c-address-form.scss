@@ -22,7 +22,6 @@
 
 .adress-form {
     --adress-form-font-size-default: var(--mlt-sys-font-size-3);
-    --adress-form-font-size-title: var(--mlt-sys-font-size-9);
     --adress-form-font-size-big: var(--mlt-sys-font-size-6);
     --adress-form-font-size-small: var(--mlt-sys-font-size-2);
 
@@ -32,6 +31,9 @@
     --adress-form-padding: var(--mlt-sys-padding-8);
     --adress-form-box-shadow: var(--mlt-sys-box-shadow-3);
     --adress-form-margin: 10px;
+
+
+    --address-form-button-padding: 12px;
 
     --adress-form-background-color: var(--mlt-sys-colors-primary);
 
@@ -82,32 +84,8 @@
         }
     }
 
-    &__toggle-pass {
-        position: absolute;
-        top: 50%;
-        right: 12px;
-        transadress-form: translateY(-50%);
-        background: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        i {
-            font-size: 18px;
-            color: var(--mlt-sys-colors-gray-5);
-            transition: 0.2s ease;
-        }
-
-        &:hover i {
-            color: var(--mlt-sys-colors-primary);
-        }
-    }
-
     &__label {
-        font-size: var(--home-font-size-small);
+        font-size: var(--adress-form-font-size-small);
         margin-bottom: 0.25rem;
         color: var(--mlt-sys-colors-dark);
     }
@@ -115,7 +93,7 @@
     &__input {
         width: 100%;
         padding: 10px 14px;
-        font-size: var(--home-font-size-default);
+        font-size: var(--adress-form-font-size-default);
         border: 1px solid var(--mlt-sys-colors-gray-3);
         border-radius: 6px;
         outline: none;
@@ -128,10 +106,10 @@
 
     &__button {
         width: 100%;
-        padding: 12px;
+        padding: var(--address-form-button-padding);
         margin-top: 1rem;
-        font-size: var(--home-font-size-default);
-        font-family: var(--home-font-family-default);
+        font-size: var(--adress-form-font-size-default);
+        font-family: var(--adress-form-font-family-default);
     }
 
 }

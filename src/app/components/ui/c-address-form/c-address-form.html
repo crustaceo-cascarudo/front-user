@@ -9,13 +9,13 @@
             </button>
         </div>
         @if(!isAddressOk){
-        <div class="g--colors-danger">Profavor seleccione una dirección de las opciones que contenga sunumero de puerta
+        <div class="g--colors-danger">Profavor seleccione una dirección de las opciones sugeridas
         </div>
         }
     </div>
     @if (isDoorEnabled) {
     <div class="adress-form__field">
-        <label class="adress-form__label" for="door">Door Number</label>
+        <label class="adress-form__label" for="door">Piso / Numero de Puerta</label>
         <input id="door" name="door" [(ngModel)]="doorNumber" (input)="isButtonDisbled=false" #door="ngModel" class="adress-form__input" type="text"
             pattern="^[A-Za-z0-9ºª\s]{1,15}$">
         @if (door.invalid && (door.dirty || door.touched)) {
