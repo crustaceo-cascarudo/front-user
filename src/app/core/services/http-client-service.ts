@@ -16,36 +16,34 @@ export class HttpClientService {
   authService = inject(AuthService);
   token = this.authService.getToken();
 
-
-  getById<T>(url: string, id: number): Observable<T> {
-    const headers = new HttpHeaders({
+  private getAuthHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
     });
-
-    return this.httpClient.get<T>(`${this.baseUrl}${url}/${id}`, { headers });
   }
 
   getPage<T>(url: string, pageIndex: number, pageSize: number): Observable<Page<T>> {
     return this.httpClient.get<Page<T>>(`${this.baseUrl + url}?page=${pageIndex}&size=${pageSize}`);
   }
 
-  postItem<T>(url: string, item: any) {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    });
-
-    return this.httpClient.post<T>(`${this.baseUrl}${url}`, item, { headers }); //TODO -> Make sure this works
+  getWithAuth<T>(url: string): Observable<T> {
+    return this.httpClient.get<T>(`${this.baseUrl}${url}`, { headers: this.getAuthHeaders() });
   }
 
-  putItem<T>(url: string, item: any) {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    });
-
-    return this.httpClient.put<T>(`${this.baseUrl}${url}`, item, { headers })
+  postWithAuth<T>(url: string, body: any) {
+    return this.httpClient.post<T>(`${this.baseUrl}${url}`, body, { headers: this.getAuthHeaders() });
   }
 
-  deleteItem<T>(url: string, item: any) {
-    
+  putWithAuth<T>(url: string, body: any) {
+    return this.httpClient.put<T>(`${this.baseUrl}${url}`, body, { headers: this.getAuthHeaders() })
+  }
+
+  deleteWithAuth<T>(url: string): Observable<T> {
+    return this.httpClient.delete<T>(`${this.baseUrl}${url}`, { headers: this.getAuthHeaders() });
+  }
+
+  deleteWithAuthAndBody<T>(url: string, body: any): Observable<T> {
+    return this.httpClient.delete<T>(`${this.baseUrl}${url}`, { headers: this.getAuthHeaders(), body });
   }
 }

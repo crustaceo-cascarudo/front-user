@@ -84,9 +84,7 @@ export class AddressForm {
     console.log("isAddressOk: "+this.isAddressOk);
     
 
-    if (!this.isButtonDisbled && this.isAddressOk && this.redirectRoute != "") {
-      console.log("TEJODESSSS");
-      
+    if (!this.isButtonDisbled && this.isAddressOk && this.redirectRoute != "") {      
       this.router.navigate([this.redirectRoute]);
     }
   }

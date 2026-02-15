@@ -4,8 +4,8 @@ import { CartItem } from '../models/cart/cart-item';
 import { HttpClientService } from '../core/services/http-client-service';
 import { AuthService } from '../core/services/auth-service';
 import { ProductMapper } from '../core/mappers/productMapper';
-import { Product } from '../models/menu/product';
-import { T } from '@angular/cdk/keycodes';
+import { CartResponse } from '../models/cart/cart-response';
+import { CartItemMapper } from '../core/mappers/cartItemMapper';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,7 @@ export class CartService {
   http = inject(HttpClientService);
   authService = inject(AuthService);
   productMapper = inject(ProductMapper);
+  cartItemMapper = inject(CartItemMapper);
 
   url: string = "/cart";
 
@@ -21,46 +22,44 @@ export class CartService {
   cartItems$ = this.cart.asObservable();
 
   getActiveCart() {
-    const userId = this.authService.getUserId();
-    if (userId != undefined) {
       let newCart: CartItem[] = [];
 
-      this.http.getById<any>(this.url, userId.valueOf()).subscribe({
+      this.http.getWithAuth<CartResponse>(this.url).subscribe({
         next: (data) => {
-          data.products.forEach(
-            (product: { productDto: Product; quantity: number; }) => {
-              let mappedItem: CartItem = <CartItem>{};
-              mappedItem = this.productMapper.productToCartItem(product.productDto);
-              mappedItem.quantity = product.quantity
+          console.log("Data:");
+          console.log(data.items);
+          console.log(JSON.stringify(data));
 
-              newCart.push(mappedItem);
+          data.items.forEach(
+            (item) => {
+              newCart.push(this.cartItemMapper.cartItemResponseToCartItem(item));
             }
-          )
+          );
+          console.log("newCart:");
+          console.log(newCart);
+          
+          this.cart.next(newCart);
         },
       });
-    }
-  }
-
-  createCart() {
-    const userId = this.authService.getUserId();
-    if (userId != undefined) {
-      this.http.postItem(this.url, userId.valueOf()).subscribe({
-        error: error => {
-          console.log(error);
-        }
-      })
-    }
   }
 
   clearCart() {
-    this.cart.next(
-      []
-    );
+    this.http.deleteWithAuth(this.url+"/clear").subscribe({
+      next: () => {
+        this.cart.next(
+          []
+        );
+      },
+      error: error => this.showError(error)
+    });
+
   }
 
-  addToCart(item: CartItem) {
-    if (!this.isAlreadyInCart(item.id)) {
-      this.http.postItem(this.url + "/items", item.id).subscribe({
+  addToCart(item: CartItem, quantity: number = 1) {
+    if (this.isAlreadyInCart(item.id)) {
+      this.changeItemQuantity(item.id, this.getItemQuantity(item.id) + quantity);
+    }else{
+      this.http.postWithAuth(this.url + "/items", { productId: item.id, quantity: quantity }).subscribe({
         next: () => {
           this.cart.next([
             ...this.cart.getValue(), item
@@ -80,7 +79,7 @@ export class CartService {
       index, 1
     );
 
-    this.http.putItem(this.url + "/items", { productId: itemId, quantity: quantity }).subscribe({
+    this.http.deleteWithAuthAndBody(this.url + "/items", { productId: itemId, quantity: quantity }).subscribe({
       next: () => {
         this.cart.next(
           newCart
@@ -90,21 +89,31 @@ export class CartService {
     });
   }
 
+  getItemQuantity(id: number): number {
+    return this.cart.getValue().find((item) => item.id == id)?.quantity ?? 0;
+  }
 
-  changeItemQuantity(itemId: number, quantity: number) {
+
+  changeItemQuantity(itemId: number, quantity: number): boolean {
     let newCart = this.cart.getValue();
 
     newCart[this.cart.getValue().findIndex((item) => item.id == itemId)]
       .quantity = quantity;
 
-    this.http.putItem(this.url + "/items", { productId: itemId, quantity: quantity }).subscribe({
+    this.http.putWithAuth(this.url + "/items", { productId: itemId, quantity: quantity }).subscribe({
       next: () => {
         this.cart.next(
           newCart
         );
+        return true;
       },
-      error: error => this.showError(error)
+      error: error => {
+        this.showError(error);
+        return false;
+      }
     });
+
+    return false;
   }
 
   cartTotal(): number {

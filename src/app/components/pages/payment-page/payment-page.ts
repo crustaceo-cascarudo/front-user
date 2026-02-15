@@ -46,7 +46,7 @@ export class PaymentPage {
   }
 
   payDelivery() {
-    this.http.postItem<any>(this.paymentUrl, this.paymentRequest).subscribe({
+    this.http.postWithAuth<any>(this.paymentUrl, this.paymentRequest).subscribe({
       next: (response) => {
         this.paymentResponse = response;
         this.paymentResponse.state = response.estado;

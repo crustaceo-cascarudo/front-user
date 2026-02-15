@@ -17,14 +17,16 @@ export class CartElement {
   cartService = inject(CartService);
 
   increaseQuantity(){
-    this.cartItem.quantity = this.cartItem.quantity + 1;
-    this.cartService.changeItemQuantity(this.cartItem.id, this.cartItem.quantity)
+    if(this.cartService.changeItemQuantity(this.cartItem.id, this.cartItem.quantity+1)){
+      this.cartItem.quantity = this.cartItem.quantity + 1;
+    }
   }
 
   decreaseQuantity(){
     if(this.cartItem.quantity > 1){
-      this.cartItem.quantity = this.cartItem.quantity - 1;
-      this.cartService.changeItemQuantity(this.cartItem.id, this.cartItem.quantity)
+      if(this.cartService.changeItemQuantity(this.cartItem.id, this.cartItem.quantity - 1)){
+        this.cartItem.quantity = this.cartItem.quantity - 1;
+      }
     }else{
       this.removeFromCart.emit(this.cartItem)
     }

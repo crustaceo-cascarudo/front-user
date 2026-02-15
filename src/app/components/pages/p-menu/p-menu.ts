@@ -38,7 +38,7 @@ export class PMenu {
 
   selectedCategory!: Category;
 
-  showCart: boolean = false;
+  showCart: boolean = true;
 
   ngOnInit() {
     this.getCategoryAmount();
