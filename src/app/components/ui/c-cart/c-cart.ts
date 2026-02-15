@@ -21,9 +21,8 @@ export class CCart {
   cartServiceSubscription!: Subscription;
 
   ngOnInit() {
-    this.cartService.getActiveCart();
+    this.cartService.loadActiveCart();
     this.cartServiceSubscription = this.cartService.cartItems$.subscribe(items => {
-      console.log(items);
       if(items.length > 0){
         this.cartItems = items;
         this.cartTotal = this.cartService.cartTotal();

@@ -15,5 +15,4 @@ export const routes: Routes = [
   // {path: 'reservation', component: },
   {path: 'delivery', component: PDeliveryAddress},
   {path: 'payment', component: PaymentPage, canActivate: [paymentGuard]}
-  //{path: 'payment', component: PaymentPage}
 ];

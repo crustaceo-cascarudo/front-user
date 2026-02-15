@@ -21,30 +21,31 @@ export class CartService {
   private cart = new BehaviorSubject<CartItem[]>([]);
   cartItems$ = this.cart.asObservable();
 
-  getActiveCart() {
-      let newCart: CartItem[] = [];
+  loadActiveCart(): boolean {
+    let newCart: CartItem[] = [];
 
-      this.http.getWithAuth<CartResponse>(this.url).subscribe({
-        next: (data) => {
-          console.log("Data:");
-          console.log(data.items);
-          console.log(JSON.stringify(data));
+    this.http.getWithAuth<CartResponse>(this.url).subscribe({
+      next: (data) => {
+        data.items.forEach(
+          (item) => {
+            newCart.push(this.cartItemMapper.cartItemResponseToCartItem(item));
+          }
+        );
 
-          data.items.forEach(
-            (item) => {
-              newCart.push(this.cartItemMapper.cartItemResponseToCartItem(item));
-            }
-          );
-          console.log("newCart:");
-          console.log(newCart);
-          
-          this.cart.next(newCart);
-        },
-      });
+        this.cart.next(newCart);
+        return true;
+      },
+      error: error => {
+        this.showError(error);
+        return false;
+      }
+    });
+
+    return false;
   }
 
   clearCart() {
-    this.http.deleteWithAuth(this.url+"/clear").subscribe({
+    this.http.deleteWithAuth(this.url + "/clear").subscribe({
       next: () => {
         this.cart.next(
           []
@@ -58,7 +59,7 @@ export class CartService {
   addToCart(item: CartItem, quantity: number = 1) {
     if (this.isAlreadyInCart(item.id)) {
       this.changeItemQuantity(item.id, this.getItemQuantity(item.id) + quantity);
-    }else{
+    } else {
       this.http.postWithAuth(this.url + "/items", { productId: item.id, quantity: quantity }).subscribe({
         next: () => {
           this.cart.next([
@@ -124,7 +125,7 @@ export class CartService {
     return !(this.cart.getValue().findIndex((item) => item.id == productId) == -1);
   }
 
-  showError(error: Error){
+  showError(error: Error) {
     console.log(error);
     alert("Ha habido un error, vuelva a intentarlo");
   }
