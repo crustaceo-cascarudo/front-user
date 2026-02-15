@@ -1,7 +1,11 @@
 import { CreditCard } from "./credit-card";
 
 export interface CardPaymentRequest {
-    apiToken: string;
-    originCreditCard: CreditCard;
-    concept: string;
+    cardNumber: number;
+    expiryMonth: string;
+    expiryYear: string;
+    cvc: number;
+    fullName: string;
+    accountIban: number;
+    address: string;
 }

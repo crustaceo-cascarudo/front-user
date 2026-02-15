@@ -9,4 +9,5 @@ export interface Address{
     houseNumber: string;
     doorNumber: string;
     postalCode: string;
+    addressAsString: string;
 }

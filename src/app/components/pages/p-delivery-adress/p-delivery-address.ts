@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AddressForm } from "../../ui/address-form/address-form";
+import { CAddressForm } from "../../ui/c-address-form/c-address-form";
 
 @Component({
   selector: 'p-delivery-Address',
-  imports: [FormsModule, AddressForm],
+  imports: [FormsModule, CAddressForm],
   templateUrl: './p-delivery-address.html',
   styleUrl: './p-delivery-address.scss',
 })

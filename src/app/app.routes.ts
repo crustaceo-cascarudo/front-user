@@ -3,7 +3,7 @@ import { PHome } from './components/pages/p-home/p-home';
 import { PLoginRegister } from './components/pages/p-login-register/p-login-register';
 import { PMenu } from './components/pages/p-menu/p-menu';
 import { PDeliveryAddress } from './components/pages/p-delivery-adress/p-delivery-address';
-import { PaymentPage } from './components/pages/payment-page/payment-page';
+import { PPayment } from './components/pages/p-payment/p-payment';
 import { paymentGuard } from './core/guards/payment-guard';
 
 export const routes: Routes = [
@@ -14,5 +14,5 @@ export const routes: Routes = [
   // {path: 'deals', component: },
   // {path: 'reservation', component: },
   {path: 'delivery', component: PDeliveryAddress},
-  {path: 'payment', component: PaymentPage, canActivate: [paymentGuard]}
+  {path: 'payment', component: PPayment, canActivate: [paymentGuard]}
 ];

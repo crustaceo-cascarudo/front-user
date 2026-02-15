@@ -9,17 +9,21 @@ import { CartItem } from '../../../models/cart/cart-item';
 import { CommonModule } from '@angular/common';
 import { CartElement } from '../../cart-item/cart-item';
 import { CartService } from '../../../services/cart-service';
-import { AddressForm } from "../../ui/address-form/address-form";
+import { CAddressForm } from "../../ui/c-address-form/c-address-form";
+import { AddressService } from '../../../services/adress-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-page',
-  imports: [FormsModule, CButton, CommonModule, CartElement, AddressForm],
+  imports: [FormsModule, CButton, CommonModule, CartElement, CAddressForm],
   templateUrl: './p-payment.html',
   styleUrl: './p-payment.scss',
 })
-export class PaymentPage {
+export class PPayment {
   http = inject(HttpClientService);
   cartService = inject(CartService);
+  addressService = inject(AddressService);
+  router = inject(Router);
 
   paymentUrl: string = "/cart/pay"
 
@@ -28,6 +32,7 @@ export class PaymentPage {
   paymentRequest: CardPaymentRequest = <CardPaymentRequest>{};
   paymentResponse: CardPaymentResponse = <CardPaymentResponse>{};
   creditCard: CreditCard = <CreditCard>{};
+
 
   ngOnInit(){
     this.cartService.cartItems$.subscribe({
@@ -39,33 +44,28 @@ export class PaymentPage {
 
   onSubmit(form: any) {
     if (form.valid) {
-      this.paymentRequest.originCreditCard = this.creditCard;
-      this.paymentRequest.concept = "Pedido a domicilio en Crustaceo-Cascarudo";
+      this.paymentRequest.cardNumber = this.creditCard.cardNumber;
+      this.paymentRequest.expiryMonth = this.creditCard.expiryMonth;
+      this.paymentRequest.expiryYear = "20"+this.creditCard.expiryYear;
+      this.paymentRequest.cvc = this.creditCard.cvc;
+      this.paymentRequest.fullName = this.creditCard.fullName;
+      this.paymentRequest.accountIban = this.creditCard.accountIban;
+      this.paymentRequest.address = this.addressService.getAddress().addressAsString;
       this.payDelivery();
     }
   }
 
   payDelivery() {
     this.http.postWithAuth<any>(this.paymentUrl, this.paymentRequest).subscribe({
-      next: (response) => {
-        this.paymentResponse = response;
-        this.paymentResponse.state = response.estado;
-        this.paymentResponse.orderItems = [];
-
-        response.items.forEach(
-          (element: { name: string; image: string; quantity: number; unitPrice: number; }) => {
-            let mappedItem: CartItem = <CartItem>{};
-
-            mappedItem.name = element.name;
-            mappedItem.image = element.image;
-            mappedItem.quantity = element.quantity;
-            mappedItem.finalPrice = element.unitPrice;
-
-            this.paymentResponse.orderItems.push(mappedItem);
-          }
-        );
+      next: () => {
+        this.cartService.clearCartLocally();
+        alert("Pago realizado con éxito. Gracias por su compra en Crustaceo-Cascarudo");
+        this.router.navigate(['/home']);
       },
-      error: () => alert("Error en los datos de la tarjeta. No se ha producido el pago")
+      error: (error) => {
+        alert("Error en los datos de la tarjeta. No se ha producido el pago");
+        console.log(error);
+      }
     });
   }
 }

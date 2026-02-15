@@ -36,7 +36,9 @@ export class CartService {
         return true;
       },
       error: error => {
-        this.showError(error);
+        if(error.status == 404){
+          return true;
+        } 
         return false;
       }
     });
@@ -53,7 +55,12 @@ export class CartService {
       },
       error: error => this.showError(error)
     });
+  }
 
+  clearCartLocally() {
+    this.cart.next(
+      []
+    );
   }
 
   addToCart(item: CartItem, quantity: number = 1) {
@@ -125,7 +132,7 @@ export class CartService {
     return !(this.cart.getValue().findIndex((item) => item.id == productId) == -1);
   }
 
-  showError(error: Error) {
+  private showError(error: Error) {
     console.log(error);
     alert("Ha habido un error, vuelva a intentarlo");
   }

@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import Radar from 'radar-sdk-js';
-import { CButton } from "../../ui/c-button/c-button";
+import { CButton } from "../c-button/c-button";
 import { AddressService } from '../../../services/adress-service';
 import { Router } from "@angular/router";
 import { FormsModule } from '@angular/forms';
@@ -12,10 +12,10 @@ import { AddressMapper } from '../../../core/mappers/addressMapper';
 @Component({
   selector: 'address-form',
   imports: [CButton, FormsModule, NgClass],
-  templateUrl: './address-form.html',
-  styleUrl: './address-form.scss',
+  templateUrl: './c-address-form.html',
+  styleUrl: './c-address-form.scss',
 })
-export class AddressForm {
+export class CAddressForm {
   @Input() redirectRoute: string = "";
 
   private addresService = inject(AddressService);
@@ -62,7 +62,7 @@ export class AddressForm {
     this.addresService.address$.subscribe({
       next: (address) => {
         if(address.adressLabel != undefined){
-          this.addressAutocomplete.inputField.value = address.adressLabel+" "+address.doorNumber+", "+address.city+", "+address.state+", "+address.country;
+          this.addressAutocomplete.inputField.value = address.addressAsString;
           if(address.doorNumber != ""){
             this.isDoorEnabled = true
             this.doorNumber = address.doorNumber;
@@ -75,17 +75,16 @@ export class AddressForm {
 
   mountFinalAddress() {
     this.finalAddress.doorNumber = this.doorNumber;
-    this.addresService.setAddress(this.finalAddress);
-
     this.checkAddress();
 
-    console.log("Route: " +this.redirectRoute);
-    console.log("isButtonDisabled: "+this.isButtonDisbled);
-    console.log("isAddressOk: "+this.isAddressOk);
-    
-
-    if (!this.isButtonDisbled && this.isAddressOk && this.redirectRoute != "") {      
-      this.router.navigate([this.redirectRoute]);
+    if (!this.isButtonDisbled && this.isAddressOk) {  
+      this.finalAddress.addressAsString = this.finalAddress.adressLabel + " " + this.finalAddress.doorNumber + ", " + this.finalAddress.city + ", " + this.finalAddress.state + ", " + this.finalAddress.country;    
+      this.addresService.setAddress(this.finalAddress);
+      this.isButtonDisbled = true;
+      
+      if (this.redirectRoute != "") {
+        this.router.navigate([this.redirectRoute]);
+      }
     }
   }
 

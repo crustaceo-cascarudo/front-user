@@ -24,41 +24,51 @@
             <form class="payment-page__form-group" (ngSubmit)="onSubmit(mioFormoDuPago)" #mioFormoDuPago="ngForm">
                 <div class="payment-page__form-input-group">
                     <label for="card" class="payment-page__form-label">Número de la Tarjeta</label>
-                    <input #mioTarjetoNumeroInput="ngModel" required [(ngModel)]="creditCard.cardNumber" type="text" name="numeroTarjeta"
-                        class="payment-page__form-control" id="mioTarjetoNumero" aria-describedby="cardHelp" placeholder="1234 5678 9012 3456">
+                    <input #mioTarjetoNumeroInput="ngModel" required [(ngModel)]="creditCard.cardNumber" type="text" pattern="^\d(?:[- ]?\d){12,18}$" 
+                        name="numeroTarjeta" class="payment-page__form-control" id="mioTarjetoNumero" aria-describedby="cardHelp" placeholder="1234 5678 9012 3456">
                     <div [hidden]="mioTarjetoNumeroInput.valid || mioTarjetoNumeroInput.pristine" class="payment-page__alert">
                         El número de la tarjeta es necesario
                     </div>    
                 </div>
 
+                <p class="payment-page__form-label">Fecha de Caducidad</p>
                 <div class="payment-page__form-row">
                     <div class="payment-page__form-input-group">
-                        <label for="mioExpirationeDatil" class="payment-page__form-label">Fecha de Caducidad</label>
-                        <input #mioExpirationeDatilInput="ngModel" required [(ngModel)]="creditCard.expirationDate" type="text" name="mioExpirationeDatil"
-                            class="payment-page__form-control" id="mioExpirationeDatil" placeholder="MM/YY">
+                        <label for="mioExpirationeDatil" class="payment-page__form-label">Mes de Caducidad</label>
+                        <input #mioExpirationeDatilInput="ngModel" required [(ngModel)]="creditCard.expiryMonth" type="text" pattern="^(0[1-9]|1[0-2])$"
+                            name="mioExpirationeDatil" class="payment-page__form-control" id="mioExpirationeDatil" placeholder="MM">
                         <div [hidden]="mioExpirationeDatilInput.valid || mioExpirationeDatilInput.pristine" class="payment-page__alert">
                             La fecha de caducidad de la tarjeta es necesaria
                         </div>
                     </div>
-
+                    
                     <div class="payment-page__form-input-group">
-                        <label for="C_V_C" class="payment-page__form-label">CVC</label>
-                        <input #C_V_CInput="ngModel" required [(ngModel)]="creditCard.cvc" type="text" name="C_V_C"
-                            class="payment-page__form-control" id="C_V_C" placeholder="123">
-                        <div [hidden]="C_V_CInput.valid || C_V_CInput.pristine" class="payment-page__alert">
-                            El CVC es necesario
+                        <label for="mioExpirationYear" class="payment-page__form-label">Año de Caducidad</label>
+                        <input #mioExpirationYearInput="ngModel" required [(ngModel)]="creditCard.expiryYear" type="text" pattern="^(0[1-9]|[1-9][0-9])$"
+                            name="mioExpirationYear" class="payment-page__form-control" id="mioExpirationYear" placeholder="YY">
+                        <div [hidden]="mioExpirationYearInput.valid || mioExpirationYearInput.pristine" class="payment-page__alert">
+                            La fecha de caducidad de la tarjeta es necesaria
                         </div>
                     </div>
                 </div>
 
-                <div class="payment-page__form-input-group">
-                    <label for="nombreCompleto" class="payment-page__form-label">Nombre Completo</label>
-                    <input #nombreCompletoInput="ngModel" required [(ngModel)]="creditCard.fullName" type="text" name="nombreCompleto"
-                        class="payment-page__form-control" id="nombreCompleto" placeholder="Juan Pérez García">
-                    <div [hidden]="nombreCompletoInput.valid || nombreCompletoInput.pristine" class="payment-page__alert">
-                        El nombre completo del propietario de la tarjeta es necesario
+                    <div class="payment-page__form-input-group">
+                        <label for="C_V_C" class="payment-page__form-label">CVC</label>
+                        <input #C_V_CInput="ngModel" required [(ngModel)]="creditCard.cvc" type="text" pattern="^\d{3,4}$"
+                            name="C_V_C" class="payment-page__form-control" id="C_V_C" placeholder="123">
+                        <div [hidden]="C_V_CInput.valid || C_V_CInput.pristine" class="payment-page__alert">
+                            El CVC es necesario
+                        </div>
                     </div>
-                </div>
+
+                    <div class="payment-page__form-input-group">
+                        <label for="nombreCompleto" class="payment-page__form-label">Nombre Completo</label>
+                        <input #nombreCompletoInput="ngModel" required [(ngModel)]="creditCard.fullName" type="text" name="nombreCompleto"
+                            class="payment-page__form-control" id="nombreCompleto" placeholder="Juan Pérez García">
+                        <div [hidden]="nombreCompletoInput.valid || nombreCompletoInput.pristine" class="payment-page__alert">
+                            El nombre completo del propietario de la tarjeta es necesario
+                        </div>
+                    </div>
 
                 <button type="submit" c-button [disabled]="!mioFormoDuPago.form.valid" class="payment-page__submit-btn">Realizar Pago</button>
             </form>

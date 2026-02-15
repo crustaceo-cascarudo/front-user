@@ -14,6 +14,11 @@ export class AddressService {
         console.log(a);
         
         this.address.next(a);
+        console.log(this.address.getValue());
+    }
+
+    getAddress(): Address {
+        return this.address.getValue();
     }
 
     clearAddress(){
