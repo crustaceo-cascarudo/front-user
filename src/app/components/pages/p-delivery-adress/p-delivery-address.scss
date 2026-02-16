@@ -35,16 +35,13 @@
     --adress-form-font-size-small: var(--mlt-sys-font-size-2);
 
     --adress-form-font-family-default: var(--mlt-sys-font-family-default);
-    --adress-form-font-family-title: var(--mlt-sys-font-family-default);
+    --adress-form-font-family-title: var(--mlt-sys-font-family-title);
 
     --adress-form-padding: var(--mlt-sys-padding-8);
     --adress-form-box-shadow: var(--mlt-sys-box-shadow-3);
     --adress-form-margin: 10px;
 
     --adress-form-background-color: var(--mlt-sys-colors-primary);
-    --adress-form-text-color: var(--mlt-sys-colors-dark);
-    --adress-form-border-color: var(--mlt-sys-colors-gray-3);
-    --adress-form-icon-color: var(--mlt-sys-colors-gray-5);
 
     width: 40rem;
     margin: var(--adress-form-margin) auto;
@@ -64,7 +61,7 @@
         font-size: var(--adress-form-font-size-big);
         font-family: var(--adress-form-font-family-title);
         text-align: center;
-        color: var(--adress-form-background-color);
+        color: var(--mlt-sys-colors-primary);
     }
 
     &__adress {
@@ -97,7 +94,7 @@
         position: absolute;
         top: 50%;
         right: 12px;
-        transform: translateY(-50%);
+        transadress-form: translateY(-50%);
         background: transparent;
         border: none;
         padding: 0;
@@ -108,32 +105,32 @@
 
         i {
             font-size: 18px;
-            color: var(--adress-form-icon-color);
+            color: var(--mlt-sys-colors-gray-5);
             transition: 0.2s ease;
         }
 
         &:hover i {
-            color: var(--adress-form-background-color);
+            color: var(--mlt-sys-colors-primary);
         }
     }
 
     &__label {
-        font-size: var(--adress-form-font-size-small);
+        font-size: var(--home-font-size-small);
         margin-bottom: 0.25rem;
-        color: var(--adress-form-text-color);
+        color: var(--mlt-sys-colors-dark);
     }
 
     &__input {
         width: 100%;
         padding: 10px 14px;
-        font-size: var(--adress-form-font-size-default);
-        border: 1px solid var(--adress-form-border-color);
+        font-size: var(--home-font-size-default);
+        border: 1px solid var(--mlt-sys-colors-gray-3);
         border-radius: 6px;
         outline: none;
         transition: border-color 0.2s ease;
 
         &:focus {
-            border-color: var(--adress-form-background-color);
+            border-color: var(--mlt-sys-colors-primary);
         }
     }
 
@@ -141,8 +138,8 @@
         width: 100%;
         padding: 12px;
         margin-top: 1rem;
-        font-size: var(--adress-form-font-size-default);
-        font-family: var(--adress-form-font-family-default);
+        font-size: var(--home-font-size-default);
+        font-family: var(--home-font-family-default);
     }
 
 }

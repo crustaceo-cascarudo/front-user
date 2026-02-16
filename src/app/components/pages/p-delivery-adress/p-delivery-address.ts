@@ -42,7 +42,7 @@ export class PDeliveryAddress {
       placeholder: 'Search address',
       limit: 8,
       minCharacters: 3,
-      onSelection: (address: any) => {
+      onSelection: (address) => {
         this.finalAddress = this.addressMapper.radarAddressToAddress(address);
         this.isDoorEnabled = true;
         this.checkAddress();

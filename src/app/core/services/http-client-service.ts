@@ -21,7 +21,7 @@ export class HttpClientService {
     return this.httpClient.get<Page<T>>(`${this.baseUrl + url}?page=${pageIndex}&size=${pageSize}`);
   }
 
-  postItem<T>(url: string, item: any) {
+  postItem<T>(url: string, item: T) {
     return this.httpClient.post<T>(`${this.baseUrl}${url}`, item); //TODO -> Make sure this works
   }
 }

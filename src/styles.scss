@@ -2,7 +2,6 @@
 @use './app/scss/main.scss' as *;
 @use '@angular/material' as mat;
 @import '@fortawesome/fontawesome-free/css/all.min.css';
-@import 'radar-sdk-js/dist/radar.css';
 
 html {
   @include mat.theme((
@@ -13,16 +12,6 @@ html {
     typography: Roboto,
     density: 0,
   ));
-  
-  overflow: auto;
-  scrollbar-width: none; // Firefox
-  -ms-overflow-style: none; // IE/Edge
-  
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none; // Chrome, Safari, Opera
-  }
 }
 
 body {
@@ -40,17 +29,6 @@ body {
 
   // Reset the user agent margin.
   margin: 0;
-  
-  // Ocultar scrollbar pero mantener funcionalidad
-  overflow: auto;
-  scrollbar-width: none; // Firefox
-  -ms-overflow-style: none; // IE/Edge
-  
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none; // Chrome, Safari, Opera
-  }
 }
 /* You can add global styles to this file, and also import other style files */
 

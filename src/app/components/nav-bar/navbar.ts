@@ -4,6 +4,7 @@ import { LoginService } from '../../core/services/login-service';
 import { CartService } from '../../services/cart-service';
 import { AuthService } from '../../core/services/auth-service';
 import { Subscription } from 'rxjs';
+import { AddressService } from '../../services/adress-service';
 import { CCart } from "../ui/c-cart/c-cart";
 
 @Component({
@@ -16,9 +17,11 @@ export class NavBar {
   loginService = inject(LoginService);
   cartService = inject(CartService);
   authService = inject(AuthService);
+  addressService = inject(AddressService);
   router = inject(Router);
 
   cartServiceSubscription! : Subscription;
+  addressServiceSubscription! : Subscription;
 
   cartCount: number = 0;
   showCart: boolean = false;
@@ -33,6 +36,7 @@ export class NavBar {
   }
 
   ngOnDestroy(){
+    this.addressServiceSubscription.unsubscribe();
     this.cartServiceSubscription.unsubscribe();
   }
 
@@ -40,7 +44,26 @@ export class NavBar {
     return this.router.url === path;
   }
 
+  isCartActive(): boolean {
+    let activateCart: boolean = false;
 
+    this.addressServiceSubscription = this.addressService.address$.subscribe({
+      next: (address) => {
+        if (address.adressLabel != null && this.router.url != '/menu') {
+          activateCart = true;
+        }else{
+          activateCart = false;
+          this.showCart = false;
+        }
+      },
+      error: () => {
+        activateCart = false;
+        this.showCart = false;
+      }
+    });
+
+    return activateCart;
+  }
 
   showLogOutPanel: boolean = false;
 

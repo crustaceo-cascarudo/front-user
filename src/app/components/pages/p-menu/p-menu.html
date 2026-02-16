@@ -1,139 +1,40 @@
-<div class="menu-page">
-  <div class="menu-page__container">
-    
-    <div class="menu-page__layout">
-      
-      <!-- Mobile Sidebar Toggle -->
-      <button 
-        class="menu-page__mobile-toggle"
-        (click)="toggleMobileSidebar()"
-      >
-        <i class="fa-solid fa-bars"></i> Ver Categorías
-      </button>
-
-      <aside [class]="'menu-page__sidebar ' + (isMobileSidebarOpen ? 'menu-page__sidebar--open' : '')">
-         <div class="menu-page__sidebar-header">
-           <h2 class="menu-page__sidebar-title">Categorías</h2>
-           <button class="menu-page__sidebar-close" (click)="toggleMobileSidebar()">
-             <i class="fa-solid fa-xmark"></i>
-           </button>
-         </div>
-
-         <div class="menu-page__sidebar-sticky">
-           <h2 class="menu-page__sidebar-title-desktop">Categorías</h2>
-           <div class="menu-page__categories">
-             <button
-               (click)="selectAllCategories()"
-               [class]="'menu-page__category ' + (isAllCategoriesSelected ? 'menu-page__category--selected' : '')"
-             >
-               Todos
-               @if (isAllCategoriesSelected) {
-                 <i class="fa-solid fa-chevron-right"></i>
-               }
-             </button>
-             @for (category of categories; track category.id) {
-               <button
-                 (click)="selectCategory(category)"
-                 [class]="'menu-page__category ' + (selectedCategory.id === category.id && !isAllCategoriesSelected ? 'menu-page__category--selected' : '')"
-               >
-                 {{ category.name }}
-                 @if (selectedCategory.id === category.id && !isAllCategoriesSelected) {
-                   <i class="fa-solid fa-chevron-right"></i>
-                 }
-               </button>
-             }
-           </div>
-         </div>
-      </aside>
-
-      <main class="menu-page__main">
-         <div class="menu-page__header">
-            <h1 class="menu-page__title">
-              {{ isAllCategoriesSelected ? 'Todos los Productos' : selectedCategory.name }}
-            </h1>
-            
-            <div class="menu-page__controls">
-               <div class="menu-page__search">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                  <input 
-                    type="text" 
-                    placeholder="Buscar en la carta..." 
-                    [(ngModel)]="searchQuery"
-                    (ngModelChange)="filterProducts()"
-                    class="menu-page__search-input"
-                  />
-               </div>
-               <button 
-                  (click)="toggleFilters()"
-                  [class]="'menu-page__filter-button ' + (isFilterOpen ? 'menu-page__filter-button--active' : '')"
-               >
-                  <i class="fa-solid fa-filter"></i> Filtros
-               </button>
-            </div>
-
-            @if (isFilterOpen) {
-              <div class="menu-page__ingredients-panel">
-                 <h4 class="menu-page__ingredients-title">Filtrar por Ingredientes:</h4>
-                 <div class="menu-page__ingredients">
-                   @for (ingredient of allIngredients; track ingredient.id) {
-                     <button
-                       (click)="toggleIngredient(ingredient)"
-                       [class]="'menu-page__ingredient ' + (isIngredientSelected(ingredient) ? 'menu-page__ingredient--selected' : '')"
-                     >
-                       {{ ingredient.name }}
-                     </button>
-                   }
-                 </div>
-                 @if (selectedIngredients.length > 0) {
-                    <button 
-                      (click)="clearFilters()"
-                      class="menu-page__clear-filters"
-                    >
-                      Limpiar filtros
-                    </button>
-                 }
-              </div>
-            }
-         </div>
-
-         <!-- Results Grid -->
-         @if (filteredProducts.length === 0) {
-            <div class="menu-page__no-results">
-               <p class="menu-page__no-results-text">No encontramos platos en esta categoría.</p>
-               <button 
-                 (click)="resetFilters()"
-                 class="menu-page__no-results-button"
-               >
-                 Ver todos los platos
-               </button>
-            </div>
-         } @else {
-            <div class="menu-page__grid">
-               @for (product of filteredProducts; track product.id) {
-                  <product-card [clickable]="showCart" [product]="product" (click)="addToCart(product)"></product-card>
-               }
+<div class="l-flex l-flex--justify-center bg-image">
+    <div class="menu">
+        <div class="menu__left-container">
+            <p class="menu__title">Categorias</p>
+            <div class="menu__underbar"></div>
+                @for (c of categories; track $index) {
+                    @if(c.name == selectedCategory.name) {
+                        <p class="menu__category menu__category--selected">{{c.name}}</p>
+                    } @else {
+                        <p class="menu__category" (click)="selectCategory(c)">{{c.name}}</p>
+                    }
+                    <div class="menu__underbar"></div>
+                }
+        </div>
+        <div class="menu__right-container">
+            <div class="menu__product-header">
+                <p class="menu__title">{{selectedCategory.name}}</p>
+                @if(productPageContent.totalElements > productPageSize) {
+                <div>
+                    <mat-paginator (page)="handlePageEvent($event)" [length]="productPageContent.totalElements" [pageSize]="productPageSize"
+                        hidePageSize aria-label="Select page" style="background-color: transparent;">
+                    </mat-paginator>
+                </div>
+                }
             </div>
             
-            @if(productPageContent.totalElements > productPageSize) {
-              <div class="menu-page__pagination">
-                <mat-paginator 
-                  (page)="handlePageEvent($event)" 
-                  [length]="productPageContent.totalElements" 
-                  [pageSize]="productPageSize"
-                  hidePageSize 
-                  aria-label="Select page"
-                >
-                </mat-paginator>
-              </div>
-            }
-         }
-      </main>
+            <div class="menu__products_container">
+                @for (product of products; track $index) {
+                    <product-card  [clickable]="showCart" [product]="product" (click)="addToCart(product)"></product-card>
+                }
+            </div>
+        </div>
     </div>
-  </div>
 
-  @if (showCart) {
-    <div class="menu-page__cart">
-      <c-cart></c-cart>
-    </div>
-  }
+    @if (showCart) {
+        <div style="width: 30%; height: 90vh;">
+            <c-cart></c-cart>
+        </div>
+    }
 </div>
