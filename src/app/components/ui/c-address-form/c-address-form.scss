@@ -28,20 +28,22 @@
     --adress-form-font-family-default: var(--mlt-sys-font-family-default);
     --adress-form-font-family-title: var(--mlt-sys-font-family-title);
 
+    --address-form-width: 40rem;
     --adress-form-padding: var(--mlt-sys-padding-8);
     --adress-form-box-shadow: var(--mlt-sys-box-shadow-3);
     --adress-form-margin: 10px;
+    --adress-form-border-radius: 6px;
 
 
     --address-form-button-padding: 12px;
 
     --adress-form-background-color: var(--mlt-sys-colors-primary);
 
-    width: 40rem;
+    width: var(--address-form-width);
     margin: var(--adress-form-margin) auto;
     padding: var(--adress-form-padding);
     font-family: var(--adress-form-font-family-default);
-    border-radius: 6px;
+    border-radius: var(--adress-form-border-radius);
     box-shadow: var(--adress-form-box-shadow);
     display: flex;
     flex-direction: column;
@@ -69,19 +71,6 @@
         flex-direction: column;
         width: 100%;
         margin-top: 1rem;
-    }
-
-    &__field--password {
-        .adress-form__input-wrapper {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-
-            .adress-form__input {
-                padding-right: 40px;
-            }
-        }
     }
 
     &__label {
