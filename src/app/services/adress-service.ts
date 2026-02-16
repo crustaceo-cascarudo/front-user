@@ -13,8 +13,12 @@ export class AddressService {
         console.log("Addres set to");
         console.log(a);
         
-        
         this.address.next(a);
+        console.log(this.address.getValue());
+    }
+
+    getAddress(): Address {
+        return this.address.getValue();
     }
 
     clearAddress(){

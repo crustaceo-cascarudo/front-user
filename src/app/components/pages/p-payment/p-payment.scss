@@ -1,0 +1,145 @@
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+.ng-touched:not(form) {
+    background-color: rgb(231, 231, 231);
+}
+
+.ng-untouched:not(form) {
+    background-color: white;
+}
+
+.ng-dirty:not(form) {
+    font-weight: 500;
+}
+
+.ng-pristine:not(form) {
+    font-weight: normal;
+}
+
+.payment-page {
+    --payment-page-font-size-default: var(--mlt-sys-font-size-3);
+    --payment-page-font-size-title: var(--mlt-sys-font-size-7);
+    --payment-page-font-size-bigger: var(--mlt-sys-font-size-4);
+    --payment-page-font-size-small: var(--mlt-sys-font-size-2);
+    --payment-page-font-size-button: var(--mlt-sys-font-size-6);
+
+    --payment-page-shadow: var(--mlt-sys-box-shadow-3);
+    --payment-page-padding: 2rem 1rem;;
+
+    --payment-page-form-padding: 0.75rem;
+
+    --payment-page-submit-button-padding: 16px;
+
+    --payment-page-alert-padding: 0.5rem;
+    --payment-page-alert-border-radius: 0.5rem;
+
+    display: flex;
+    justify-content: center;
+    padding: var(--payment-page-padding);
+    min-height: 100vh;
+
+    &__container {
+        width: 100%;
+        max-width: 900px;
+        border-radius: 0.75rem;
+        // box-shadow: var(--payment-page-shadow);
+        overflow: hidden;
+    }
+
+    &__section {
+        padding: 2rem;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    &__section-title {
+        font-size: var(--payment-page-font-size-title);
+        font-weight: 600;
+        margin: 0 0 1.5rem 0;
+        color: #1a1a1a;
+    }
+
+    &__items-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__address-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        
+        @media (max-width: 600px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        
+        @media (max-width: 600px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__form-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__form-label {
+        font-weight: 500;
+        color: #333;
+        font-size:var(--payment-page-font-size-bigger);
+    }
+
+    &__form-control {
+        display: block;
+        width: 100%;
+        padding: var(--payment-page-form-padding);
+        font-size: var(--payment-page-font-size-default);
+        font-weight: 400;
+        appearance: none;
+        border: 1px solid var(--mlt-sys-colors-gray-2);
+        border-radius: 0.5rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    &__alert {
+        margin-top: 0.25rem;
+        position: relative;
+        padding: var(--payment-page-alert-padding);
+        margin-bottom: 1rem;
+        color: var(--mlt-sys-colors-red);
+        background-color: transparent;
+        border: 1px solid var(--mlt-sys-colors-red);
+        border-radius: var(--payment-page-alert-border-radius);
+        font-size: var(--payment-page-font-size-small);
+    }
+
+    &__submit-btn {
+        padding: var(--payment-page-submit-button-padding);
+        font-size: var(--payment-page-font-size-button);
+        margin-top: 1rem;
+        align-self: center;
+    }
+
+}

@@ -1,0 +1,28 @@
+<div class="adress-form">
+    <h2 class="adress-form__title">Dirección de entrega </h2>
+    <div class="adress-form__field">
+        <label class="adress-form_label">Tu dirección de entrega</label>
+        <div class="l-flex l-flex--align-center l-flex--gap-sm">
+            <div id="autocomplete" class="adress-form__adress" [ngClass]="isAddressOk? '' : 'g--bg-colors-red-4'"></div>
+            <button c-button (click)="cleanAddress()">
+                <i class="fa" [ngClass]="'fa-trash'"></i>
+            </button>
+        </div>
+        @if(!isAddressOk){
+        <div class="g--colors-danger">Profavor seleccione una dirección de las opciones sugeridas
+        </div>
+        }
+    </div>
+    @if (isDoorEnabled) {
+    <div class="adress-form__field">
+        <label class="adress-form__label" for="door">Piso / Numero de Puerta</label>
+        <input id="door" name="door" [(ngModel)]="doorNumber" (input)="isButtonDisbled=false" #door="ngModel" class="adress-form__input" type="text"
+            pattern="^[A-Za-z0-9ºª\s]{1,15}$">
+        @if (door.invalid && (door.dirty || door.touched)) {
+        <div class="g--colors-danger">Dirección invalida</div>
+        }
+    </div>
+    }
+    <button c-button [disabled]="isButtonDisbled" class="adress-form__button" (click)="mountFinalAddress()">Confirmar
+        direccion</button>
+</div>

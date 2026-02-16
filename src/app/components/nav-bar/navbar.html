@@ -9,11 +9,15 @@
       <a routerLink="/menu" [class]="isActive('/menu') ? 'navbar__link navbar__link--active' : 'navbar__link'">Carta</a>
       <a routerLink="/reservation"
         [class]="isActive('/reservation') ? 'navbar__link navbar__link--active' : 'navbar__link'">Reservar</a>
+      @if(authService.isLoggedIn()){
+        <a routerLink="/orders" [class]="isActive('/orders') ? 'navbar__link navbar__link--active' : 'navbar__link'">Pedidos</a>
+      }
     </nav>
     <div class="navbar__actions">
-      <a routerLink="/reservation" class="navbar__button navbar__button--primary"> Reserva </a>
+      <a c-button colors="highlight" routerLink="/reservation" class="navbar__button navbar__button--primary"> Reserva </a>
 
-      <a routerLink="/delivery" class="navbar__button navbar__button--secondary">
+      <a c-button colors="highlight" variant="outline" routerLink="/delivery" class="navbar__button"
+      (mouseover)="hoveredADomicilio = true" (mouseout)="hoveredADomicilio = false" [hovered]="hoveredADomicilio">
         Pide a domicilio
       </a>
 
@@ -23,6 +27,7 @@
         </button>
         @if (showLogOutPanel && authService.isLoggedIn()) {
           <div class="logout-panel">
+            <div class="logout-panel__username">{{ authService.getUserName() }}</div>
             <button class="logout-button" (click)="logOut()">Cerrar sesión</button>
           </div>
         }

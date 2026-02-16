@@ -6,10 +6,11 @@ import { AuthService } from '../../core/services/auth-service';
 import { Subscription } from 'rxjs';
 import { AddressService } from '../../services/adress-service';
 import { CCart } from "../ui/c-cart/c-cart";
+import { CButton } from "../ui/c-button/c-button";
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, CCart],
+  imports: [RouterLink, CCart, CButton],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.scss'],
 })
@@ -49,7 +50,7 @@ export class NavBar {
 
     this.addressServiceSubscription = this.addressService.address$.subscribe({
       next: (address) => {
-        if (address.adressLabel != null && this.router.url != '/menu') {
+        if (address.adressLabel != null && this.router.url != '/menu' && this.router.url != '/payment') {
           activateCart = true;
         }else{
           activateCart = false;
@@ -79,6 +80,7 @@ export class NavBar {
   }
 
   logOut() {
+    this.cartService.clearCartLocally();
     this.authService.logout().subscribe({
       next: () => {
         this.showLogOutPanel = false;

@@ -1,12 +1,13 @@
 export interface Address{
-    adressLabel: String;
-    country: String;
-    countryCode: String;
-    state: String;
-    county: String;
-    city: String;
-    street: String;
-    houseNumber: String;
-    doorNumber: String;
-    postalCode: String;
+    adressLabel: string;
+    country: string;
+    countryCode: string;
+    state: string;
+    county: string;
+    city: string;
+    street: string;
+    houseNumber: string;
+    doorNumber: string;
+    postalCode: string;
+    addressAsString: string;
 }

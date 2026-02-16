@@ -8,7 +8,8 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
-  private baseUrl = "https://api-store-class.ishimi.es/api";
+  private readonly USER_KEY = 'user';
+  private baseUrl = "http://localhost:8080/api";
   private httpClient = inject(HttpClient);
 
   getToken(): string | null {
@@ -21,6 +22,21 @@ export class AuthService {
 
   removeToken(): void {
     localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.USER_KEY);
+  }
+
+  setUser(user: any): void {
+    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+  }
+
+  getUser(): any {
+    const user = localStorage.getItem(this.USER_KEY);
+    return user ? JSON.parse(user) : null;
+  }
+
+  getUserName(): string {
+    const user = this.getUser();
+    return user ? user.name : '';
   }
 
   isLoggedIn(): boolean {
