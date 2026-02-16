@@ -26,6 +26,7 @@
         justify-content: end;
         //height: $cart-header-height;
         min-height: 3rem;
+        border-bottom: 3px solid var(--cart-division-bar-color);
     }
 
     &__title {

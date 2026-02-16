@@ -1,7 +1,6 @@
 <div class="payment-page">
     <div class="payment-page__container">
-        <!-- ORDERED ITEMS SECTION -->
-        <section class="payment-page__section">
+        <div class="payment-page__section">
             <h2 class="payment-page__section-title">Artículos del Pedido</h2>
             <div class="payment-page__items-list">
                 @for (item of cart; track item.id) {
@@ -11,15 +10,13 @@
             <p class="g--font-size-6" style="margin-top: 1.5rem;">
                 Precio total: {{cartService.cartTotal() | currency}}
             </p>
-        </section>
+        </div>
 
-        <!-- ADDRESS SECTION -->
-        <section class="payment-page__section">
+        <div class="payment-page__section">
             <address-form></address-form>
-        </section>
+        </div>
 
-        <!-- PAYMENT FORM SECTION -->
-        <section class="payment-page__section">
+        <div class="payment-page__section">
             <h2 class="payment-page__section-title">Datos de Pago</h2>
             <form class="payment-page__form-group" (ngSubmit)="onSubmit(mioFormoDuPago)" #mioFormoDuPago="ngForm">
                 <div class="payment-page__form-input-group">
@@ -86,6 +83,6 @@
 
                 <button type="submit" c-button [disabled]="!mioFormoDuPago.form.valid" class="payment-page__submit-btn">Realizar Pago</button>
             </form>
-        </section>
+        </div>
     </div>
 </div>

@@ -90,26 +90,8 @@
     text-decoration: none;
     transition: all 0.2s ease;
 
-    &--primary {
-      background-color: #FFF648;
-      color: #8D222C;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-      &:hover {
-        background-color: #FFFBB6;
+    &:hover {
         transform: scale(1.05);
-      }
-    }
-
-    &--secondary {
-      border: 2px solid #FFF648;
-      color: #FFF648;
-      background-color: transparent;
-
-      &:hover {
-        background-color: #FFF648;
-        color: #8D222C;
-      }
     }
   }
 

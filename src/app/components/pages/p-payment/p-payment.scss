@@ -32,6 +32,11 @@
     --payment-page-font-size-small: var(--mlt-sys-font-size-2);
     --payment-page-font-size-button: var(--mlt-sys-font-size-6);
 
+    --payment-page-shadow: var(--mlt-sys-box-shadow-3);
+    --payment-page-padding: 2rem 1rem;;
+
+    --payment-page-form-padding: 0.75rem;
+
     --payment-page-submit-button-padding: 16px;
 
     --payment-page-alert-padding: 0.5rem;
@@ -39,26 +44,20 @@
 
     display: flex;
     justify-content: center;
-    padding: 2rem 1rem;
-    background-color: #f9f9f9;
+    padding: var(--payment-page-padding);
     min-height: 100vh;
 
     &__container {
         width: 100%;
         max-width: 900px;
-        background-color: white;
         border-radius: 0.75rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        // box-shadow: var(--payment-page-shadow);
         overflow: hidden;
     }
 
     &__section {
         padding: 2rem;
         border-bottom: 1px solid #e5e5e5;
-        
-        &:last-child {
-            border-bottom: none;
-        }
     }
 
     &__section-title {
@@ -115,7 +114,7 @@
     &__form-control {
         display: block;
         width: 100%;
-        padding: 0.75rem;
+        padding: var(--payment-page-form-padding);
         font-size: var(--payment-page-font-size-default);
         font-weight: 400;
         appearance: none;
@@ -143,5 +142,4 @@
         align-self: center;
     }
 
-    //TODO -> This whole file
 }
