@@ -2,6 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { Product } from '../../models/menu/product';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart-service';
+import { CartItem } from '../../models/cart/cart-item';
 
 @Component({
   selector: 'product-card',
@@ -12,7 +13,6 @@ import { CartService } from '../../services/cart-service';
 export class ProductCard {
   @Input() product!: Product;
   @Input() clickable: boolean = false;
-  @Input() showButton: boolean = false;
 
   cartService = inject(CartService);
 
@@ -39,6 +39,16 @@ export class ProductCard {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.product.id, 1);
+    // Convertir Product a CartItem
+    const cartItem: CartItem = {
+      id: this.product.id,
+      name: this.product.name,
+      basePrice: this.product.basePrice,
+      finalPrice: this.product.finalPrice,
+      image: this.product.image,
+      quantity: 1
+    };
+    
+    this.cartService.addToCart(cartItem);
   }
 }

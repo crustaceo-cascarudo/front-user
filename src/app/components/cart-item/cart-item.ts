@@ -17,12 +17,14 @@ export class CartElement {
   cartService = inject(CartService);
 
   increaseQuantity(){
-    this.cartService.changeItemQuantity(this.cartItem.productId, this.cartItem.quantity + 1);
+    this.cartItem.quantity = this.cartItem.quantity + 1;
+    this.cartService.changeItemQuantity(this.cartItem.id, this.cartItem.quantity)
   }
 
   decreaseQuantity(){
     if(this.cartItem.quantity > 1){
-      this.cartService.changeItemQuantity(this.cartItem.productId, this.cartItem.quantity - 1);
+      this.cartItem.quantity = this.cartItem.quantity - 1;
+      this.cartService.changeItemQuantity(this.cartItem.id, this.cartItem.quantity)
     }else{
       this.removeFromCart.emit(this.cartItem)
     }

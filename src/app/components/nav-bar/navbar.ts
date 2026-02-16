@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { Router, RouterLink, NavigationStart } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { LoginService } from '../../core/services/login-service';
 import { CartService } from '../../services/cart-service';
 import { AuthService } from '../../core/services/auth-service';
@@ -19,7 +19,6 @@ export class NavBar {
   router = inject(Router);
 
   cartServiceSubscription! : Subscription;
-  routerSubscription!: Subscription;
 
   cartCount: number = 0;
   showCart: boolean = false;
@@ -31,17 +30,10 @@ export class NavBar {
       },
       error: error => console.log(error)  
     });
-
-    this.routerSubscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.showCart = false;
-      }
-    });
   }
 
   ngOnDestroy(){
     this.cartServiceSubscription.unsubscribe();
-    this.routerSubscription.unsubscribe();
   }
 
   isActive(path: string): boolean {
