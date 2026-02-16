@@ -8,7 +8,7 @@
   --navBar-brand-font-size: var(--mlt-sys-font-size-6);
   --navBar-brand-text-color: var(--mlt-sys-colors-light);
   --navBar-font-family: 'Open Sans';
-  
+
   width: 100%;
   background-color: var(--navBar-bg-color);
   color: var(--navBar-text-color);
@@ -135,6 +135,17 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     white-space: nowrap;
+  }
+
+  .logout-panel__username {
+    padding: 10px 16px 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #8D222C;
+    border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .logout-button {
