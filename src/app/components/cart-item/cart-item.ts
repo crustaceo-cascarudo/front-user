@@ -12,6 +12,7 @@ import { CartService } from '../../services/cart-service';
 })
 export class CartElement {
   @Input() cartItem!: CartItem;
+  @Input() showButtons: boolean = true;
   @Output() removeFromCart = new EventEmitter<CartItem>();
 
   cartService = inject(CartService);

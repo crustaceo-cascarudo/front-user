@@ -1,0 +1,86 @@
+.p-orders {
+    --p-order-font-family-default: var(--mlt-sys-font-family-default);
+    --p-order-font-size-default: var(--mlt-sys-font-size-3);
+    --p-order-font-size-title: var(--mlt-sys-font-size-7);
+    --p-order-font-size-bigger: var(--mlt-sys-font-size-4);
+    --p-order-font-size-small: var(--mlt-sys-font-size-2);
+    --p-order-font-size-button: var(--mlt-sys-font-size-6);
+
+    --p-order-max-width: 900px;
+    --p-order-padding: 2rem 1rem;
+
+    --p-order-card-shadow: var(--mlt-sys-box-shadow-3);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: var(--p-order-padding);
+    min-height: 100vh;
+    font-family: var(--p-order-font-family-default);
+
+    &__header {
+        width: 100%;
+        max-width: var(--p-order-max-width);
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        padding-bottom: 1rem;
+
+        font-size: var(--p-order-font-size-title);
+        font-weight: bold;
+    }
+
+    &__orders-container {
+        overflow-y: scroll;
+        scrollbar-width: none;
+        max-height: 100%;
+        max-width: var(--p-order-max-width);
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: start;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    &__orders-container > * {
+        flex-basis: 30%;
+    }
+
+    &__order-card {
+        display: flex;
+        height: fit-content;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        padding: 1rem;
+        border: 2px solid var(--mlt-sys-colors-gray-2);
+        gap: 0.5rem;
+        box-shadow: var(--p-order-card-shadow);
+        border-radius: 0.5rem;
+    }
+
+    &__order-item {
+        background-color: transparent;
+        border: 2px solid var(--mlt-sys-colors-primary);
+
+        //TODO -> Remove once back is fixed
+        border-radius: 0.5rem;
+        padding: 1rem 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    &__price {
+        font-size: var(--p-order-font-size-bigger);
+    }
+
+    &__date {
+        font-size: var(--p-order-font-size-small);
+        color: var(--mlt-sys-colors-gray-2);
+    }
+}

@@ -13,13 +13,15 @@
             </div>
         </div>
     </div>
-    <div class="cart-item-card__buttons-container">
-        @if(cartItem.quantity > 1){
-            <button c-button (click)="decreaseQuantity()">-</button>
-        }@else{
-            <button c-button (click)="decreaseQuantity()">🗑</button>
-        }
-        <div>{{cartItem.quantity}}</div>
-        <button c-button (click)="increaseQuantity()">+</button>
-    </div>
+    @if(showButtons){
+        <div class="cart-item-card__buttons-container">
+            @if(cartItem.quantity > 1){
+                <button c-button (click)="decreaseQuantity()">-</button>
+            }@else{
+                <button c-button (click)="decreaseQuantity()">🗑</button>
+            }
+            <div>{{cartItem.quantity}}</div>
+            <button c-button (click)="increaseQuantity()">+</button>
+        </div>
+    }
 </div>
