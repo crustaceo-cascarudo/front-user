@@ -1,6 +1,6 @@
-<div class="cart-item-card">
+<div class="cart-item-card" [class.cart-item-card--order-item]="isOrderItem">
     <div class="cart-item-card__img-container">
-        <img class="cart-item-card__img" src="{{cartItem.image}}">
+        <img class="cart-item-card__img cart-item-card__img--order-item" src="{{cartItem.image}}">
     </div>
     <div class="cart-item-card__right-container">
         <div class="cart-item-card__text-block">
@@ -13,15 +13,18 @@
             </div>
         </div>
     </div>
-    @if(showButtons){
+
         <div class="cart-item-card__buttons-container">
-            @if(cartItem.quantity > 1){
-                <button c-button (click)="decreaseQuantity()">-</button>
-            }@else{
-                <button c-button (click)="decreaseQuantity()">🗑</button>
+            @if(showButtons){
+                @if(cartItem.quantity > 1){
+                    <button c-button (click)="decreaseQuantity()">-</button>
+                }@else{
+                    <button c-button (click)="decreaseQuantity()">🗑</button>
+                }
             }
             <div>{{cartItem.quantity}}</div>
-            <button c-button (click)="increaseQuantity()">+</button>
+            @if(showButtons){
+                <button c-button (click)="increaseQuantity()">+</button>
+            }
         </div>
-    }
 </div>

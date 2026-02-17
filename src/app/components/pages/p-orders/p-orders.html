@@ -2,56 +2,24 @@
     <div class="p-orders__header">
         <h1>Mis Pedidos</h1>
     </div>
+    @if(orders.length == 0) {
+        <p class="p-orders__no-orders">No has realizado ningún pedido aún.</p>
+    }
     <div class="p-orders__orders-container">
-        <!-- @for (order of orders; track $index) {
-            <div class="p-orders__order">
-                @for (item of order.products; track $index) {
-                    <cart-element class="p-orders__order-item" [showButtons]="false" [cartItem]="cartItemMapper.cartItemResponseToCartItem(item)"></cart-element>
-                }
-                <p class="p-orders__price">Precio total: {{order.totalPrice}}€</p>
-                <p class="p-orders__date">{{order.orderDate}}</p>
+        @for (order of orders; track $index) {
+            <div class="p-orders__order-card">
+                <div class="p-orders__items-container">
+                    <div class="p-orders__items-fade-top"></div>
+                    <div class="p-orders__scrollable-container">
+                        @for (item of order.items; track $index) {
+                        <cart-element class="p-orders__order-item" [isOrderItem]="true"
+                            [cartItem]="cartItemMapper.cartItemResponseToCartItem(item)"></cart-element>       }
+                    </div>
+                    <div class="p-orders__items-fade-bottom"></div>
+                </div>
+                <p class="p-orders__price">Precio total: {{order.totalPrice | currency}}</p>
+                <p class="p-orders__date">{{order.orderDate | date}}</p>
             </div>
-        } -->
-        <!-- TODO Change once back is fixed -->
-        <div class="p-orders__order-card">
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__price">Precio Total: 120€</p>
-            <p class="p-orders__date">2026-02-15 19:49:42</p>
-        </div>
-
-        <div class="p-orders__order-card">
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__price">Precio Total: 120€</p>
-            <p class="p-orders__date">2026-02-15 19:49:42</p>
-        </div>
-
-        <div class="p-orders__order-card">
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__price">Precio Total: 120€</p>
-            <p class="p-orders__date">2026-02-15 19:49:42</p>
-        </div>
-
-        <div class="p-orders__order-card">
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__price">Precio Total: 120€</p>
-            <p class="p-orders__date">2026-02-15 19:49:42</p>
-        </div>
-        <div class="p-orders__order-card">
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__order-item">Item</p>
-            <p class="p-orders__price">Precio Total: 120€</p>
-            <p class="p-orders__date">2026-02-15 19:49:42</p>
-        </div>
+        }
     </div>
 </div>

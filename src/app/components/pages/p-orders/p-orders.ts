@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { CartElement } from "../../cart-item/cart-item";
 import { OrderResponse } from '../../../models/order/orderResponse';
 import { HttpClientService } from '../../../core/services/http-client-service';
-import { AuthService } from '../../../core/services/auth-service';
 import { Router } from '@angular/router';
 import { CartItemMapper } from '../../../core/mappers/cartItemMapper';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'p-orders',
-  imports: [CartElement],
+  imports: [CartElement, CommonModule],
   templateUrl: './p-orders.html',
   styleUrl: './p-orders.scss',
 })
@@ -27,9 +27,10 @@ export class POrders {
   }
 
   getOrders() {
-    this.http.getWithAuth<OrderResponse[]>(this.url + "/users").subscribe({
+    this.http.getWithAuth<OrderResponse[]>(this.url + "/user").subscribe({
       next: (data) => {
         this.orders = data;
+        console.log(data);
       },
       error: error => {
         this.showError(error);

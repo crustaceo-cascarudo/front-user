@@ -11,6 +11,9 @@
 
     --p-order-card-shadow: var(--mlt-sys-box-shadow-3);
 
+    --p-order-items-max-height: 200px;
+    --p-order-items-gap: 0.5rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,6 +35,12 @@
         font-weight: bold;
     }
 
+    &__no-orders {
+        font-size: var(--p-order-font-size-bigger);
+        color: var(--mlt-sys-colors-gray-5);
+        margin-top: 2rem;
+    }
+
     &__orders-container {
         overflow-y: scroll;
         scrollbar-width: none;
@@ -47,13 +56,10 @@
         gap: 1rem;
     }
 
-    &__orders-container > * {
-        flex-basis: 30%;
-    }
-
     &__order-card {
         display: flex;
         height: fit-content;
+        min-width: 15rem;
         flex-direction: column;
         justify-content: start;
         align-items: start;
@@ -64,15 +70,25 @@
         border-radius: 0.5rem;
     }
 
-    &__order-item {
-        background-color: transparent;
-        border: 2px solid var(--mlt-sys-colors-primary);
-
-        //TODO -> Remove once back is fixed
-        border-radius: 0.5rem;
-        padding: 1rem 0.5rem;
+    &__items-container {
+        position: relative;
         width: 100%;
-        text-align: center;
+    }
+
+    &__scrollable-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-content: center;
+        gap: var(--p-order-items-gap);
+        max-height: var(--p-order-items-max-height);
+        width: 100%;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+
+    &__orders-container > * {
+        flex-basis: 31%;
     }
 
     &__price {
@@ -81,6 +97,23 @@
 
     &__date {
         font-size: var(--p-order-font-size-small);
-        color: var(--mlt-sys-colors-gray-2);
+        color: var(--mlt-sys-colors-gray-5);
+    }
+
+    &__items-fade-top {
+        position: absolute;
+        z-index: 2;
+        height: 2%;
+        width: 100%;
+        background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(253, 253, 253));
+    }
+
+    &__items-fade-bottom {
+        position: absolute;
+        z-index: 2;
+        bottom: 0px;
+        height: 4%;
+        width: 100%;
+        background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgb(253, 253, 253));
     }
 }
