@@ -1,6 +1,3 @@
-$container-padding-md: 1.5rem;
-$product-card-radius: 0.5rem;
-
 .container {
     width: 100%;
     height: 100%;
@@ -33,22 +30,32 @@ $product-card-radius: 0.5rem;
     --product-card-font-family-prices: var(--mlt-sys-font-family-titulo);
 
     --product-card-box-shadow: var(--mlt-sys-box-shadow-1);
-
     --product-card-background-color: bisque;
+    --product-card-min-width: 30rem;
+    --product-card-min-height: 6rem;
+    --product-card-discount-badge-offset: 10px;
+    --product-card-radius: 0.5rem;
+
+    --product-card-img-width: 40%;
+
+    --product-card-text-block-padding-y: 0.75rem;
+    --product-card-text-block-padding-x: 1rem;
+
+    --product-card-min-separation-between-text-block-and-price: 0.5rem;
+
+    --product-card-prices-gap: 0.5rem;
 
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    gap: 1rem;
-    padding-right: 1rem;
-    min-width: 30rem;
-    min-height: 6rem;
+    min-width: var(--product-card-min-width);
+    min-height: var(--product-card-min-height);
     height: 100%;
     background-color: var(--product-card-background-color);
-    border-radius: $product-card-radius;
+    border-radius: var(--product-card-radius);
     box-shadow: var(--product-card-box-shadow);
-    margin-left: 10px;
+    margin-left: var(--product-card-discount-badge-offset);
     overflow: hidden;
 
     &__img {
@@ -62,7 +69,7 @@ $product-card-radius: 0.5rem;
 
     &__img-wrapper {
         flex: 0 0 40%;
-        width: 40%;
+        width: var(--product-card-img-width);
         position: relative;
         overflow: hidden;
         min-width: 0;
@@ -75,22 +82,20 @@ $product-card-radius: 0.5rem;
         justify-content: center;
         align-items: center;
         flex: 1 1 auto;
-        min-width: 0;
-        width: auto;
-        height: auto;
+        padding-top: var(--product-card-text-block-padding-y);
+        padding-bottom: var(--product-card-text-block-padding-y);
+        padding-right: var(--product-card-text-block-padding-x);
+        padding-left: var(--product-card-text-block-padding-x);
     }
 
     &__text-block {
-        margin-top: .75rem;
-        margin-bottom: .75rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: start;
-        width: 100%;
-        height: auto;
         overflow-wrap: anywhere;
         color: var(--mlt-sys-colors-dark);
+        margin-bottom: var(--product-card-min-separation-between-text-block-and-price);
     }
 
     &__name {
@@ -109,10 +114,9 @@ $product-card-radius: 0.5rem;
     &__prices {
         height: auto;
         margin-top: auto;
-        margin-bottom: .75rem;
         display: flex;
         flex-direction: row;
-        gap: .5rem;
+        gap: var(--product-card-prices-gap);
     }
 
     &__price {
@@ -139,7 +143,7 @@ $product-card-radius: 0.5rem;
         cursor: pointer;
     }
 
-    &--order-item{
+    &--order-item {
         --product-card-background-color: white;
         border: 1px solid black;
     }

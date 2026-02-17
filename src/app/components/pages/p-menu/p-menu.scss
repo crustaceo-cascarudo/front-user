@@ -18,11 +18,13 @@
     --menu-font-family-default: var(--mlt-sys-font-family-default);
     --menu-font-family-title: var(--mlt-sys-font-family-title);
 
-    --menu-left-container-max-width: 15rem;
+    --menu-left-container-max-width: 18rem;
+    --menu-left-container-min-width: 13rem;
+
     --menu-right-container-max-width: 80%;
 
     --menu-padding-left: 4%;
-    --menu-padding-right: 4%;
+    //--menu-padding-right: 4%;
     --menu-title-padding: 1.8rem;
 
     --menu-category-font-size: var(--menu-font-size-big);
@@ -40,10 +42,9 @@
     flex-direction: row;
     width: 100%;
     gap: 1rem;
-    justify-content: start;
+    justify-content: center;
     align-items: start;
     padding-left: var(--menu-padding-left);
-    padding-right: var(--menu-padding-right);
     font-family: var(--menu-font-family-default);
 
 
@@ -51,25 +52,29 @@
         overflow-y: scroll;
         scrollbar-width: none;
         max-width: var(--menu-left-container-max-width);
+        min-width: var(--menu-left-container-min-width);
         max-height: 100%;
     }
 
     &__right-container {
-        max-height: 100%;
+        height: 100%;
 
-        max-width: var(--menu-right-container-max-width);
         display: flex;
+        max-width: var(--menu-right-container-max-width);
         flex-direction: column;
         justify-content: start;
         align-items: center;
         padding-bottom: 1rem;
+        //margin-right: var(--menu-padding-right);
     }
 
     &__title {
         font-size: var(--menu-font-size-title);
         font-family: var(--menu-font-family-title);
         font-weight: bold;
+        text-align: center;
         padding: var(--menu-title-padding);
+        
     }
 
     &__products_container {
@@ -85,7 +90,9 @@
     }
 
     &__products_container > * {
-        flex-basis: 20%;
+        //displays 3 columns on ultrawide screens
+        //normal  screen only display 2 max beacause of card's min-width
+        flex-basis: 30%;
         height: auto;
     }
 
