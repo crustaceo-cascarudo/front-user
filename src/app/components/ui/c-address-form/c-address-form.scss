@@ -38,6 +38,8 @@
 
     --address-form-gap: 1rem;
 
+    --address-form-label-margin-bottom: 0.5rem;
+
     --address-form-number-input-padding: 10px 14px;
     --address-form-number-input-border: 1px solid var(--mlt-sys-colors-gray-3);
 
@@ -79,13 +81,13 @@
 
     &__label {
         font-size: var(--address-form-font-size-small);
-        margin-bottom: 0.25rem;
+        margin-bottom: var(--address-form-label-margin-bottom);
         color: var(--mlt-sys-colors-dark);
     }
 
     &__number-input {
         width: 100%;
-        padding: 10px 14px;
+        padding: var(--address-form-number-input-padding);
         font-size: var(--address-form-font-size-default);
         border: 1px solid var(--mlt-sys-colors-gray-3);
         border-radius: var(--address-form-border-radius);
