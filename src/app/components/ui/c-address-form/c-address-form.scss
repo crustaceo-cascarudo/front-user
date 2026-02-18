@@ -20,47 +20,54 @@
     border-right: 5px solid var(--mlt-sys-colors-danger);
 }
 
-.adress-form {
-    --adress-form-font-size-default: var(--mlt-sys-font-size-3);
-    --adress-form-font-size-big: var(--mlt-sys-font-size-6);
-    --adress-form-font-size-small: var(--mlt-sys-font-size-2);
+.address-form {
+    --address-form-font-size-default: var(--mlt-sys-font-size-3);
+    --address-form-font-size-big: var(--mlt-sys-font-size-6);
+    --address-form-font-size-small: var(--mlt-sys-font-size-2);
 
-    --adress-form-font-family-default: var(--mlt-sys-font-family-default);
-    --adress-form-font-family-title: var(--mlt-sys-font-family-title);
+    --address-form-font-family-default: var(--mlt-sys-font-family-default);
+    --address-form-font-family-title: var(--mlt-sys-font-family-title);
 
-    --adress-form-padding: var(--mlt-sys-padding-8);
-    --adress-form-box-shadow: var(--mlt-sys-box-shadow-3);
-    --adress-form-margin: 10px;
+    --address-form-width: 40rem;
+    --address-form-padding: var(--mlt-sys-padding-8);
+    --address-form-box-shadow: var(--mlt-sys-box-shadow-3);
+    --address-form-margin: 10px;
+    --address-form-border-radius: 6px;
 
+    --address-form-title-margin-bottom: 1rem;
+
+    --address-form-gap: 1rem;
+
+    --address-form-number-input-padding: 10px 14px;
+    --address-form-number-input-border: 1px solid var(--mlt-sys-colors-gray-3);
 
     --address-form-button-padding: 12px;
 
-    --adress-form-background-color: var(--mlt-sys-colors-primary);
-
-    width: 40rem;
-    margin: var(--adress-form-margin) auto;
-    padding: var(--adress-form-padding);
-    font-family: var(--adress-form-font-family-default);
-    border-radius: 6px;
-    box-shadow: var(--adress-form-box-shadow);
+    width: var(--address-form-width);
+    margin: var(--address-form-margin) auto;
+    padding: var(--address-form-padding);
+    font-family: var(--address-form-font-family-default);
+    border-radius: var(--address-form-border-radius);
+    box-shadow: var(--address-form-box-shadow);
     display: flex;
     flex-direction: column;
     align-items: center;
     height: fit-content;
+    gap: var(--address-form-gap);
 
     &__title {
         width: 100%;
         font-weight: bold;
-        margin-bottom: 1rem;
-        font-size: var(--adress-form-font-size-big);
-        font-family: var(--adress-form-font-family-title);
+        margin-bottom: var(--address-form-title-margin-bottom);
+        font-size: var(--address-form-font-size-big);
+        font-family: var(--address-form-font-family-title);
         text-align: center;
         color: var(--mlt-sys-colors-primary);
     }
 
-    &__adress {
-        font-family: var(--adress-form-font-family-default);
-        font-size: var(--adress-form-font-size-default);
+    &__address-input {
+        font-family: var(--address-form-font-family-default);
+        font-size: var(--address-form-font-size-default);
         width: 100%;
     }
 
@@ -68,36 +75,21 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin-top: 1rem;
-    }
-
-    &__field--password {
-        .adress-form__input-wrapper {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-
-            .adress-form__input {
-                padding-right: 40px;
-            }
-        }
     }
 
     &__label {
-        font-size: var(--adress-form-font-size-small);
+        font-size: var(--address-form-font-size-small);
         margin-bottom: 0.25rem;
         color: var(--mlt-sys-colors-dark);
     }
 
-    &__input {
+    &__number-input {
         width: 100%;
         padding: 10px 14px;
-        font-size: var(--adress-form-font-size-default);
+        font-size: var(--address-form-font-size-default);
         border: 1px solid var(--mlt-sys-colors-gray-3);
-        border-radius: 6px;
+        border-radius: var(--address-form-border-radius);
         outline: none;
-        transition: border-color 0.2s ease;
 
         &:focus {
             border-color: var(--mlt-sys-colors-primary);
@@ -107,9 +99,8 @@
     &__button {
         width: 100%;
         padding: var(--address-form-button-padding);
-        margin-top: 1rem;
-        font-size: var(--adress-form-font-size-default);
-        font-family: var(--adress-form-font-family-default);
+        font-size: var(--address-form-font-size-default);
+        font-family: var(--address-form-font-family-default);
     }
 
 }
