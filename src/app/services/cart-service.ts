@@ -80,13 +80,12 @@ export class CartService {
   removeFromCart(itemId: number) {
     let newCart = this.cart.getValue();
     let index = newCart.findIndex((item) => item.id == itemId);
-    let quantity = newCart[index].quantity;
 
     newCart.splice(
       index, 1
     );
 
-    this.http.deleteWithAuthAndBody(this.url + "/items", { productId: itemId, quantity: quantity }).subscribe({
+    this.http.deleteWithAuthAndBody(this.url + "/items", { productId: itemId }).subscribe({
       next: () => {
         this.cart.next(
           newCart
