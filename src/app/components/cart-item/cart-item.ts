@@ -12,7 +12,14 @@ import { CartService } from '../../services/cart-service';
 })
 export class CartElement {
   @Input() cartItem!: CartItem;
+  @Input() isOrderItem: boolean = false;
   @Output() removeFromCart = new EventEmitter<CartItem>();
+
+  showButtons!: boolean;
+
+  ngOnInit() {
+    this.showButtons = !this.isOrderItem;
+  }
 
   cartService = inject(CartService);
 
