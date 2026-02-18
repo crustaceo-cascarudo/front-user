@@ -1,6 +1,4 @@
 .cart-item-card {
-    $cart-item-card-radius: 0.5rem;
-
     --cart-item-card-font-size-default: var(--mlt-sys-font-size-3);
     --cart-item-card-font-size-big: var(--mlt-sys-font-size-4);
     --cart-item-card-font-size-small: var(--mlt-sys-font-size-2);
@@ -9,21 +7,32 @@
     --cart-item-card-font-family-default: var(--mlt-sys-font-family-default);
     --cart-item-card-font-family-firmas: var(--mlt-sys-font-family-firmas);
 
-    --cart-item-card-box-shadow: var(--mlt-sys-box-shadow-1);
-
+    --cart-item-card-gap: 1rem;
+    --cart-item-card-min-height: 4rem;
+    --cart-item-card-max-height: 8rem;
     --cart-item-card-background-color: bisque;
+    --cart-item-card-box-shadow: var(--mlt-sys-box-shadow-1);
+    --cart-item-card-radius: 0.5rem;
 
     --cart-item-img-width: 20%;
+
+    --cart-item-buttons-container-margin-right: 0.75rem;
+    --cart-item-buttons-container-gap: 0.75rem;
+
+    --cart-item-text-block-padding-y: 0.25rem;
+    --cart-item-text-block-gap: 0.15rem;
+
+    --cart-item-prices-gap: 0.5rem;
 
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    gap: 1rem;
-    min-height: 4rem;
-    max-height: 8rem;
+    gap: var(--cart-item-card-gap);
+    min-height: var(--cart-item-card-min-height);
+    max-height: var(--cart-item-card-max-height);
     background-color: var(--cart-item-card-background-color);
-    border-radius: $cart-item-card-radius;
+    border-radius: var(--cart-item-card-radius);
     box-shadow: var(--cart-item-card-box-shadow);
     overflow: hidden;
 
@@ -66,9 +75,9 @@
         justify-content: center;
         align-content: center;
         width: 100%;
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem;
-        gap: 0.15rem;
+        padding-top: var(--cart-item-text-block-padding-y);
+        padding-bottom: var(--cart-item-text-block-padding-y);
+        gap: var(--cart-item-text-block-gap);
         overflow-wrap: anywhere;
         color: var(--mlt-sys-colors-dark);
     }
@@ -84,7 +93,7 @@
     &__prices {
         display: flex;
         flex-direction: row;
-        gap: .5rem;
+        gap: var(--cart-item-prices-gap);
     }
 
     &__price {
