@@ -1,168 +1,198 @@
 .hero {
-    position: relative;
+  --hero-position: relative;
+  --hero-width: 100%;
+  --hero-height: 85vh;
+  --hero-display: flex;
+  --hero-align-items: center;
+  --hero-overflow: hidden;
+  --hero-background-color: #faf9fd;
+  --hero-font-family: 'Open Sans';
+
+  --hero-overlay-gradient: linear-gradient(
+    to right,
+    rgba(141, 34, 44, 0.9),
+    rgba(141, 34, 44, 0.4)
+  );
+
+  --hero-container-max-width: 1600px;
+  --hero-container-padding: 0 2rem;
+  --hero-container-z-index: 10;
+
+  --hero-content-max-width: 42rem;
+  --hero-content-color: #faf9fd;
+
+  --hero-badge-padding: 0.25rem 1rem;
+  --hero-badge-margin-bottom: 1rem;
+  --hero-badge-border: 1px solid #fff648;
+  --hero-badge-color: #fff648;
+  --hero-badge-radius: 9999px;
+  --hero-badge-font-size: 0.875rem;
+  --hero-badge-font-weight: 600;
+  --hero-badge-letter-spacing: 0.05em;
+  --hero-badge-background: rgba(141, 34, 44, 0.5);
+
+  --hero-title-font-size: 3rem;
+  --hero-title-font-size-desktop: 4.5rem;
+  --hero-title-font-weight: bold;
+  --hero-title-line-height: 1.2;
+  --hero-title-margin-bottom: 1.5rem;
+  --hero-title-accent-color: #fff648;
+
+  --hero-description-font-size: 1.25rem;
+  --hero-description-font-size-desktop: 1.5rem;
+  --hero-description-margin-bottom: 2rem;
+  --hero-description-color: rgba(250, 249, 253, 0.9);
+  --hero-description-font-weight: 300;
+
+  --hero-actions-gap: 1rem;
+
+  --hero-button-padding: 1rem 2rem;
+  --hero-button-font-size: 1.125rem;
+  --hero-button-font-weight: bold;
+  --hero-button-radius: 9999px;
+
+  --hero-button-primary-bg: #fff648;
+  --hero-button-primary-color: #8d222c;
+  --hero-button-primary-hover: #fffbb6;
+
+  --hero-button-secondary-border: 2px solid #faf9fd;
+  --hero-button-secondary-color: #faf9fd;
+
+  --hero-wave-fill: #faf9fd;
+
+  position: var(--hero-position);
+  width: var(--hero-width);
+  height: var(--hero-height);
+  display: var(--hero-display);
+  align-items: var(--hero-align-items);
+  overflow: var(--hero-overflow);
+  background-color: var(--hero-background-color);
+  font-family: var(--hero-font-family);
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__image {
     width: 100%;
-    height: 85vh;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--hero-overlay-gradient);
+  }
+
+  &__container {
+    max-width: var(--hero-container-max-width);
+    margin: 0 auto;
+    padding: var(--hero-container-padding);
+    z-index: var(--hero-container-z-index);
+    position: relative;
+  }
+
+  &__content {
+    max-width: var(--hero-content-max-width);
+    color: var(--hero-content-color);
+    animation: fadeInUp 1s ease-out;
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: var(--hero-badge-padding);
+    margin-bottom: var(--hero-badge-margin-bottom);
+    border: var(--hero-badge-border);
+    color: var(--hero-badge-color);
+    border-radius: var(--hero-badge-radius);
+    font-size: var(--hero-badge-font-size);
+    font-weight: var(--hero-badge-font-weight);
+    letter-spacing: var(--hero-badge-letter-spacing);
+    text-transform: uppercase;
+    background-color: var(--hero-badge-background);
+    backdrop-filter: blur(4px);
+  }
+
+  &__title {
+    font-size: var(--hero-title-font-size);
+    font-weight: var(--hero-title-font-weight);
+    line-height: var(--hero-title-line-height);
+    margin-bottom: var(--hero-title-margin-bottom);
+
+    @media (min-width: 768px) {
+      font-size: var(--hero-title-font-size-desktop);
+    }
+  }
+
+  &__title-accent {
+    color: var(--hero-title-accent-color);
+  }
+
+  &__description {
+    font-size: var(--hero-description-font-size);
+    margin-bottom: var(--hero-description-margin-bottom);
+    color: var(--hero-description-color);
+    font-weight: var(--hero-description-font-weight);
+
+    @media (min-width: 768px) {
+      font-size: var(--hero-description-font-size-desktop);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hero-actions-gap);
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+    }
+  }
+
+  &__button {
+    padding: var(--hero-button-padding);
+    font-weight: var(--hero-button-font-weight);
+    font-size: var(--hero-button-font-size);
+    border-radius: var(--hero-button-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    background-color: #faf9fd;
-    font-family: 'Open Sans';
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: none;
 
-    &__background {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
+    &--primary {
+      background-color: var(--hero-button-primary-bg);
+      color: var(--hero-button-primary-color);
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+      &:hover {
+        background-color: var(--hero-button-primary-hover);
+        transform: scale(1.05);
+      }
     }
 
-    &__image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    &--secondary {
+      background-color: transparent;
+      border: var(--hero-button-secondary-border);
+      color: var(--hero-button-secondary-color);
+
+      &:hover {
+        background-color: #faf9fd;
+        color: #8d222c;
+      }
     }
+  }
 
-    &__overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to right, rgba(141, 34, 44, 0.9), rgba(141, 34, 44, 0.4));
-    }
-
-    &__container {
-        max-width: 1600px;
-        margin: 0 auto;
-        padding: 0 2rem;
-        z-index: 10;
-        position: relative;
-    }
-
-    &__content {
-        max-width: 42rem;
-        color: #faf9fd;
-        animation: fadeInUp 1s ease-out;
-    }
-
-    &__badge {
-        display: inline-block;
-        padding: 0.25rem 1rem;
-        margin-bottom: 1rem;
-        border: 1px solid #fff648;
-        color: #fff648;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        background-color: rgba(141, 34, 44, 0.5);
-        backdrop-filter: blur(4px);
-    }
-
-    &__title {
-        font-size: 3rem;
-        font-weight: bold;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-
-        @media (min-width: 768px) {
-            font-size: 4.5rem;
-        }
-    }
-
-    &__title-accent {
-        color: #fff648;
-    }
-
-    &__description {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-        color: rgba(250, 249, 253, 0.9);
-        font-weight: 300;
-
-        @media (min-width: 768px) {
-            font-size: 1.5rem;
-        }
-    }
-
-    &__actions {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-
-        @media (min-width: 640px) {
-            flex-direction: row;
-        }
-    }
-
-    &__button {
-        padding: 1rem 2rem;
-        font-weight: bold;
-        font-size: 1.125rem;
-        border-radius: 9999px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        text-decoration: none;
-        border: none;
-
-        &--primary {
-            background-color: #fff648;
-            color: #8d222c;
-            box-shadow:
-                0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-            &:hover {
-                background-color: #fffbb6;
-                transform: scale(1.05);
-            }
-        }
-
-        &--secondary {
-            background-color: transparent;
-            border: 2px solid #faf9fd;
-            color: #faf9fd;
-
-            &:hover {
-                background-color: #faf9fd;
-                color: #8d222c;
-            }
-        }
-    }
-
-    &__wave {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        line-height: 0;
-    }
-
-    &__wave-svg {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 50px;
-
-        @media (min-width: 768px) {
-            height: 100px;
-        }
-    }
-
-    &__wave-path {
-        fill: #faf9fd;
-    }
+  &__wave-path {
+    fill: var(--hero-wave-fill);
+  }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(2rem);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}

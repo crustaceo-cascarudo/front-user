@@ -1,52 +1,65 @@
 .promo {
-  // Variables
-  $padding-y: 2.5rem;
-  $padding-bottom: 20rem;
-  $bg-color: #8d222c;
-  $text-color: #faf9fd;
-  $container-max-width: 1600px;
-  $container-padding-x: 2rem;
-  $content-gap: 3rem;
-  $badge-color: #fff648;
-  $badge-margin-bottom: 2rem;
-  $title-font-size: 2.25rem;
-  $title-font-size-lg: 3rem;
-  $title-margin-bottom: 4rem;
-  $features-gap: 1.5rem;
-  $feature-padding: 1rem;
-  $feature-border-radius: 1.5rem;
-  $feature-bg-color: rgba($text-color, 0.1);
-  $feature-icon-padding: 0.75rem;
-  $feature-icon-font-size: 1.25rem;
-  $feature-icon-border-radius: 0.5rem;
-  $feature-text-color: rgba($text-color, 0.6);
-  $button-padding: 1rem 2rem;
-  $button-bg-color: $badge-color;
-  $button-text-color: $bg-color;
-  $button-border-radius: 9999px;
-  $button-hover-bg-color: #fffbb6;
-  $button-hover-transform: scale(1.05);
-  $button-active-transform: scale(0.95);
-  $image-initial-transform: translateX(3rem);
-  $image-visible-opacity: 1;
-  $image-visible-transform: translateX(0);
-  $image-decoration-transform: rotate(3deg);
-  $image-decoration-opacity: 0.2;
-  $image-border-radius: 1.5rem;
-  $image-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  $image-height: 400px;
-  $image-border-color: rgba($badge-color, 0.3);
-  $image-border-width: 4px;
+  --promo-background-color: var(--mlt-sys-colors-primary);
+  --promo-font-color: var(--mlt-sys-colors-light);
 
-  padding: $padding-y 0;
-  padding-bottom: $padding-bottom;
-  background-color: $bg-color;
-  color: $text-color;
+  --promo-container-max-width: 1600px;
+  --promo-container-padding-x: 0 var(--mlt-sys-padding-10);
+  --promo-container-padding: var(--mlt-sys-padding-12) 0;
+
+  --promo-content-gap: var(--mlt-sys-gap-13);
+
+  --promo-badge-color: var(--mlt-sys-colors-highlight);
+  --promo-badge-font-weight: 700;
+  --promo-badge-letter-spacing: 0.05em;
+  --promo-badge-margin-bottom: var(--mlt-sys-gap-11);
+
+  --promo-title-font-size: var(--mlt-sys-font-size-7);
+  --promo-title-font-size-desktop: var(--mlt-sys-font-size-8);
+  --promo-title-font-weight: 700;
+  --promo-title-margin-bottom: var(--mlt-sys-gap-13);
+
+  --promo-features-gap: var(--mlt-sys-gap-9);
+  --promo-features-margin-bottom: var(--mlt-sys-gap-10);
+
+  --promo-feature-gap: var(--mlt-sys-gap-6);
+  --promo-feature-padding: var(--mlt-sys-padding-7);
+  --promo-feature-border-radius: var(--mlt-sys-border-radius-7);
+
+  --promo-feature-background: rgba(250, 249, 253, 0.1);
+
+  --promo-feature-icon-padding: var(--mlt-sys-padding-6);
+  --promo-feature-icon-color: var(--mlt-sys-colors-highlight);
+  --promo-feature-icon-font-size: var(--mlt-sys-font-size-5);
+  --promo-feature-icon-background: rgba(250, 249, 253, 0.1);
+
+  --promo-feature-title-font-weight: 700;
+
+  --promo-feature-text-font-size: var(--mlt-sys-font-size-2);
+  --promo-feature-text-color: var(--mlt-sys-colors-light);
+
+  --promo-button-padding: var(--mlt-sys-padding-7) var(--mlt-sys-padding-10);
+  --promo-button-background: var(--mlt-sys-colors-highlight);
+  --promo-button-color: var(--mlt-sys-colors-primary);
+  --promo-button-font-weight: 700;
+  --promo-button-border-radius: var(--mlt-sys-border-radius-7);
+  --promo-button-hover-background: var(--mlt-sys-colors-yellow-2);
+
+  --promo-image-border-radius: var(--mlt-sys-border-radius-7);
+  --promo-image-height: 400px;
+
+  --promo-image-border: 4px solid rgba(255, 246, 72, 0.3);
+
+  --promo-image-decoration-background: var(--mlt-sys-colors-highlight);
+
+  padding: var(--promo-container-padding);
+  padding-bottom: 20rem;
+  background-color: var(--promo-background-color);
+  color: var(--promo-font-color);
 
   &__container {
-    max-width: $container-max-width;
+    max-width: var(--promo-container-max-width);
     margin: 0 auto;
-    padding: 0 $container-padding-x;
+    padding: var(--promo-container-padding-x);
   }
 
   &__content {
@@ -54,7 +67,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: $content-gap;
+    gap: var(--promo-content-gap);
 
     @media (min-width: 768px) {
       flex-direction: row;
@@ -70,29 +83,29 @@
   }
 
   &__badge {
-    color: $badge-color;
-    font-weight: bold;
-    letter-spacing: 0.05em;
+    color: var(--promo-badge-color);
+    font-weight: var(--promo-badge-font-weight);
+    letter-spacing: var(--promo-badge-letter-spacing);
     text-transform: uppercase;
-    margin-bottom: $badge-margin-bottom;
+    margin-bottom: var(--promo-badge-margin-bottom);
     display: block;
   }
 
   &__title {
-    font-size: $title-font-size;
-    font-weight: bold;
-    margin-bottom: $title-margin-bottom;
+    font-size: var(--promo-title-font-size);
+    font-weight: var(--promo-title-font-weight);
+    margin-bottom: var(--promo-title-margin-bottom);
 
     @media (min-width: 768px) {
-      font-size: $title-font-size-lg;
+      font-size: var(--promo-title-font-size-desktop);
     }
   }
 
   &__features {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $features-gap;
-    margin-bottom: 2rem;
+    gap: var(--promo-features-gap);
+    margin-bottom: var(--promo-features-margin-bottom);
 
     @media (min-width: 640px) {
       grid-template-columns: repeat(3, 1fr);
@@ -102,39 +115,39 @@
   &__feature {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--promo-feature-gap);
     align-items: center;
     text-align: center;
-    border-radius: $feature-border-radius;
-    padding: $feature-padding;
-    background-color: $feature-bg-color;
+    border-radius: var(--promo-feature-border-radius);
+    padding: var(--promo-feature-padding);
+    background-color: var(--promo-feature-background);
   }
 
   &__feature-icon {
-    padding: $feature-icon-padding;
-    background-color: $feature-bg-color;
-    border-radius: $feature-icon-border-radius;
+    padding: var(--promo-feature-icon-padding);
+    background-color: var(--promo-feature-icon-background);
+    border-radius: 0.5rem;
     width: fit-content;
-    color: $badge-color;
-    font-size: $feature-icon-font-size;
+    color: var(--promo-feature-icon-color);
+    font-size: var(--promo-feature-icon-font-size);
   }
 
   &__feature-title {
-    font-weight: bold;
+    font-weight: var(--promo-feature-title-font-weight);
   }
 
   &__feature-text {
-    font-size: 0.875rem;
-    color: $feature-text-color;
+    font-size: var(--promo-feature-text-font-size);
+    color: var(--promo-feature-text-color);
   }
 
   &__button {
     display: flex;
-    padding: $button-padding;
-    background-color: $button-bg-color;
-    color: $button-text-color;
-    font-weight: bold;
-    border-radius: $button-border-radius;
+    padding: var(--promo-button-padding);
+    background-color: var(--promo-button-background);
+    color: var(--promo-button-color);
+    font-weight: var(--promo-button-font-weight);
+    border-radius: var(--promo-button-border-radius);
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -146,12 +159,12 @@
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
     &:hover {
-      background-color: $button-hover-bg-color;
-      transform: $button-hover-transform;
+      background-color: var(--promo-button-hover-background);
+      transform: scale(1.05);
     }
 
     &:active {
-      transform: $button-active-transform;
+      transform: scale(0.95);
     }
   }
 
@@ -159,38 +172,35 @@
     width: 100%;
     position: relative;
     opacity: 0;
-    transform: $image-initial-transform;
-    transition:
-      opacity 1s ease-out,
-      transform 1s ease-out;
+    transform: translateX(3rem);
+    transition: opacity 1s ease-out, transform 1s ease-out;
 
     @media (min-width: 768px) {
       width: 50%;
     }
 
     &--visible {
-      opacity: $image-visible-opacity;
-      transform: $image-visible-transform;
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
   &__image-decoration {
     position: absolute;
     inset: 0;
-    background-color: $badge-color;
-    border-radius: $image-border-radius;
-    transform: $image-decoration-transform;
-    opacity: $image-decoration-opacity;
+    background-color: var(--promo-image-decoration-background);
+    border-radius: var(--promo-image-border-radius);
+    transform: rotate(3deg);
+    opacity: 0.2;
   }
 
   &__image {
     position: relative;
-    border-radius: $image-border-radius;
-    box-shadow: $image-box-shadow;
+    border-radius: var(--promo-image-border-radius);
     width: 100%;
     object-fit: cover;
-    height: $image-height;
-    border: $image-border-width solid $image-border-color;
+    height: var(--promo-image-height);
+    border: var(--promo-image-border);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
-
