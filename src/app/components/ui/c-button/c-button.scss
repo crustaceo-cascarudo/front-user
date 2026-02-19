@@ -9,15 +9,14 @@
     --boton-padding: 0.25em 0.75em;
     --boton-font-size: var(--mlt-sys-font-size-4);
     --boton-border-radius: 0.5rem;
+    --boton-border: 1px solid var(--boton-border-color);
 
     font-family: sans-serif;
     font-size: var(--boton-font-size);
     padding: var(--boton-padding);
 
     border-radius: var(--boton-border-radius);
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--boton-border-color);
+    border: var(--boton-border);
     background-color: var(--boton-background-color);
     color: var(--boton-text-color);
 

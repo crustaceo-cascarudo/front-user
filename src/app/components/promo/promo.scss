@@ -1,12 +1,65 @@
 .promo {
-  padding: 5rem 0;
-  background-color: #8d222c;
-  color: #faf9fd;
+  --promo-background-color: var(--mlt-sys-colors-primary);
+  --promo-font-color: var(--mlt-sys-colors-light);
+
+  --promo-container-max-width: 1600px;
+  --promo-container-padding-x: 0 var(--mlt-sys-padding-10);
+  --promo-container-padding: var(--mlt-sys-padding-12) 0;
+
+  --promo-content-gap: var(--mlt-sys-gap-13);
+
+  --promo-badge-color: var(--mlt-sys-colors-highlight);
+  --promo-badge-font-weight: 700;
+  --promo-badge-letter-spacing: 0.05em;
+  --promo-badge-margin-bottom: var(--mlt-sys-gap-11);
+
+  --promo-title-font-size: var(--mlt-sys-font-size-7);
+  --promo-title-font-size-desktop: var(--mlt-sys-font-size-8);
+  --promo-title-font-weight: 700;
+  --promo-title-margin-bottom: var(--mlt-sys-gap-13);
+
+  --promo-features-gap: var(--mlt-sys-gap-9);
+  --promo-features-margin-bottom: var(--mlt-sys-gap-10);
+
+  --promo-feature-gap: var(--mlt-sys-gap-6);
+  --promo-feature-padding: var(--mlt-sys-padding-7);
+  --promo-feature-border-radius: var(--mlt-sys-border-radius-7);
+
+  --promo-feature-background: rgba(250, 249, 253, 0.1);
+
+  --promo-feature-icon-padding: var(--mlt-sys-padding-6);
+  --promo-feature-icon-color: var(--mlt-sys-colors-highlight);
+  --promo-feature-icon-font-size: var(--mlt-sys-font-size-5);
+  --promo-feature-icon-background: rgba(250, 249, 253, 0.1);
+
+  --promo-feature-title-font-weight: 700;
+
+  --promo-feature-text-font-size: var(--mlt-sys-font-size-2);
+  --promo-feature-text-color: var(--mlt-sys-colors-light);
+
+  --promo-button-padding: var(--mlt-sys-padding-7) var(--mlt-sys-padding-10);
+  --promo-button-background: var(--mlt-sys-colors-highlight);
+  --promo-button-color: var(--mlt-sys-colors-primary);
+  --promo-button-font-weight: 700;
+  --promo-button-border-radius: var(--mlt-sys-border-radius-7);
+  --promo-button-hover-background: var(--mlt-sys-colors-yellow-2);
+
+  --promo-image-border-radius: var(--mlt-sys-border-radius-7);
+  --promo-image-height: 400px;
+
+  --promo-image-border: 4px solid rgba(255, 246, 72, 0.3);
+
+  --promo-image-decoration-background: var(--mlt-sys-colors-highlight);
+
+  padding: var(--promo-container-padding);
+  padding-bottom: 20rem;
+  background-color: var(--promo-background-color);
+  color: var(--promo-font-color);
 
   &__container {
-    max-width: 1600px;
+    max-width: var(--promo-container-max-width);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: var(--promo-container-padding-x);
   }
 
   &__content {
@@ -14,7 +67,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: 3rem;
+    gap: var(--promo-content-gap);
 
     @media (min-width: 768px) {
       flex-direction: row;
@@ -30,35 +83,29 @@
   }
 
   &__badge {
-    color: #fff648;
-    font-weight: bold;
-    letter-spacing: 0.05em;
+    color: var(--promo-badge-color);
+    font-weight: var(--promo-badge-font-weight);
+    letter-spacing: var(--promo-badge-letter-spacing);
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--promo-badge-margin-bottom);
     display: block;
   }
 
   &__title {
-    font-size: 2.25rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+    font-size: var(--promo-title-font-size);
+    font-weight: var(--promo-title-font-weight);
+    margin-bottom: var(--promo-title-margin-bottom);
 
     @media (min-width: 768px) {
-      font-size: 3rem;
+      font-size: var(--promo-title-font-size-desktop);
     }
-  }
-
-  &__description {
-    font-size: 1.125rem;
-    color: rgba(250, 249, 253, 0.8);
-    margin-bottom: 2rem;
   }
 
   &__features {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: var(--promo-features-gap);
+    margin-bottom: var(--promo-features-margin-bottom);
 
     @media (min-width: 640px) {
       grid-template-columns: repeat(3, 1fr);
@@ -68,42 +115,51 @@
   &__feature {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--promo-feature-gap);
+    align-items: center;
+    text-align: center;
+    border-radius: var(--promo-feature-border-radius);
+    padding: var(--promo-feature-padding);
+    background-color: var(--promo-feature-background);
   }
 
   &__feature-icon {
-    padding: 0.75rem;
-    background-color: rgba(250, 249, 253, 0.1);
+    padding: var(--promo-feature-icon-padding);
+    background-color: var(--promo-feature-icon-background);
     border-radius: 0.5rem;
     width: fit-content;
-    color: #fff648;
-    font-size: 1.25rem;
+    color: var(--promo-feature-icon-color);
+    font-size: var(--promo-feature-icon-font-size);
   }
 
   &__feature-title {
-    font-weight: bold;
+    font-weight: var(--promo-feature-title-font-weight);
   }
 
   &__feature-text {
-    font-size: 0.875rem;
-    color: rgba(250, 249, 253, 0.6);
+    font-size: var(--promo-feature-text-font-size);
+    color: var(--promo-feature-text-color);
   }
 
   &__button {
-    padding: 1rem 2rem;
-    background-color: #fff648;
-    color: #8d222c;
-    font-weight: bold;
-    border-radius: 9999px;
+    display: flex;
+    padding: var(--promo-button-padding);
+    background-color: var(--promo-button-background);
+    color: var(--promo-button-color);
+    font-weight: var(--promo-button-font-weight);
+    border-radius: var(--promo-button-border-radius);
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
+    justify-content: center;
+    margin: 0 auto;
+    width: fit-content;
     box-shadow:
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
     &:hover {
-      background-color: #fffbb6;
+      background-color: var(--promo-button-hover-background);
       transform: scale(1.05);
     }
 
@@ -117,9 +173,7 @@
     position: relative;
     opacity: 0;
     transform: translateX(3rem);
-    transition:
-      opacity 1s ease-out,
-      transform 1s ease-out;
+    transition: opacity 1s ease-out, transform 1s ease-out;
 
     @media (min-width: 768px) {
       width: 50%;
@@ -134,19 +188,19 @@
   &__image-decoration {
     position: absolute;
     inset: 0;
-    background-color: #fff648;
-    border-radius: 1.5rem;
+    background-color: var(--promo-image-decoration-background);
+    border-radius: var(--promo-image-border-radius);
     transform: rotate(3deg);
     opacity: 0.2;
   }
 
   &__image {
     position: relative;
-    border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: var(--promo-image-border-radius);
     width: 100%;
     object-fit: cover;
-    height: 400px;
-    border: 4px solid rgba(255, 246, 72, 0.3);
+    height: var(--promo-image-height);
+    border: var(--promo-image-border);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
