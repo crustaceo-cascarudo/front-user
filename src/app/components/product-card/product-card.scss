@@ -130,7 +130,7 @@
         &--base {
             font-size: var(--product-card-font-size-default);
             text-decoration: line-through;
-            color: red;
+            color: var(--mlt-sys-colors-red);
         }
 
         &--discount {
@@ -141,10 +141,5 @@
 
     &--clickable {
         cursor: pointer;
-    }
-
-    &--order-item {
-        --product-card-background-color: white;
-        border: 1px solid black;
     }
 }

@@ -34,14 +34,34 @@
     --payment-page-font-size-small: var(--mlt-sys-font-size-2);
     --payment-page-font-size-button: var(--mlt-sys-font-size-6);
 
-    --payment-page-shadow: var(--mlt-sys-box-shadow-3);
-    --payment-page-padding: 2rem 1rem;;
+    --payment-page-padding: 2rem 1rem;
+    --payment-page-max-width: 900px;
+
+    --payment-page-section-padding: 2rem;
+    --payment-page-section-separation: 1px solid var(--mlt-sys-colors-gray-1);
+    --payment-page-section-title-margin-bottom: 1.5rem;
+
+    --payment-page-items-list-gap: .75rem;
+    --payment-page-total-price-margin-top: 1.5rem;
 
     --payment-page-form-padding: 0.75rem;
+    
+    --payment-page-form-group-gap: 1rem;
+    --payment-page-form-row-gap: 1rem;
+    --payment-page-form-input-group-gap: 0.5rem;
 
+    --payment-page-form-control-border: 1px solid var(--mlt-sys-colors-gray-2);
+    --payment-page-form-control-border-radius: 0.5rem;
+
+    --payment-page-submit-button-margin-top: 1rem;
     --payment-page-submit-button-padding: 16px;
 
+    --payment-page-alert-margin-top: 0.25rem;
+    --payment-page-alert-margin-bottom: 1rem;
     --payment-page-alert-padding: 0.5rem;
+    --payment-page-alert-background: transparent;
+    --payment-page-alert-color:  var(--mlt-sys-colors-red);
+    --payment-page-alert-border: 1px solid var(--payment-page-alert-color);
     --payment-page-alert-border-radius: 0.5rem;
 
     display: flex;
@@ -52,52 +72,45 @@
 
     &__container {
         width: 100%;
-        max-width: 900px;
+        max-width: var(--payment-page-max-width);
     }
 
     &__section {
-        padding: 2rem;
-        border-bottom: 1px solid #e5e5e5;
+        padding: var(--payment-page-section-padding);
+
+        &--middle {
+            border-top: var(--payment-page-section-separation);
+            border-bottom: var(--payment-page-section-separation);
+        }
     }
 
     &__section-title {
         font-size: var(--payment-page-font-size-title);
         font-weight: 600;
-        margin: 0 0 1.5rem 0;
-        color: #1a1a1a;
+        margin-bottom: var(--payment-page-section-title-margin-bottom);
     }
 
     &__items-list {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: var(--payment-page-items-list-gap);
     }
 
     &__total-price{
-        margin-top: 1.5rem;
+        margin-top: var(--payment-page-total-price-margin-top);
         font-size: var(--payment-page-font-size-price);
-    }
-
-    &__address-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        
-        @media (max-width: 600px) {
-            grid-template-columns: 1fr;
-        }
     }
 
     &__form-group {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: var(--payment-page-form-group-gap);
     }
 
     &__form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        gap: var(--payment-page-form-row-gap);
         
         @media (max-width: 600px) {
             grid-template-columns: 1fr;
@@ -107,13 +120,12 @@
     &__form-input-group {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: var(--payment-page-form--input-group-gap);
     }
 
     &__form-label {
         font-weight: 500;
-        color: #333;
-        font-size:var(--payment-page-font-size-bigger);
+        font-size: var(--payment-page-font-size-bigger);
     }
 
     &__form-control {
@@ -123,19 +135,18 @@
         font-size: var(--payment-page-font-size-default);
         font-weight: 400;
         appearance: none;
-        border: 1px solid var(--mlt-sys-colors-gray-2);
-        border-radius: 0.5rem;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        border: var(--payment-page-form-control-border);
+        border-radius: var(--payment-page-form-control-border-radius);
     }
 
     &__alert {
-        margin-top: 0.25rem;
         position: relative;
+        margin-top: var(--payment-page-alert-margin-top);
+        margin-bottom: var(--payment-page-alert-margin-bottom);
         padding: var(--payment-page-alert-padding);
-        margin-bottom: 1rem;
-        color: var(--mlt-sys-colors-red);
-        background-color: transparent;
-        border: 1px solid var(--mlt-sys-colors-red);
+        color: var(--payment-page-alert-color);
+        background-color: var(--payment-page-alert-background);
+        border: var(--payment-page-alert-border);
         border-radius: var(--payment-page-alert-border-radius);
         font-size: var(--payment-page-font-size-small);
     }
@@ -143,8 +154,7 @@
     &__submit-btn {
         padding: var(--payment-page-submit-button-padding);
         font-size: var(--payment-page-font-size-button);
-        margin-top: 1rem;
-        align-self: center;
+        margin-top: var(--payment-page-submit-button-margin-top);
     }
 
 }
